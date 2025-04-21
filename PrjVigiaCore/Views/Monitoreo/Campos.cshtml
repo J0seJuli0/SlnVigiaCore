@@ -1,0 +1,245 @@
+﻿@{
+    ViewData["Title"] = "Monitoreo Dinámico";
+}
+
+<style>
+    body {
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    .monitor-container {
+        background-color: rgba(255, 255, 255, 0.92);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .btn-primary, .btn-success {
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 30px;
+    }
+
+    h2, h4 {
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .server-card {
+        background-color: #f8f9fa;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .client-image {
+        width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 20px auto;
+    }
+</style>
+
+<div class="container monitor-container">
+    <h2 id="tituloMonitoreo" class="text-primary text-center mb-4">Formulario de Monitoreo</h2>
+
+    <!-- Imagen del cliente -->
+    <div class="text-center">
+        <img id="clientImage" class="client-image" src="" alt="Imagen del Cliente" />
+    </div>
+
+    <div class="mb-4 text-center" style="display:none;">
+        <label for="clienteId" class="form-label d-block">ID Cliente:</label>
+        <input type="hidden" id="clienteId" />
+        <button class="btn btn-primary mt-2" onclick="manualCargarCampos()">Cargar Campos</button>
+    </div>
+
+    <div class="card shadow-sm p-4 bg-light rounded border-0">
+        <form id="formularioCampos" class="row g-3" onsubmit="enviarFormulario(event)"></form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function cargarCampos(clienteId) {
+            if (!clienteId) {
+                alert("ID de cliente no proporcionado.");
+                return;
+            }
+
+            const url = `/api/monitoreo/campos/${encodeURIComponent(clienteId)}`;
+            const formContainer = document.getElementById('formularioCampos');
+            formContainer.innerHTML = '';
+
+            try {
+                const response = await fetch(url);
+                const campos = await response.json();
+
+                if (campos.length === 0) {
+                    formContainer.innerHTML = "<p>No se encontraron campos para este cliente.</p>";
+                    return;
+                }
+
+                // Mostrar la imagen del cliente
+                const imagen = campos[0].imagen;
+                const tipoImagen = campos[0].tipoImagen;
+
+                const imageElement = document.getElementById('clientImage');
+                if (imagen && tipoImagen) {
+                    imageElement.src = `data:${tipoImagen};base64,${imagen}`;
+                } else {
+                    imageElement.src = '/img/campos/404.png';
+                }
+
+                // Agrupar campos por idServer
+                const grupos = {};
+                campos.forEach(campo => {
+                    if (!grupos[campo.idServer]) {
+                        grupos[campo.idServer] = [];
+                    }
+                    grupos[campo.idServer].push(campo);
+                });
+
+                for (const idServer in grupos) {
+                    const serverCard = document.createElement('div');
+                    serverCard.className = 'col-12 server-card';
+
+                    const nombreCliente = campos[0].cliente;
+                    const titulo = document.getElementById('tituloMonitoreo');
+                    titulo.textContent = `Monitoreo de Servidores - ${nombreCliente}`;
+
+                    const serverTitle = document.createElement('h4');
+                    serverTitle.className = 'mb-4 text-secondary';
+
+                    const alias = grupos[idServer][0].alias;
+                    serverTitle.textContent = alias ? alias : "Datos Generales";
+
+                    serverCard.appendChild(serverTitle);
+
+                    const row = document.createElement('div');
+                    row.className = 'row';
+
+                    grupos[idServer].forEach(campo => {
+                        const div = document.createElement('div');
+                        div.className = 'col-md-6 mb-3';
+
+                        const label = document.createElement('label');
+                        label.innerText = `${campo.campo}`;
+                        label.className = 'form-label';
+
+                        const input = document.createElement('input');
+                        input.className = 'form-control';
+                        input.name = campo.idCampo;
+                        input.value = campo.valor || '';
+                        input.dataset.idCampo = campo.idCampo;
+                        input.dataset.idServer = campo.idServer;
+                        input.dataset.cliente = campo.cliente;
+                        input.dataset.tipoCampo = campo.tipoCampo;
+
+                        switch (campo.tipoDato.toLowerCase()) {
+                            case 'int':
+                            case 'decimal':
+                                input.type = 'number';
+                                break;
+                            case 'string':
+                            default:
+                                input.type = 'text';
+                                break;
+                        }
+
+                        div.appendChild(label);
+                        div.appendChild(input);
+                        row.appendChild(div);
+                    });
+
+                    serverCard.appendChild(row);
+                    formContainer.appendChild(serverCard);
+                }
+
+                const divBtn = document.createElement('div');
+                divBtn.className = 'col-12 d-flex justify-content-end mt-4';
+
+                const btn = document.createElement('button');
+                btn.innerText = "Guardar";
+                btn.type = "submit";
+                btn.className = "btn btn-success";
+                divBtn.appendChild(btn);
+
+                formContainer.appendChild(divBtn);
+
+            } catch (error) {
+                console.error('Error al obtener los campos:', error);
+                formContainer.innerHTML = "<p class='text-danger'>Error al obtener los campos.</p>";
+            }
+        }
+
+        async function enviarFormulario(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('formularioCampos');
+            const inputs = form.querySelectorAll('input.form-control');
+            const datosMap = new Map(); // Usamos un Map para evitar duplicados
+
+            inputs.forEach(input => {
+                const idCampo = input.dataset.idCampo;
+                let idServer = input.dataset.idServer;
+                const cliente = input.dataset.cliente;
+                const valor = input.value;
+                const tipoCampo = input.dataset.tipoCampo;
+
+                if (!idServer || idServer === 'null') {
+                    idServer = '1';
+                }
+                // Usamos una clave compuesta para permitir la repetición por idServer
+                const claveUnica = idCampo + "_" + idServer;
+
+                // Si ya existe el idCampo con ese idServer, reemplaza el valor anterior
+                datosMap.set(claveUnica, {
+                    idCampo: idCampo,
+                    idServer: idServer,
+                    valor: valor,
+                    cliente: cliente,
+                    tipoCampo: tipoCampo
+                });
+            });
+
+            // Convertimos el Map a un Array para enviarlo en el body de la solicitud
+            const datos = Array.from(datosMap.values());
+
+            try {
+                const response = await fetch("/api/monitoreo/registrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                const resultado = await response.text();
+                alert(resultado);
+            } catch (error) {
+                alert("Error al registrar monitoreo: " + error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const clienteId = params.get('idCliente');
+            if (clienteId) {
+                document.getElementById('clienteId').value = clienteId;
+                cargarCampos(clienteId);
+            }
+        });
+    </script>
+}

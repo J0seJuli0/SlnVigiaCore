@@ -1,0 +1,455 @@
+﻿@model PrjVigiaCore.Models.TamboMonitoreo
+
+@{
+    ViewData["Title"] = "Monitoreo de Servidores";
+}
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="text-center text-primary mb-4">Monitoreo de Servidores Tambo</h2>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success text-center">@TempData["Success"]</div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger text-center">@TempData["Error"]</div>
+            }
+
+            <form asp-action="EnviarCorreo" method="post" class="shadow-lg bg-light rounded needs-validation" novalidate>
+                <!-- DATOS GENERALES -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Datos Generales</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Fecha</label>
+                                <input name="Fecha" class="form-control" type="date" required />
+                                <div class="invalid-feedback">Por favor seleccione una fecha</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Hora</label>
+                                <input name="Hora" class="form-control" type="time" required />
+                                <div class="invalid-feedback">Por favor ingrese una hora</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Destinatarios</label>
+                            <div class="input-group">
+                                <select id="destinatarios" class="form-select" required>
+                                    <option value="" disabled selected>Seleccionar destinatario</option>
+                                    <option value="grupo_todos">Todos los usuarios</option>
+                                    <option value="jefferson.mayo@complexless.com">Jefferson Mayo</option>
+                                    <option value="julio.sanchez@complexless.com">Julio Sánchez</option>
+                                </select>
+                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#destinatariosModal">
+                                    <i class="bi bi-info-circle"></i> Ver detalles
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Por favor seleccione al menos un destinatario</div>
+                            <input type="hidden" name="Destinatario" id="destinatariosInput" value="" required>
+                            <small id="emailPreview" class="form-text text-muted mt-1"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Responsable</label>
+                            <select name="Responsable" class="form-select" required>
+                                <option value="" disabled selected>Seleccionar Responsable</option>
+                                <option value="Julio Sánchez">Julio Sánchez</option>
+                                <option value="Jefferson Mayo">Jefferson Mayo</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor seleccione un responsable</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVIDOR 1 -->
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Servidor PROD 1: 10.180.11.111</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Estado del Servidor</label>
+                                <select name="Server1Estado" class="form-select" required>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor seleccione un estado</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Fecha y Hora del servidor</label>
+                                <input name="Server1Fecha" class="form-control" type="text" required />
+                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% Uso en Disco</label>
+                                <input name="Server1Disco" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% NFS</label>
+                                <input name="Server1NFS" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% Uso de CPU</label>
+                                <input name="Server1CPU" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Componentes Activos</label>
+                            <div class="row" id="componentes-container">
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-console" id="fc1">
+                                        <label class="form-check-label" for="fc1">factus-console</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-view" id="fv1">
+                                        <label class="form-check-label" for="fv1">factus-view</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-api" id="fa1">
+                                        <label class="form-check-label" for="fa1">factus-api</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-jobs" id="fj1">
+                                        <label class="form-check-label" for="fj1">factus-jobs</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-batch" id="fb1">
+                                        <label class="form-check-label" for="fb1">factus-batch</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-mail" id="fm1">
+                                        <label class="form-check-label" for="fm1">factus-mail</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox" value="factus-public" id="fp1">
+                                        <label class="form-check-label" for="fp1">factus-public</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="server1ServiciosError" class="text-danger d-none">Seleccione al menos un componente activo</div>
+                            <input type="hidden" name="Server1Servicios" id="server1Servicios" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Comentario</label>
+                            <textarea name="Server1Comentario" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVIDOR 2 -->
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Servidor PROD 2: 10.180.11.112</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Estado del Servidor</label>
+                                <select name="Server2Estado" class="form-select" required>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor seleccione un estado</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Fecha y Hora del Servidor</label>
+                                <input name="Server2Fecha" class="form-control" type="text" required />
+                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% Uso de Disco</label>
+                                <input name="Server2Disco" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% NFS</label>
+                                <input name="Server2NFS" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label fw-bold">% Uso de CPU</label>
+                                <input name="Server2CPU" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Componentes Activos</label>
+                            <div class="row" id="componentes-container-2">
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox-2" value="factus-view" id="fv2">
+                                        <label class="form-check-label" for="fv2">factus-view</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox-2" value="factus-api" id="fa2">
+                                        <label class="form-check-label" for="fa2">factus-api</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox-2" value="docker factus-s3" id="fs2">
+                                        <label class="form-check-label" for="fs2">docker factus-s3</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox-2" value="docker factus-report" id="fr2">
+                                        <label class="form-check-label" for="fr2">docker factus-report</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input component-checkbox-2" value="docker factus-monitor" id="fm2">
+                                        <label class="form-check-label" for="fm2">docker factus-monitor</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="server2ServiciosError" class="text-danger d-none">Seleccione al menos un componente activo</div>
+                            <input type="hidden" name="Server2Servicios" id="server2Servicios" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Comentario</label>
+                            <textarea name="Server2Comentario" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVIDOR 3 -->
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Servidor NGINX: 10.180.11.30</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Estado del Servidor</label>
+                                <select name="Server3Estado" class="form-select" required>
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor seleccione un estado</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Fecha y Hora del Servidor</label>
+                                <input name="Server3Fecha" class="form-control" type="text" required />
+                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">% Uso de Disco</label>
+                                <input name="Server3Disco" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">% Uso de CPU</label>
+                                <input name="Server3CPU" class="form-control" type="number" min="0" max="100" step="0.1" required />
+                                <div class="invalid-feedback">Ingrese un valor entre 0 y 100</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Comentario</label>
+                            <textarea name="Server3Comentario" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center p-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                        <i class="bi bi-envelope-fill me-2"></i>Generar Reporte y Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para mostrar detalles de destinatarios -->
+<div class="modal fade" id="destinatariosModal" tabindex="-1" aria-labelledby="destinatariosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="destinatariosModalLabel">Detalles de Destinatarios</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Todos los usuarios</h5>
+                            <span class="badge bg-primary rounded-pill">3</span>
+                        </div>
+                        <p class="mb-1">Esta opción enviará el correo a todos los siguientes destinatarios:</p>
+                        <ul class="list-unstyled ps-3">
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>oriana.ramirez@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>josue.chupica@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>xiomara.lopez@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>cesar.zacari@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>oscar.mejia@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>jefferson.mayo@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>julio.sanchez@complexless.com</li>
+                        </ul>
+                    </div>
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Destinatarios individuales</h5>
+                        </div>
+                        <p class="mb-1">Al seleccionar un destinatario individual, el correo será enviado solo a esa persona:</p>
+                        <ul class="list-unstyled ps-3">
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>Jefferson Mayo - jefferson.mayo@complexless.com</li>
+                            <li><i class="bi bi-envelope-fill me-2 text-primary"></i>Julio Sánchez - julio.sanchez@complexless.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        let destinatariosDropdown = document.getElementById('destinatarios');
+        let destinatariosInput = document.getElementById('destinatariosInput');
+        let emailPreview = document.getElementById('emailPreview');
+
+        const emailMap = {
+            "grupo_todos": "oriana.ramirez@complexless.com, josue.chupica@complexless.com, xiomara.lopez@complexless.com, cesar.zacari@complexless.com, oscar.mejia@complexless.com, jefferson.mayo@complexless.com, julio.sanchez@complexless.com",
+            "jefferson.mayo@complexless.com": "jefferson.mayo@complexless.com",
+            "julio.sanchez@complexless.com": "julio.sanchez@complexless.com"
+        };
+
+        function actualizarDestinatarios() {
+            if (destinatariosDropdown.value) {
+                destinatariosInput.value = emailMap[destinatariosDropdown.value];
+
+                if (destinatariosDropdown.value === "grupo_todos") {
+                    emailPreview.innerHTML = "Correos: " + emailMap[destinatariosDropdown.value].split(', ').slice(0, 2).join(', ') + '... <span class="text-primary">(Ver todos)</span>';
+                } else {
+                    emailPreview.innerHTML = "Correo: " + destinatariosInput.value;
+                }
+            } else {
+                destinatariosInput.value = "";
+                emailPreview.innerHTML = "";
+            }
+            console.log("Destinatarios seleccionados:", destinatariosInput.value);
+        }
+
+        destinatariosDropdown.addEventListener('change', actualizarDestinatarios);
+
+        emailPreview.addEventListener('click', function(e) {
+            if (e.target.classList.contains('text-primary')) {
+                new bootstrap.Modal(document.getElementById('destinatariosModal')).show();
+            }
+        });
+
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        actualizarDestinatarios();
+
+                        let server1Componentes = document.querySelectorAll('.component-checkbox:checked');
+                        if (server1Componentes.length === 0) {
+                            document.getElementById('server1ServiciosError').classList.remove('d-none');
+                            event.preventDefault();
+                            event.stopPropagation();
+                        } else {
+                            document.getElementById('server1ServiciosError').classList.add('d-none');
+                        }
+
+                        let server2Componentes = document.querySelectorAll('.component-checkbox-2:checked');
+                        if (server2Componentes.length === 0) {
+                            document.getElementById('server2ServiciosError').classList.remove('d-none');
+                            event.preventDefault();
+                            event.stopPropagation();
+                        } else {
+                            document.getElementById('server2ServiciosError').classList.add('d-none');
+                        }
+
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+        })();
+
+        // SERVER 1
+        document.querySelectorAll('.component-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let selectedComponents = Array.from(document.querySelectorAll('.component-checkbox:checked'))
+                    .map(cb => cb.value)
+                    .join(', ');
+                document.getElementById('server1Servicios').value = selectedComponents;
+                if (selectedComponents.length > 0) {
+                    document.getElementById('server1ServiciosError').classList.add('d-none');
+                } else {
+                    document.getElementById('server1ServiciosError').classList.remove('d-none');
+                }
+            });
+        });
+
+        // SERVER 2
+        document.querySelectorAll('.component-checkbox-2').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let selectedComponents = Array.from(document.querySelectorAll('.component-checkbox-2:checked'))
+                    .map(cb => cb.value)
+                    .join(', ');
+                document.getElementById('server2Servicios').value = selectedComponents;
+                if (selectedComponents.length > 0) {
+                    document.getElementById('server2ServiciosError').classList.add('d-none');
+                } else {
+                    document.getElementById('server2ServiciosError').classList.remove('d-none');
+                }
+            });
+        });
+
+        actualizarDestinatarios();
+    });
+
+</script>

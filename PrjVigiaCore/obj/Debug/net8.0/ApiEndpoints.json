@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "Campos",
+    "RelativePath": "api/Monitoreo/campos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "ObtenerCampos",
+    "RelativePath": "api/Monitoreo/campos/{idCliente}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idCliente",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "Registrar",
+    "RelativePath": "api/Monitoreo/registrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datos",
+        "Type": "System.Text.Json.JsonElement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

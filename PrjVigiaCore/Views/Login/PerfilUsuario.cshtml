@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Mi Perfil";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 perfil-empleado @(ViewBag.TipoUsuario == 1 ? "cliente" : (ViewBag.TipoUsuario == 2 ? "admin" : ""))">
+        <div class="card-body">
+            <h3 class="card-title mb-4 text-center">
+                <i class="fas fa-user-circle me-2"></i>Mi Perfil
+            </h3>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">ID Empleado</div>
+                <div class="col-sm-8">@ViewBag.IdEmpleado</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">Nombre Completo</div>
+                <div class="col-sm-8">@ViewBag.Nombres @ViewBag.ApePat @ViewBag.ApeMat</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 fw-bold">Rol</div>
+                <div class="col-sm-8">@ViewBag.Rol</div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-sm-4 fw-bold">Estado</div>
+                <div class="col-sm-8">@ViewBag.Estado</div>
+            </div>
+
+            <div class="text-center">
+                <form method="post" action="/Empleado/Logout">
+                    <button type="submit" class="btn btn-outline-danger px-4">
+                        <i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos modernos -->
+<style>
+    .perfil-empleado {
+        max-width: 600px;
+        margin: auto;
+        padding: 30px;
+    }
+
+        .perfil-empleado.cliente {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-left: 6px solid #2196f3;
+        }
+
+        .perfil-empleado.admin {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-left: 6px solid #e53935;
+        }
+</style>
