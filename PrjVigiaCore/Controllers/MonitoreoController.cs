@@ -197,7 +197,6 @@ namespace PrjVigiaCore.Controllers
                 doc.Add(new Paragraph("\n"));
             }
 
-            var responsable = datos.FirstOrDefault(x => x.CAMPO.ToString().ToLower().Contains("Responsable"))?.VALOR ?? "No especificado";
             var responsable = datos.FirstOrDefault(x => x.CAMPO.ToString().ToLower().Contains("responsable"))?.VALOR ?? "No especificado";
 
             doc.Add(new Paragraph("Agradecemos la atención prestada.", textFont));
