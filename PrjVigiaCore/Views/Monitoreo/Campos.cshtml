@@ -189,7 +189,9 @@
 
             const form = document.getElementById('formularioCampos');
             const inputs = form.querySelectorAll('input.form-control');
-            const datosMap = new Map(); // Usamos un Map para evitar duplicados
+            const datosMap = new Map();
+
+            const idCliente = document.getElementById('clienteId').value;
 
             inputs.forEach(input => {
                 const idCampo = input.dataset.idCampo;
@@ -199,7 +201,7 @@
                 const tipoCampo = input.dataset.tipoCampo;
 
                 if (!idServer || idServer === 'null') {
-                    idServer = '1';
+                    idServer = tipoCampo;
                 }
                 // Usamos una clave compuesta para permitir la repetición por idServer
                 const claveUnica = idCampo + "_" + idServer;
@@ -210,7 +212,8 @@
                     idServer: idServer,
                     valor: valor,
                     cliente: cliente,
-                    tipoCampo: tipoCampo
+                    tipoCampo: tipoCampo,
+                    idCliente: idCliente
                 });
             });
 
