@@ -162,7 +162,7 @@ namespace PrjVigiaCore.Controllers
             string cliente = datos.FirstOrDefault()?.NOMBRE ?? "Desconocido";
             string fecha = datos.FirstOrDefault(x => x.CAMPO.ToString().ToUpper() == "FECHA")?.VALOR?.ToString() ?? DateTime.Now.ToString("yyyyMMdd");
             string hora = datos.FirstOrDefault(x => x.CAMPO.ToString().ToUpper() == "HORA")?.VALOR?.ToString()?.Trim().Replace(":", "") ?? DateTime.Now.ToString("HHmmss");
-            string nombreArchivo = $"Monitoreo_{cliente}_{fecha}.pdf";
+            string nombreArchivo = $"MONITOREO_{cliente}_#{fecha}.pdf";
             string ruta = Path.Combine("wwwroot/temp", nombreArchivo);
             Directory.CreateDirectory("wwwroot/temp");
             using var fs = new FileStream(ruta, FileMode.Create);
@@ -287,10 +287,10 @@ namespace PrjVigiaCore.Controllers
 
                 doc.Add(table);
             }
+            doc.Add(new Paragraph("\n"));
             var responsable = datos.FirstOrDefault(x => x.CAMPO.ToString().ToLower().Contains("responsable"))?.VALOR ?? "Grupo Cloud";
             doc.Add(new Paragraph("Agradecemos la atención prestada.", textFont));
             doc.Add(new Paragraph("Saludos Cordiales", textFont));
-            doc.Add(new Paragraph("\n"));
             doc.Add(new Paragraph($"{responsable} | Gestión Plataforma Cloud", titleFont));
             doc.Close();
             return ruta;
