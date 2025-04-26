@@ -9,6 +9,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using PrjVigiaCore.DAO;
 using System.Collections.Generic;
+using Xceed.Words.NET;
 
 namespace PrjVigiaCore.Controllers
 {
@@ -23,11 +24,9 @@ namespace PrjVigiaCore.Controllers
             _connectionString = configuration.GetConnectionString("cn1")!;
         }
 
-        // Vista para monitoreo
         [HttpGet("campos")]
         public IActionResult Campos() => View();
 
-        // Obtener lista de campos del cliente
         [HttpGet("campos/{idCliente}")]
         public async Task<IActionResult> ObtenerCampos(string idCliente)
         {
@@ -71,7 +70,6 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
-        // Registrar monitoreo
         [HttpPost("registrar")]
         public IActionResult Registrar([FromBody] JsonElement datos)
         {
@@ -162,52 +160,143 @@ namespace PrjVigiaCore.Controllers
         private string GenerarPDFDinamico(List<dynamic> datos)
         {
             string cliente = datos.FirstOrDefault()?.NOMBRE ?? "Desconocido";
-            string nombreArchivo = $"Monitoreo_{cliente}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+            string fecha = datos.FirstOrDefault(x => x.CAMPO.ToString().ToUpper() == "FECHA")?.VALOR?.ToString() ?? DateTime.Now.ToString("yyyyMMdd");
+            string hora = datos.FirstOrDefault(x => x.CAMPO.ToString().ToUpper() == "HORA")?.VALOR?.ToString()?.Trim().Replace(":", "") ?? DateTime.Now.ToString("HHmmss");
+            string nombreArchivo = $"Monitoreo_{cliente}_{fecha}.pdf";
             string ruta = Path.Combine("wwwroot/temp", nombreArchivo);
-
             Directory.CreateDirectory("wwwroot/temp");
-
             using var fs = new FileStream(ruta, FileMode.Create);
-            var doc = new Document(PageSize.A4);
+            var doc = new Document(PageSize.A4, 56, 56, 37, 37);
             PdfWriter.GetInstance(doc, fs);
             doc.Open();
-
-            var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+            var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);
             var headerFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
             var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
-
-            doc.Add(new Paragraph($"Gesttión Plataforma Cloud"));
-            doc.Add(new Paragraph($"Asunto: {cliente} - {DateTime.Now} - Monitoreo Servidores {cliente}", titleFont));
-            doc.Add(new Paragraph($"Fecha: {DateTime.Now}", textFont));
-            doc.Add(new Paragraph("\n"));
-
-            foreach (var grupo in datos.GroupBy(x => x.ALIAS))
+            var tableHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 11, BaseColor.WHITE);
+            var headerTable = new PdfPTable(2)
             {
-                doc.Add(new Paragraph($"{grupo.Key}", headerFont));
-                var table = new PdfPTable(2) { WidthPercentage = 100 };
+                WidthPercentage = 100
+            };
+            string imagePath = Path.Combine("wwwroot", "img", "logo.png");
+            if (System.IO.File.Exists(imagePath))
+            {
+                var logo = Image.GetInstance(imagePath);
+                logo.ScaleToFit(125, 125);
+                var cellogo = new PdfPCell(logo)
+                {
+                    Border = Rectangle.NO_BORDER,
+                    HorizontalAlignment = Element.ALIGN_LEFT,
+                    VerticalAlignment = Element.ALIGN_MIDDLE
+                };
+                headerTable.AddCell(cellogo);
+            }
+            else
+            {
+                headerTable.AddCell(new PdfPCell(new Phrase("")) { Border = Rectangle.NO_BORDER });
+            }
+            var textderecha = new PdfPCell(new Phrase("Gestión Plataforma Cloud", titleFont))
+            {
+                Border = Rectangle.NO_BORDER,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_RIGHT
+            };
+            headerTable.AddCell(textderecha);
+            doc.Add(headerTable);
+            doc.Add(new Paragraph("\n"));
+            doc.Add(new Paragraph($"Asunto: {cliente} - {fecha} - Monitoreo Servidores {cliente}", textFont));
+            doc.Add(new Paragraph($"Reciban un cordial saludo, queremos mantenerlos informados acerca del seguimiento del monitoreo:", textFont));
+            doc.Add(new Paragraph("\n"));
+            doc.Add(new Paragraph($"Cuenta: {cliente}", textFont));
+            doc.Add(new Paragraph($"Fecha de Monitoreo: {fecha}", textFont));
+            if (DateTime.TryParseExact(hora, "HHmmss", null, System.Globalization.DateTimeStyles.None, out DateTime horaDateTime))
+            {
+                string horaFormateada = horaDateTime.ToString("hh:mm tt");
+                doc.Add(new Paragraph($"Hora de Monitoreo: {horaFormateada}"));
+            }
+            else
+            {
+                string horaSistem = DateTime.Now.ToString("hh:mm tt");
+                doc.Add(new Paragraph($"Hora de Monitoreo: {horaSistem}", textFont));
+            }
+            doc.Add(new Paragraph("\n"));
+            foreach (var grupo in datos.Where(x => x.ALIAS != "1").GroupBy(x => x.ALIAS))
+            {
+                // Creamos la tabla
+                var table = new PdfPTable(2)
+                {
+                    WidthPercentage = 100,
+                    SpacingBefore = 10f,
+                    SpacingAfter = 10f
+                };
                 table.SetWidths(new float[] { 40, 60 });
 
+                // Agregamos una celda para el titulo
+                var aliasHeaderCell = new PdfPCell(new Phrase(grupo.Key.ToString(), tableHeaderFont))
+                {
+                    Colspan = 2,
+                    HorizontalAlignment = Element.ALIGN_CENTER,
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    BackgroundColor = new BaseColor(41, 128, 185),
+                    Padding = 8f,
+                    MinimumHeight = 30f
+                };
+                table.AddCell(aliasHeaderCell);
+
+                // Agregagamos los encabezados de las celdas
+                var campoHeaderCell = new PdfPCell(new Phrase("CAMPO", headerFont))
+                {
+                    BackgroundColor = BaseColor.LIGHT_GRAY,
+                    HorizontalAlignment = Element.ALIGN_CENTER,
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    Padding = 5f
+                };
+                table.AddCell(campoHeaderCell);
+
+                var valorHeaderCell = new PdfPCell(new Phrase("VALOR", headerFont))
+                {
+                    BackgroundColor = BaseColor.LIGHT_GRAY,
+                    HorizontalAlignment = Element.ALIGN_CENTER,
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    Padding = 5f
+                };
+                table.AddCell(valorHeaderCell);
+
+                // Agregamos los datos en las filas
                 foreach (var item in grupo)
                 {
-                    table.AddCell(new PdfPCell(new Phrase(item.CAMPO, textFont)) { BackgroundColor = BaseColor.LIGHT_GRAY });
-                    table.AddCell(new Phrase(item.VALOR ?? "-", textFont));
+                    var campoCell = new PdfPCell(new Phrase(item.CAMPO, textFont))
+                    {
+                        Padding = 5f,
+                        BorderColor = BaseColor.LIGHT_GRAY
+                    };
+                    table.AddCell(campoCell);
+
+                    string valorTexto = item.VALOR?.ToString() ?? "-";
+                    if (item.CAMPO.ToString().Contains("%") && !valorTexto.EndsWith("%") && valorTexto != "-")
+                    {
+                        valorTexto += "%";
+                    }
+
+                    var valorCell = new PdfPCell(new Phrase(valorTexto, textFont))
+                    {
+                        Padding = 5f,
+                        BorderColor = BaseColor.LIGHT_GRAY
+                    };
+                    table.AddCell(valorCell);
                 }
 
                 doc.Add(table);
-                doc.Add(new Paragraph("\n"));
             }
-
-            var responsable = datos.FirstOrDefault(x => x.CAMPO.ToString().ToLower().Contains("responsable"))?.VALOR ?? "No especificado";
-
+            var responsable = datos.FirstOrDefault(x => x.CAMPO.ToString().ToLower().Contains("responsable"))?.VALOR ?? "Grupo Cloud";
             doc.Add(new Paragraph("Agradecemos la atención prestada.", textFont));
             doc.Add(new Paragraph("Saludos Cordiales", textFont));
             doc.Add(new Paragraph("\n"));
-            doc.Add(new Paragraph($"{responsable} | Gestión Plataforma Cloud", textFont));
+            doc.Add(new Paragraph($"{responsable} | Gestión Plataforma Cloud", titleFont));
             doc.Close();
             return ruta;
         }
 
-        private bool EnviarCorreoConPDF(string rutaPDF, string destinatarios)
+        private bool EnviarCorreoConPDF(string rutaPDF, string destinatarios, string cliente, string fecha)
         {
             try
             {
@@ -217,8 +306,8 @@ namespace PrjVigiaCore.Controllers
                 var mensaje = new MailMessage
                 {
                     From = new MailAddress(remitente),
-                    Subject = "Reporte de Monitoreo",
-                    Body = "Adjunto encontrará su reporte de monitoreo.\n\nSaludos,\nGestión Plataforma Cloud"
+                    Subject = $"COMPLEXLESS - MONITOREO {cliente} #{fecha}",
+                    Body = $"Estimados,\n\nAprovechamos en saludarlos y a la vez compartimos el reporte de monitoreo del día {fecha}.\n\nSaludos.\n\nGestión Plataforma Cloud"
                 };
 
                 foreach (var email in destinatarios.Split(',', ';'))
@@ -250,8 +339,11 @@ namespace PrjVigiaCore.Controllers
             var datos = ObtenerDatosDesdeSP(idMon);
             if (!datos.Any()) return false;
 
+            string cliente = datos.FirstOrDefault()?.NOMBRE ?? "Desconocido";
+            string fecha = datos.FirstOrDefault(x => x.CAMPO.ToString().ToUpper() == "FECHA")?.VALOR?.ToString() ?? DateTime.Now.ToString("yyyyMMdd");
+
             string pdfPath = GenerarPDFDinamico(datos);
-            return EnviarCorreoConPDF(pdfPath, destinatarios);
+            return EnviarCorreoConPDF(pdfPath, destinatarios, cliente, fecha);
         }
     }
 }
