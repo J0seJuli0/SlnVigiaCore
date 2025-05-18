@@ -42,14 +42,17 @@ namespace PrjMonitoreoCPLX.Controllers
             string idRol;
             string idUsu;
             string passHash;
+            string nombreUsuario;
 
-            int resultado = AccesoSistema(email, out idRol, out idUsu, out passHash);
+            int resultado = AccesoSistema(email, out idRol, out idUsu, out passHash, out nombreUsuario);
 
             if (resultado == 1 && BCrypt.Net.BCrypt.Verify(password, passHash))
             {
                 HttpContext.Session.SetString("Email", email);
                 HttpContext.Session.SetString("ID_Rol", idRol);
                 HttpContext.Session.SetString("ID_Usuario", idUsu);
+                HttpContext.Session.SetString("NombreUsu", nombreUsuario);
+
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -60,11 +63,12 @@ namespace PrjMonitoreoCPLX.Controllers
         }
 
 
-        private int AccesoSistema(string email, out string idRol, out string idUsu, out string passHash)
+        private int AccesoSistema(string email, out string idRol, out string idUsu, out string passHash, out string nombreUsuario)
         {
             idRol = string.Empty;
             idUsu = string.Empty;
             passHash = string.Empty;
+            nombreUsuario = string.Empty;
 
             using (SqlConnection conn = new SqlConnection(cad_cn))
             {
@@ -78,11 +82,13 @@ namespace PrjMonitoreoCPLX.Controllers
                     SqlParameter outputRol = new SqlParameter("@ID_Rol", SqlDbType.VarChar, 8) { Direction = ParameterDirection.Output };
                     SqlParameter outputUsu = new SqlParameter("@ID_USUARIO", SqlDbType.VarChar, 8) { Direction = ParameterDirection.Output };
                     SqlParameter outputContrasenia = new SqlParameter("@Contrasenia", SqlDbType.VarChar, 1000) { Direction = ParameterDirection.Output };
-
+                    SqlParameter outputNombre = new SqlParameter("@NOMBRES", SqlDbType.VarChar, 1000) { Direction = ParameterDirection.Output };
+                    
                     cmd.Parameters.Add(outputResultado);
                     cmd.Parameters.Add(outputRol);
                     cmd.Parameters.Add(outputUsu);
                     cmd.Parameters.Add(outputContrasenia);
+                    cmd.Parameters.Add(outputNombre);
 
                     cmd.ExecuteNonQuery();
 
@@ -90,6 +96,7 @@ namespace PrjMonitoreoCPLX.Controllers
                     idRol = outputRol.Value != DBNull.Value ? outputRol.Value.ToString()! : string.Empty;
                     idUsu = outputUsu.Value != DBNull.Value ? outputUsu.Value.ToString()! : string.Empty;
                     passHash = outputContrasenia.Value != DBNull.Value ? outputContrasenia.Value.ToString()! : string.Empty;
+                    nombreUsuario = outputNombre.Value != DBNull.Value ? outputNombre.Value.ToString()! : string.Empty;
 
                     return resultado;
                 }
