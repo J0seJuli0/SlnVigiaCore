@@ -57,18 +57,103 @@ namespace PrjVigiaCore.Controllers
                         Estado = Convert.ToInt32(reader["ESTADO"]),
                         Cliente = reader["CLIENTE"].ToString(),
                         IdCliente = reader["ID_CLIENTE"].ToString(),
-                        Imagen = reader["IMAGEN"] != DBNull.Value ? Convert.ToBase64String((byte[])reader["IMAGEN"]) : null,
+                        Imagen = reader["IMAGEN"]?.ToString(),
                         TipoImagen = reader["TIPO_IMAGE"]?.ToString()
                     });
                 }
 
                 return Ok(resultados);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(new { mensaje = $"Error al obtener campos: {ex.Message}" });
+                return BadRequest(new { mensaje = "Error al obtener campos." });
             }
         }
+
+
+
+        [HttpGet("componente/{idServer}")]
+        public async Task<IActionResult> ObtenerComponentes(string idServer)
+        {
+            if (string.IsNullOrWhiteSpace(idServer))
+                return BadRequest(new { mensaje = "!Ups! Algo Salió Mal." });
+            {
+
+                try
+                {
+                    var resultados = new List<dynamic>();
+
+                    using var cnn = new SqlConnection(_connectionString);
+                    using var cmd = new SqlCommand("SP_LISTAR_COMPONENTES", cnn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Parameters.AddWithValue("@ID_SERVER", idServer);
+
+                    await cnn.OpenAsync();
+                    using var reader = await cmd.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+                        resultados.Add(new
+                        {
+                            IdServer = reader["ID_SERVER"].ToString(),
+                            Componente = reader["COMPONENTE"].ToString(),
+                            Descripcion = reader["DESCRIPCION"]?.ToString(),
+                            Estado = Convert.ToInt32(reader["ESTADO"]),
+                            FechaRegistro = Convert.ToDateTime(reader["FECHA_REGISTRO"])
+                        });
+                    }
+
+                    return Ok(resultados);
+                }
+                catch (Exception)
+                {
+                    return BadRequest(new { mensaje = "No pudimos cargar los componentes en este momento. Por favor, inténtalo de nuevo más tarde." });
+                }
+
+            }
+        }
+
+
+
+        [HttpGet("destinatarios/{idCliente}")]
+        public async Task<IActionResult> ObtenerDestinatarios(string idCliente)
+        {
+            try
+            {
+                string idClientDes = CryptoHelper.Decrypt(idCliente);
+                var destinatarios = new List<dynamic>();
+
+                using var conn = new SqlConnection(_connectionString);
+                using var cmd = new SqlCommand("SP_LISTAR_DESTINATARIOS", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@ID_CLIENTE", idClientDes);
+
+                await conn.OpenAsync();
+                using var reader = await cmd.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    destinatarios.Add(new
+                    {
+                        IdDestinatario = reader["ID_DESTINATARIO"].ToString(),
+                        NombreCompleto = reader["NOMBRE_COMPLETO"].ToString(),
+                        Email = reader["EMAIL"].ToString(),
+                        Tipo = Convert.ToInt32(reader["TIPO"])
+                    });
+                }
+
+                return Ok(destinatarios);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { mensaje = "Oops, hubo un problema al cargar tus destinatarios. Danos unos minutos mientras lo resolvemos :)" });
+            }
+        }
+
 
         [HttpPost("registrar")]
         public IActionResult Registrar([FromBody] JsonElement datos)
@@ -112,15 +197,45 @@ namespace PrjVigiaCore.Controllers
 
                 return Ok(new
                 {
+                    success = true,
+                    status = enviado ? "complete" : "partial",
                     mensaje = enviado
-                        ? $"Monitoreo registrado y correo enviado. ID_MON: {idMon}"
-                        : "Monitoreo registrado, pero no se pudo enviar el correo.",
-                    idMon
+                        ? $"¡Listo! Hemos registrado tu monitoreo y notificado a los destinatarios."
+                        : $"Hemos guardado tu monitoreo (Referencia: {idMon}), pero hubo un problema al enviar los correos",
+                    detalles = new
+                    {
+                        idMonitoreo = idMon,
+                        notificacionEnviada = enviado,
+                        fecha = DateTime.Now.ToString("dd 'de' MMMM 'del' yyyy")
+                    },
+                    acciones = enviado
+                    ? Array.Empty<string>()
+                    : new[] {
+                        "1. Verificar la lista de correos destinatarios",
+                        "2. Contactar a soporte técnico si el problema persiste"
+                    }
                 });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { mensaje = $"Error al registrar monitoreo: {ex.Message}" });
+                string mensajes = ex switch
+                {
+                    SqlException => "Ocurrió un problema con la base de datos. Estamos trabajando para solucionarlo.",
+
+                    IOException ioEx when ioEx.Message.Contains("already exists") ||
+                                        ioEx.Message.Contains("ya existe") =>
+                                        "El archivo ya existe. Por favor, comunicate con soporte para verificar el problema.",
+
+                    UnauthorizedAccessException => "No tienes permiso para realizar esta acción.",
+
+                    _ => "Ocurrió un error inesperado. Por favor, inténtalo más tarde."
+                };
+
+                return BadRequest(new
+                {
+                    success = false,
+                    mensaje = mensajes,
+                });
             }
         }
 
