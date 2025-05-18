@@ -2,76 +2,56 @@
     ViewData["Title"] = "Monitoreo Dinámico";
 }
 
-<style>
-    body {
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
-    }
-
-    .monitor-container {
-        background-color: rgba(255, 255, 255, 0.92);
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #333;
-    }
-
-    .btn-primary, .btn-success {
-        padding-left: 30px;
-        padding-right: 30px;
-        border-radius: 30px;
-    }
-
-    h2, h4 {
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
-    }
-
-    .server-card {
-        background-color: #f8f9fa;
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 30px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .client-image {
-        width: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin: 20px auto;
-    }
-</style>
+<link href="~/css/Campos/campos.css" rel="stylesheet" />
 
 <div class="container monitor-container">
-    <h2 id="tituloMonitoreo" class="text-primary text-center mb-4">Formulario de Monitoreo</h2>
+    <h2 id="tituloMonitoreo" class="text-primary text-center mb-4" style="font-weight: bold;">
+        Formulario de Monitoreo
+    </h2>
 
-    <!-- Imagen del cliente -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+            <div class="loading-text">Procesando, por favor espere...</div>
+        </div>
+    </div>
+
     <div class="text-center">
-        <img id="clientImage" class="client-image" src="" alt="Imagen del Cliente" />
+        <img id="clientImage" class="client-image" src="" alt="Imagen del Cliente"/>
     </div>
 
-    <div class="mb-4 text-center" style="display:none;">
-        <label for="clienteId" class="form-label d-block">ID Cliente:</label>
-        <input type="hidden" id="clienteId" />
-        <button class="btn btn-primary mt-2" onclick="manualCargarCampos()">Cargar Campos</button>
-    </div>
+    <input type="hidden" id="clienteId" />
 
     <div class="card shadow-sm p-4 bg-light rounded border-0">
-        <form id="formularioCampos" class="row g-3" onsubmit="enviarFormulario(event)"></form>
+        <form id="formularioCampos" class="row g-3" onsubmit="enviarFormulario(event)">
+            <!-- Los campos se cargan dinámicamente -->
+        </form>
     </div>
 </div>
 
 @section Scripts {
     <script>
+        function fechaActualPeru() {
+            const ahora = new Date();
+            const opciones = { timeZone: 'America/Lima' };
+            const ahoraPeru = new Date(ahora.toLocaleString('en-US', opciones));
+            const año = ahoraPeru.getFullYear();
+            const mes = String(ahoraPeru.getMonth() + 1).padStart(2, '0');
+            const dia = String(ahoraPeru.getDate()).padStart(2, '0');
+            return `${año}-${mes}-${dia}`;
+        }
+
+        function horaActualPeru() {
+            const ahora = new Date();
+            const opciones = { timeZone: 'America/Lima' };
+            const ahoraPeru = new Date(ahora.toLocaleString('en-US', opciones));
+            const horas = String(ahoraPeru.getHours()).padStart(2, '0');
+            const minutos = String(ahoraPeru.getMinutes()).padStart(2, '0');
+            return `${horas}:${minutos}`;
+        }
+
         async function cargarCampos(clienteId) {
             if (!clienteId) {
                 alert("ID de cliente no proporcionado.");
@@ -91,18 +71,6 @@
                     return;
                 }
 
-                // Mostrar la imagen del cliente
-                const imagen = campos[0].imagen;
-                const tipoImagen = campos[0].tipoImagen;
-
-                const imageElement = document.getElementById('clientImage');
-                if (imagen && tipoImagen) {
-                    imageElement.src = `data:${tipoImagen};base64,${imagen}`;
-                } else {
-                    imageElement.src = '/img/campos/404.png';
-                }
-
-                // Agrupar campos por idServer
                 const grupos = {};
                 campos.forEach(campo => {
                     if (!grupos[campo.idServer]) {
@@ -116,21 +84,18 @@
                     serverCard.className = 'col-12 server-card';
 
                     const nombreCliente = campos[0].cliente;
-                    const titulo = document.getElementById('tituloMonitoreo');
-                    titulo.textContent = `Monitoreo de Servidores - ${nombreCliente}`;
+                    document.getElementById('tituloMonitoreo').textContent = `Monitoreo de Servidores - ${nombreCliente}`;
+                    document.getElementById('clienteId').value = clienteId;
 
                     const serverTitle = document.createElement('h4');
                     serverTitle.className = 'mb-4 text-secondary';
-
-                    const alias = grupos[idServer][0].alias;
-                    serverTitle.textContent = alias ? alias : "Datos Generales";
-
+                    serverTitle.textContent = grupos[idServer][0].alias || "Datos Generales";
                     serverCard.appendChild(serverTitle);
 
                     const row = document.createElement('div');
                     row.className = 'row';
 
-                    grupos[idServer].forEach(campo => {
+                    for (const campo of grupos[idServer]) {
                         const div = document.createElement('div');
                         div.className = 'col-md-6 mb-3';
 
@@ -138,30 +103,148 @@
                         label.innerText = `${campo.campo}`;
                         label.className = 'form-label';
 
-                        const input = document.createElement('input');
-                        input.className = 'form-control';
-                        input.name = campo.idCampo;
-                        input.value = campo.valor || '';
-                        input.dataset.idCampo = campo.idCampo;
-                        input.dataset.idServer = campo.idServer;
-                        input.dataset.cliente = campo.cliente;
-                        input.dataset.tipoCampo = campo.tipoCampo;
+                        let input;
 
-                        switch (campo.tipoDato.toLowerCase()) {
-                            case 'int':
-                            case 'decimal':
-                                input.type = 'number';
-                                break;
-                            case 'string':
-                            default:
-                                input.type = 'text';
-                                break;
+                        if (campo.campo === 'Destinatarios') {
+                            input = document.createElement('input');
+                            input.className = 'form-control';
+                            input.name = campo.idCampo;
+                            input.readOnly = true;
+                            input.dataset.idCampo = campo.idCampo;
+                            input.dataset.idServer = campo.idServer;
+                            input.dataset.cliente = campo.cliente;
+                            input.dataset.tipoCampo = campo.tipoCampo;
+
+                            const urlDestinatarios = `/api/monitoreo/destinatarios/${encodeURIComponent(clienteId)}`;
+                            try {
+                                const res = await fetch(urlDestinatarios);
+                                const destinatarios = await res.json();
+                                input.value = destinatarios.map(d => d.email).join(', ');
+                            } catch {
+                                input.value = "Error al cargar destinatarios";
+                            }
+                        } else if (campo.campo.toLowerCase() === 'estado del servidor') {
+                            input = document.createElement('select');
+                            input.className = 'form-select';
+                            input.name = campo.idCampo;
+                            input.dataset.idCampo = campo.idCampo;
+                            input.dataset.idServer = campo.idServer;
+                            input.dataset.cliente = campo.cliente;
+                            input.dataset.tipoCampo = campo.tipoCampo;
+
+                            ['Activo', 'Inactivo'].forEach(opcion => {
+                                const option = document.createElement('option');
+                                option.value = opcion;
+                                option.textContent = opcion;
+                                if (campo.valor?.toLowerCase() === opcion.toLowerCase()) {
+                                    option.selected = true;
+                                }
+                                input.appendChild(option);
+                            });
+
+                        } else if (campo.campo === 'Componentes Activos') {
+                            const label = document.createElement('label');
+                            label.innerText = campo.campo;
+                            label.className = 'form-label';
+
+                            const input = document.createElement('input');
+                            input.className = 'form-control mb-2';
+                            input.readOnly = true;
+                            input.name = campo.idCampo;
+                            input.dataset.idCampo = campo.idCampo;
+                            input.dataset.idServer = campo.idServer;
+                            input.dataset.cliente = campo.cliente;
+                            input.dataset.tipoCampo = campo.tipoCampo;
+
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.style.display = 'none';
+                            btn.innerText = 'Cargar Componentes';
+
+                            const idServerInput = document.createElement('input');
+                            idServerInput.type = 'hidden';
+                            idServerInput.name = 'idServers';
+                            idServerInput.value = idServer;
+                            serverCard.appendChild(idServerInput);
+
+                            const checkboxContainer = document.createElement('div');
+                            checkboxContainer.className = 'mt-2';
+                            checkboxContainer.id = `componentes-${idServerInput.value}`;
+
+                            btn.addEventListener('click', async () => {
+                                await cargarComponentes(campo.idServer, checkboxContainer);
+                            });
+
+                            div.appendChild(label);
+                            div.appendChild(input);
+                            div.appendChild(checkboxContainer);
+                            div.appendChild(btn);
+
+                            row.appendChild(div);
+                            // cargamos automaricamente los componentes
+                            btn.click();
+                            continue;
+
+                        } else if (campo.campo.toLowerCase() === 'responsable') {
+                            input = document.createElement('input');
+                            input.className = 'form-control';
+                            input.name = campo.idCampo;
+                            input.readOnly = true;
+                            input.dataset.idCampo = campo.idCampo;
+                            input.dataset.idServer = campo.idServer;
+                            input.dataset.cliente = campo.cliente;
+                            input.dataset.tipoCampo = campo.tipoCampo;
+
+                            const nombreUsu = '@Context.Session.GetString("NombreUsu")' || ''; 
+                            input.value = nombreUsu;
+
+                        } else {
+                            input = document.createElement('input');
+                            input.className = 'form-control';
+                            input.name = campo.idCampo;
+                            input.dataset.idCampo = campo.idCampo;
+                            input.dataset.idServer = campo.idServer;
+                            input.dataset.cliente = campo.cliente;
+                            input.dataset.tipoCampo = campo.tipoCampo;
+
+                            const esFecha = campo.campo.toLowerCase() === 'fecha' || campo.tipoDato.toLowerCase() === 'date';
+                            const esHora = campo.campo.toLowerCase() === 'hora' || campo.tipoDato.toLowerCase() === 'time';
+
+                            if (esFecha) {
+                                input.type = 'date';
+                                if (campo.valor) {
+                                    let valorISO = campo.valor;
+                                    if (/^\d{2}-\d{2}-\d{4}$/.test(campo.valor)) {
+                                        const partes = campo.valor.split('-');
+                                        valorISO = `${partes[2]}-${partes[1]}-${partes[0]}`;
+                                    }
+                                    input.value = valorISO;
+                                } else {
+                                    input.value = fechaActualPeru();
+                                }
+                            } else if (esHora) {
+                                input.type = 'time';
+                                if (campo.valor) {
+                                    let valorHora = campo.valor;
+                                    if (/^\d{2}:\d{2}:\d{2}$/.test(valorHora)) {
+                                        valorHora = valorHora.substring(0, 5);
+                                    }
+                                    input.value = valorHora;
+                                } else {
+                                    input.value = horaActualPeru();
+                                }
+                            } else {
+                                input.type = campo.tipoDato.toLowerCase() === 'int' || campo.tipoDato.toLowerCase() === 'decimal'
+                                    ? 'number'
+                                    : 'text';
+                                input.value = campo.valor || '';
+                            }
                         }
 
                         div.appendChild(label);
                         div.appendChild(input);
                         row.appendChild(div);
-                    });
+                    }
 
                     serverCard.appendChild(row);
                     formContainer.appendChild(serverCard);
@@ -174,9 +257,16 @@
                 btn.innerText = "Guardar";
                 btn.type = "submit";
                 btn.className = "btn btn-success";
-                divBtn.appendChild(btn);
 
+                divBtn.appendChild(btn);
                 formContainer.appendChild(divBtn);
+
+                // Construimos la imagen 
+                const imagen = campos[0].imagen;
+                if (imagen) {
+                    const ruta = `/${imagen}`;
+                    document.getElementById("clientImage").src = ruta;
+                }
 
             } catch (error) {
                 console.error('Error al obtener los campos:', error);
@@ -188,61 +278,318 @@
             event.preventDefault();
 
             const form = document.getElementById('formularioCampos');
-            const inputs = form.querySelectorAll('input.form-control');
-            const datosMap = new Map();
+            if (!form) return;
 
-            const idCliente = document.getElementById('clienteId').value;
+            const allControls = Array.from(form.querySelectorAll('.form-control, .form-select'));
+            let camposValidos = true;
+            let mensajeError = '';
 
-            inputs.forEach(input => {
-                const idCampo = input.dataset.idCampo;
-                let idServer = input.dataset.idServer;
-                const cliente = input.dataset.cliente;
-                const valor = input.value;
-                const tipoCampo = input.dataset.tipoCampo;
+            allControls.forEach(control => {
+                const label = control.previousElementSibling?.innerText?.trim() || '';
+                const esComentario = label.toLowerCase().includes('comentario');
+                const valor = control.value.trim();
 
-                if (!idServer || idServer === 'null') {
-                    idServer = tipoCampo;
+                if (!esComentario && !valor) {
+                    camposValidos = false;
+                    control.classList.add('is-invalid');
+                    control.style.border = '1px solid #dc3545';
+                    mensajeError += `✗ ${label}<br>`;
                 }
-                // Usamos una clave compuesta para permitir la repetición por idServer
-                const claveUnica = idCampo + "_" + idServer;
-
-                // Si ya existe el idCampo con ese idServer, reemplaza el valor anterior
-                datosMap.set(claveUnica, {
-                    idCampo: idCampo,
-                    idServer: idServer,
-                    valor: valor,
-                    cliente: cliente,
-                    tipoCampo: tipoCampo,
-                    idCliente: idCliente
-                });
             });
 
-            // Convertimos el Map a un Array para enviarlo en el body de la solicitud
-            const datos = Array.from(datosMap.values());
+            if (!camposValidos) {
+                mostrarErrorValidacion(mensajeError);
+                return;
+            }
+
+            mostrarLoading();
 
             try {
+                const datos = prepararDatos(allControls);
                 const response = await fetch("/api/monitoreo/registrar", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(datos)
                 });
 
-                const resultado = await response.text();
-                alert(resultado);
+                const resultado = await procesarRespuesta(response);
+                ocultarLoading();
+
+                if (resultado.exito) {
+                    await mostrarResultado(resultado.data);
+                    if (resultado.data.status === "complete") {
+                        window.location.reload();
+                    }
+                } else {
+                    await mostrarError(resultado.mensaje || "Error desconocido");
+                }
+
             } catch (error) {
-                alert("Error al registrar monitoreo: " + error);
+                ocultarLoading();
+                await mostrarError(error.message || "Error inesperado");
             }
+        }
+
+        // función para mostrar resultados detallados
+        async function mostrarResultado(data) {
+            if (window.Swal) {
+                let htmlContent = `
+                    <div style="text-align: center;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="${data.status === "complete" ? '#28a745' : '#ffc107'}">
+                            ${data.status === "complete" ?
+                              '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>' :
+                              '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'}
+                        </svg>
+                        <p style="margin-top: 15px; font-size: 18px;">${data.mensaje}</p>
+                        <div style="background: ${data.status === "complete" ? '#e8f5e9' : '#fff3cd'}; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                            <p style="margin: 5px 0;"><b>N° de registro:</b> ${data.detalles.idMonitoreo}</p>
+                            <p style="margin: 5px 0;"><b>Fecha Registrada:</b> ${data.detalles.fecha}</p>
+                            <p style="margin: 5px 0;"><b>Reporte:</b> ${data.detalles.notificacionEnviada ? 'Enviado' : 'No enviado'}</p>
+                        </div>
+                `;
+
+                if (data.status === "partial" && data.acciones && data.acciones.length > 0) {
+                    htmlContent += `
+                        <div style="text-align: left; margin-top: 15px;">
+                            <p style="font-weight: 500;">Recomendaciones:</p>
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                ${data.acciones.map(accion => `<li style="margin-bottom: 5px;">${accion}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                htmlContent += `</div>`;
+
+                await Swal.fire({
+                    title: data.status === "complete" ? '¡Éxito!' : 'Atención',
+                    html: htmlContent,
+                    icon: data.status === "complete" ? 'success' : 'warning',
+                    confirmButtonColor: data.status === "complete" ? '#28a745' : '#ffc107',
+                    confirmButtonText: 'Entendido'
+                });
+            } else {
+                let mensaje = `${data.mensaje}\n\nID: ${data.detalles.idMonitoreo}\nFecha: ${data.detalles.fecha}`;
+                if (data.status === "partial") {
+                    mensaje += "\n\nAcciones recomendadas:\n" + data.acciones.join('\n');
+                }
+                alert(mensaje);
+            }
+        }
+
+        // Funciones auxiliares
+        function prepararDatos(controls) {
+            return controls.map(control => ({
+                idCampo: control.dataset.idCampo,
+                idServer: control.dataset.idServer || control.dataset.tipoCampo,
+                valor: control.value,
+                tipoCampo: control.dataset.tipoCampo,
+                idCliente: document.getElementById('clienteId').value
+            }));
+        }
+
+        async function procesarRespuesta(response) {
+            try {
+                const data = await response.json();
+                return {
+                    exito: response.ok,
+                    data: data,
+                    mensaje: data.mensaje || (response.ok ? "Operación exitosa" : "Error en el servidor")
+                };
+            } catch {
+                return {
+                    exito: false,
+                    mensaje: "Error al procesar la respuesta"
+                };
+            }
+        }
+
+        function mostrarLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function ocultarLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        async function mostrarExito(mensaje) {
+            if (window.Swal) {
+                await Swal.fire({
+                    title: '¡Éxito!',
+                    text: mensaje,
+                    icon: 'success',
+                    confirmButtonColor: '#28a745'
+                });
+            } else {
+                alert(mensaje);
+            }
+        }
+
+        async function mostrarError(mensaje) {
+            if (window.Swal) {
+                await Swal.fire({
+                    title: 'Error',
+                    text: mensaje,
+                    icon: 'error',
+                    confirmButtonColor: '#dc3545'
+                });
+            } else {
+                alert(mensaje);
+            }
+        }
+
+        function mostrarErrorValidacion(mensaje) {
+            if (window.Swal) {
+                Swal.fire({
+                    title: 'Campos requeridos',
+                    html: `<div style="text-align:left">${mensaje}</div>`,
+                    icon: 'warning',
+                    confirmButtonColor: '#ffc107'
+                });
+            } else {
+                alert('Complete los campos requeridos:\n' + mensaje.replace(/<br>/g, '\n'));
+            }
+        }
+
+        // Función para cargar los componentes
+        function cargarComponentes(idServer, containerDiv) {
+            const url = `/api/monitoreo/componente/${encodeURIComponent(idServer)}`;
+            containerDiv.innerHTML = '<p>Cargando componentes...</p>';
+
+            try {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(componentes => {
+                        if (!componentes || componentes.length === 0) {
+                            containerDiv.innerHTML = '<p class="text-muted">No se encontraron componentes.</p>';
+                            return;
+                        }
+
+                        const inputComponentesActivos = document.querySelector(`input[data-idserver="${idServer}"][name]`);
+                        let componentesSeleccionados = [];
+
+                        if (inputComponentesActivos && inputComponentesActivos.value) {
+                            componentesSeleccionados = inputComponentesActivos.value.split(', ').map(comp => comp.trim());
+                        }
+
+                        containerDiv.innerHTML = '';
+
+                        // Creamos los checkboxes para cada componente
+                        componentes.forEach(componente => {
+                            const nombre = componente.componente || 'sin_nombre';
+                            const checkboxDiv = document.createElement('div');
+                            checkboxDiv.className = 'form-check';
+
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.className = 'form-check-input componente-checkbox';
+                            checkbox.name = `componente_${idServer}`;
+                            checkbox.id = `componente_${idServer}_${nombre.replace(/\s+/g, '_')}`;
+                            checkbox.value = nombre;
+                            checkbox.dataset.idServer = idServer;
+
+                            if (componentesSeleccionados.includes(nombre)) {
+                                checkbox.checked = true;
+                            }
+
+                            const label = document.createElement('label');
+                            label.className = 'form-check-label';
+                            label.htmlFor = checkbox.id;
+                            label.innerText = nombre;
+
+                            checkboxDiv.appendChild(checkbox);
+                            checkboxDiv.appendChild(label);
+                            containerDiv.appendChild(checkboxDiv);
+
+                            checkbox.addEventListener('change', function() {
+                                actualizarComponentesActivos(idServer);
+                            });
+                        });
+
+                        actualizarComponentesActivos(idServer);
+                    })
+                    .catch(error => {
+                        console.error("Error al cargar componentes:", error);
+                        containerDiv.innerHTML = '<p class="text-danger">Error al cargar componentes.</p>';
+                    });
+            } catch (error) {
+                console.error("Error en la llamada:", error);
+                containerDiv.innerHTML = '<p class="text-danger">Error al realizar la solicitud.</p>';
+            }
+        }
+
+        function actualizarComponentesActivos(idServer) {
+
+            const containerCheckboxes = document.getElementById(`componentes-${idServer}`);
+            if (!containerCheckboxes) {
+                console.error("No se encontró el contenedor de checkboxes para el servidor", idServer);
+                return;
+            }
+
+            const checkboxesSeleccionados = containerCheckboxes.querySelectorAll('input[type="checkbox"]:checked');
+
+            const valoresSeleccionados = Array.from(checkboxesSeleccionados).map(cb => cb.value);
+
+            const campos = document.querySelectorAll('input.form-control');
+            let inputComponentesActivos = null;
+
+            for (const input of campos) {
+                const prevSibling = input.previousElementSibling;
+                if (prevSibling &&
+                    prevSibling.tagName === 'LABEL' &&
+                    prevSibling.innerText &&
+                    prevSibling.innerText.includes('Componentes Activos') &&
+                    input.dataset.idServer === idServer) {
+
+                    inputComponentesActivos = input;
+                    break;
+                }
+
+                if (input.dataset.idServer === idServer &&
+                    input.dataset.tipoCampo &&
+                    input.dataset.tipoCampo.includes('Componentes')) {
+
+                    inputComponentesActivos = input;
+                    break;
+                }
+            }
+
+            if (!inputComponentesActivos) {
+                for (const input of campos) {
+                    if (input.dataset.idServer === idServer) {
+
+                        const parent = input.parentElement;
+                        if (parent && parent.innerText && parent.innerText.includes('Componentes')) {
+                            inputComponentesActivos = input;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (!inputComponentesActivos) {
+                console.error("No se encontró el input para componentes activos");
+                alert("No se pudo encontrar el campo para Componentes Activos. Por favor, contacte al soporte técnico.");
+                return;
+            }
+
+            inputComponentesActivos.value = valoresSeleccionados.join(', ');
+            console.log("Campos Cargados Correctamente :D");
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const clienteId = params.get('idCliente');
             if (clienteId) {
-                document.getElementById('clienteId').value = clienteId;
                 cargarCampos(clienteId);
             }
         });
+
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 }
