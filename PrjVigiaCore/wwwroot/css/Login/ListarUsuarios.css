@@ -1,0 +1,262 @@
+﻿
+:root {
+	--primary-color: #4a69bd;
+	--primary-dark: #2e3a8c;
+	--secondary-color: #f0f2f5;
+	--text-color: #333;
+	--light-gray: #f8f9fa;
+	--white: #ffffff;
+	--shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--transition: all 0.3s ease;
+}
+
+body {
+	background: var(--secondary-color);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--text-color);
+	padding-bottom: 20px;
+}
+
+.main-container {
+	width: 100%;
+	max-width: 100%;
+	padding: 0 15px;
+}
+
+.main-card {
+	width: 100%;
+	margin: 20px 0;
+	padding: 20px;
+	background: var(--white);
+	border-radius: 15px;
+	box-shadow: var(--shadow);
+	transition: var(--transition);
+}
+
+.page-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 25px;
+	flex-wrap: wrap;
+	gap: 15px;
+}
+
+.page-title {
+	font-size: clamp(1.5rem, 2vw, 1.8rem);
+	font-weight: 600;
+	color: var(--primary-dark);
+	margin: 0;
+}
+
+.action-buttons {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.btn-primary {
+	background-color: var(--primary-color);
+	border: none;
+	padding: 8px 15px;
+	border-radius: 6px;
+	color: white;
+	transition: var(--transition);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: clamp(0.8rem, 1vw, 0.9rem);
+	white-space: nowrap;
+}
+
+.dataTables_wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+table.dataTable {
+	width: 100% !important;
+	margin: 0 !important;
+}
+
+thead th {
+	background-color: var(--primary-color) !important;
+	color: white !important;
+	padding: 12px 10px !important;
+	font-size: clamp(0.8rem, 1vw, 0.9rem);
+}
+
+tbody td {
+	padding: 12px 10px !important;
+	vertical-align: middle;
+	font-size: clamp(0.8rem, 1vw, 0.9rem);
+}
+
+.profile-img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid var(--primary-color);
+}
+
+.action-btn {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 0 3px;
+	font-size: 0.9rem;
+}
+
+/* Responsive específico */
+@media (max-width: 992px) {
+	.main-card {
+		padding: 15px;
+	}
+
+	.page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.action-buttons {
+		width: 100%;
+		justify-content: flex-start;
+	}
+}
+
+@media (max-width: 768px) {
+	.dataTables_wrapper .dt-buttons {
+		justify-content: center !important;
+		margin-bottom: 10px;
+	}
+
+	.dataTables_length, .dataTables_filter {
+		text-align: center !important;
+		margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 576px) {
+	.main-card {
+		padding: 10px;
+	}
+
+	.btn-primary {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.action-buttons {
+		gap: 5px;
+	}
+}
+
+
+
+/* Estilos para la tarjeta de error */
+.error-container {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.error-card {
+	background: white;
+	border-radius: 12px;
+	padding: 2rem;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	border-top: 4px solid #dc3545;
+}
+
+.error-icon {
+	animation: pulse 1.5s infinite;
+}
+
+.btn-retry {
+	transition: all 0.3s ease;
+	min-width: 120px;
+}
+
+	.btn-retry:hover {
+		background-color: #dc3545;
+		color: white;
+		transform: translateY(-2px);
+	}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+
+/* Animación para la barra de progreso */
+.progress-bar-animated {
+	animation: progressBar 10s linear forwards;
+}
+
+@keyframes progressBar {
+	0% {
+		width: 100%;
+	}
+
+	100% {
+		width: 0%;
+	}
+}
+
+/* Estilo para el mensaje de timeout */
+.error-card .btn-outline-danger {
+	transition: all 0.3s ease;
+}
+
+	.error-card .btn-outline-danger:hover {
+		background-color: #dc3545;
+		color: white;
+	}
+
+
+
+/* CSS adicional para el buscador*/
+.search-box {
+	box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.search-box .form-control {
+	border-left: none !important;
+	padding-left: 0;
+	transition: all 0.3s ease;
+}
+
+.search-box .input-group-text {
+	border-right: none !important;
+	color: #6c757d;
+}
+
+#searchInput:focus {
+	box-shadow: none;
+	border-color: #dee2e6;
+}
+
+#clearSearch {
+	transition: all 0.3s ease;
+}
+
+	#clearSearch:hover {
+		background-color: #f8f9fa;
+	}
+
+.dropdown-item.active {
+	background-color: #e9ecef;
+	color: #0d6efd;
+}
