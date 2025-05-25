@@ -1,8 +1,11 @@
+using PrjVigiaCore.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSession();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ITokenService, TokenService>();
 
 var app = builder.Build();
 
