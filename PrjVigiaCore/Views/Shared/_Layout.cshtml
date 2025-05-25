@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PrjVigiaCore.styles.css" asp-append-version="true" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 (usa solo una versión) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- DataTables CSS (versión mínima necesaria) -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -172,27 +189,27 @@
                         let subMenus = menus.filter(sub => sub.idPadre === menu.idMenu);
                         let collapseId = `submenu-${i}`;
 
-                        if (subMenus.length > 0) {
-                            html += `
-                                <li class="list-group-item">
-                                    <a data-bs-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" class="d-flex justify-content-between align-items-center fw-bold text-white">
-                                        <span><i class="${menu.icono} me-2"></i>${menu.nombre}</span>
-                                        <i class="bi bi-chevron-down"></i>
-                                    </a>
-                                    <ul class="collapse list-unstyled ps-4 mt-2" id="${collapseId}">
-                            `;
-                            subMenus.forEach(sub => {
-                                const urlConId = sub.idCliente ? `${sub.url}?idCliente=${encodeURIComponent(sub.idCliente)}` : sub.url;
-                                html += `<li><a href="${urlConId}" class="d-block text-white"><i class="${sub.icono} me-2"></i>${sub.nombre}</a></li>`;
-                            });
-                            html += `</ul></li>`;
-                        } else {
-                            const urlConId = menu.idCliente? `${menu.url}?idCliente=${encodeURIComponent(menu.idCliente)}` : menu.url;
-                            html += `
-                                <li class="list-group-item">
-                                    <a href="${urlConId}" class="d-block fw-bold text-white"><i class="${menu.icono} me-2"></i>${menu.nombre}</a>
-                                </li>`;
-                        }
+                                if (subMenus.length > 0) {
+                                    html += `
+                                        <li class="list-group-item">
+                                            <a data-bs-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" class="d-flex justify-content-between align-items-center fw-bold text-white">
+                                                <span><i class="${menu.icono} me-2"></i>${menu.nombre}</span>
+                                                <i class="bi bi-chevron-down"></i>
+                                            </a>
+                                            <ul class="collapse list-unstyled ps-4 mt-2" id="${collapseId}">
+                                    `;
+                                    subMenus.forEach(sub => {
+                                        const url = sub.token ? `${sub.url}?token=${sub.token}` : sub.url;
+                                        html += `<li><a href="${url}" class="d-block text-white"><i class="${sub.icono} me-2"></i>${sub.nombre}</a></li>`;
+                                    });
+                                    html += `</ul></li>`;
+                                } else {
+                                    const url = menu.token ? `${menu.url}?token=${menu.token}` : menu.url;
+                                    html += `
+                                        <li class="list-group-item">
+                                            <a href="${url}" class="d-block fw-bold text-white"><i class="${menu.icono} me-2"></i>${menu.nombre}</a>
+                                        </li>`;
+                                }
                     });
 
                     html += `</ul>`;
@@ -210,9 +227,37 @@
             });
         });
     </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- DataTables CORE -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Responsive -->
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+    <!-- DataTables Buttons CORE -->
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+
+    <!-- Dependencias para exportación -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+    <!-- Extensiones Buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- Tu script personalizado -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
