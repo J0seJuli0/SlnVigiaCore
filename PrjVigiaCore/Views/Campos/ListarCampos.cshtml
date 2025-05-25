@@ -1,0 +1,500 @@
+﻿@model List<dynamic>
+@{
+    ViewData["Title"] = "Listado de Campos de Monitoreo";
+}
+
+<style>
+    .avatar-container {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #e9ecef;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(13, 110, 253, 0.05);
+        transition: background-color 0.2s ease;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #dee2e6;
+        border-radius: 20px;
+        padding: 5px 15px;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+        transition: all 0.3s;
+    }
+
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            outline: 0;
+        }
+
+    .dataTables_wrapper .dataTables_length select {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 3px 10px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 0 2px;
+        transition: all 0.3s;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #e9ecef;
+            border-color: #dee2e6;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd;
+            color: white !important;
+            border-color: #0d6efd;
+        }
+
+    .dataTables_wrapper .dataTables_info {
+        padding-top: 8px;
+        color: #6c757d;
+    }
+
+    .dt-buttons .btn {
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 5px;
+        font-size: 0.8rem;
+    }
+
+    #btnRefresh {
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-action {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .avatar-container {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+        .avatar-container:hover {
+            transform: scale(1.05);
+        }
+
+    .avatar-img {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+        border: 2px solid #ddd;
+        transition: all 0.3s ease;
+    }
+
+        .avatar-img:hover {
+            border-color: #0d6efd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .badge-indicator {
+        background-color: rgba(0,0,0,0.03);
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+    }
+
+        .badge-indicator:hover {
+            background-color: rgba(0,0,0,0.07);
+            transform: translateY(-1px);
+        }
+</style>
+
+<div class="card shadow border-0 rounded-3">
+    <div class="card-header bg-primary bg-gradient text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">
+                <i class="fas fa-users me-2"></i> @ViewData["Title"]
+            </h3>
+            <div class="d-flex gap-2 align-items-center">
+                <span class="badge bg-white text-primary shadow-sm d-flex align-items-center py-2"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Total de registos Cargados."
+                      style="min-width: fit-content;">
+                    <i class="fas fa-database me-1 d-none d-sm-inline"></i>
+                    <span class="d-none d-sm-inline">Total:</span>
+                    <span class="ms-sm-1">@ViewBag.TotalRegistros</span>
+                    <span class="d-none d-md-inline ms-sm-1">Registros</span>
+                </span>
+                <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo campo">
+                    <i class="fas fa-plus me-1"></i> Nuevo
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i> @ViewBag.Error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="table-responsive">
+            <table id="tablaCampos" class="table table-hover table-striped w-100">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Código</th>
+                        <th>Campo</th>
+                        <th>Tipo Campo</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var campo in Model)
+                    {
+
+                        <tr>
+                            <td>@campo.ID_CAMPO</td>
+                            <td>
+                                <div class="fw-bold">@campo.CAMPO</div>
+                            </td>
+                            <td>
+                                @if (campo.TIPO_CAMPO == 1)
+                                {
+                                    <span class="position-relative d-inline-block px-4 py-2 m-1 badge-indicator"
+                                          data-bs-toggle="tooltip"
+                                          data-bs-placement="top"
+                                          title="Campo general para el formulario.">
+                                        <span class="position-absolute top-0 start-0 h-100 bg-primary" style="width: 4px; border-radius: 4px 0 0 4px;"></span>
+                                        <i class="fas fa-globe me-2 text-primary"></i>
+                                        <span class="fw-bold text-primary">General</span>
+                                    </span>
+                                }
+                                else if (campo.TIPO_CAMPO == 2)
+                                {
+                                    <span class="position-relative d-inline-block px-4 py-2 m-1 badge-indicator"
+                                          data-bs-toggle="tooltip"
+                                          data-bs-placement="top"
+                                          title="Campo individual por servidor.">
+                                        <span class="position-absolute top-0 start-0 h-100 bg-success" style="width: 4px; border-radius: 4px 0 0 4px;"></span>
+                                        <i class="fas fa-user me-2 text-success"></i>
+                                        <span class="fw-bold text-success">Individual</span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="position-relative d-inline-block px-4 py-2 m-1 badge-indicator"
+                                          data-bs-toggle="tooltip"
+                                          data-bs-placement="top"
+                                          title="Tipo de campo desconocido.">
+                                        <span class="position-absolute top-0 start-0 h-100 bg-secondary" style="width: 4px; border-radius: 4px 0 0 4px;"></span>
+                                        <i class="fas fa-question me-2 text-secondary"></i>
+                                        <span class="fw-bold text-secondary">Desconocido</span>
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (campo.ESTADO == 1)
+                                {
+                                    <span class="badge bg-success bg-opacity-10 text-success fw-bold rounded-pill px-3 py-2 border border-success border-opacity-25 shadow-sm">
+                                        <i class="fas fa-check-circle me-1"></i> Activo
+                                    </span>
+                                }
+                                else if (campo.ESTADO == 2)
+                                {
+                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-bold rounded-pill px-3 py-2 border border-danger border-opacity-25 shadow-sm">
+                                        <i class="fas fa-times-circle me-1"></i> Inactivo
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary fw-bold rounded-pill px-3 py-2 border border-secondary border-opacity-25 shadow-sm">
+                                        <i class="fas fa-question-circle me-1"></i> Desconocido
+                                    </span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button class="btn btn-outline-success btn-action btn-edit" data-id="@campo.ID_CAMPO" title="Editar">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-action btn-delete" data-id="@campo.ID_CAMPO" title="Eliminar">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para acciones -->
+<div class="modal fade" id="clientModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                Cargando...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="modalConfirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            function checkDependencies() {
+                const errors = [];
+                if (typeof jQuery === 'undefined') errors.push('jQuery no está cargado');
+                if (!$.fn.dataTable) errors.push('DataTables core no está cargado');
+                if (!$.fn.dataTable.Buttons) errors.push('DataTables Buttons no está cargado');
+                return errors;
+            }
+
+            const dependencyErrors = checkDependencies();
+            if (dependencyErrors.length > 0) {
+                console.error('Errores de dependencia:', dependencyErrors.join(', '));
+                return;
+            }
+
+            if (!$('#tablaCampos').length) return;
+
+            window.dataTableInstance = $('#tablaCampos').DataTable({
+                responsive: true,
+                dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>' +
+                     '<"row"<"col-md-12"tr>>' +
+                     '<"row mt-3"<"col-md-6"l><"col-md-6"p>>',
+                    language: {
+                        buttons: {
+                            excel: 'Exportar a Excel',
+                            print: 'Imprimir'
+                        },
+                        "decimal": "",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ registros",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "No se encontraron registros coincidentes.",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Último",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        },
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna ascendente",
+                            "sortDescending": ": activar para ordenar la columna descendente"
+                        }
+                    },
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                                text: '<i class="fas fa-file-excel me-2"></i> Excel',
+                                className: 'btn btn-success btn-sm',
+                                title: 'Listado de Campos de Monitoreo',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3]
+                                },
+                                action: function(e, dt, button, config) {
+                                    Swal.fire({
+                                        title: 'Exportar a Excel',
+                                        text: '¿Desea generar el reporte en Excel?',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Exportar',
+                                        cancelButtonText: 'Cancelar',
+                                        position: 'center'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+
+                                            setTimeout(() => {
+                                                Swal.fire({
+                                                    title: '¡Listo!',
+                                                    text: 'Exportación completada con éxito',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar',
+                                                    position: 'center',
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    showConfirmButton: true
+                                                });
+                                            }, 2000);
+                                        }
+                                    });
+                                }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print me-2"></i> Imprimir',
+                        className: 'btn btn-info btn-sm',
+                        title: 'Listado de Campos de Monitoreo',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3]
+                        },
+                        action: function(e, dt, button, config) {
+                            Swal.fire({
+                                title: 'Preparando impresión',
+                                text: '¿Desea generar la vista para imprimir?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Imprimir',
+                                cancelButtonText: 'Cancelar',
+                                position: 'center',
+                                backdrop: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: 'Preparando documento',
+                                        html: 'Por favor espere...',
+                                        timerProgressBar: true,
+                                        didOpen: () => {
+                                            Swal.showLoading();
+                                        },
+                                        allowOutsideClick: false,
+                                        position: 'center'
+                                    });
+
+                                    setTimeout(() => {
+                                        $.fn.dataTable.ext.buttons.print.action.call(this, e, dt, button, config);
+
+                                        setTimeout(() => {
+                                            Swal.fire({
+                                                title: 'Impresión lista',
+                                                text: 'El documento se ha preparado para imprimir',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar',
+                                                position: 'center',
+                                                timer: 3000,
+                                                timerProgressBar: true
+                                            });
+                                        }, 500);
+                                    }, 1000);
+                                }
+                            });
+                        },
+                        customize: function(win) {
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', '10pt');
+
+                            $(win.document.body).find('h1')
+                                .css('text-align', 'center')
+                                .css('font-size', '16pt');
+                        }
+                    }
+                ],
+                order: [[0, 'asc']],
+                columnDefs: [
+                    {
+                        targets: [4],
+                        orderable: false
+                    },
+                    {
+                        targets: "_all",
+                        className: "align-middle"
+                    }
+                ],
+                initComplete: function() {
+                    $('.dataTables_filter input')
+                        .addClass('form-control form-control-sm')
+                        .attr('placeholder', 'Buscar campo...')
+                        .wrap('<div class="position-relative" style="width: 300px;"></div>')
+                        .before('<i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>')
+                        .css({
+                            'width': '100%',
+                            'padding-right': '35px'
+                        });
+
+                    $('.dataTables_filter label').contents().filter(function() {
+                        return this.nodeType === 3;
+                    }).remove();
+
+                    $('.dataTables_length select')
+                        .addClass('form-select form-select-sm')
+                        .css('width', '80px');
+                }
+            });
+
+            window.dataTableInstance.buttons().container()
+                .appendTo($('.col-md-6:eq(0)', window.dataTableInstance.table().container()))
+                .addClass('btn-group');
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            // Evento de refresh
+            $('#btnRefresh').on('click', function() {
+                location.reload();
+            });
+
+
+            $(document).on('click', '.btn-delete', function() {
+                var id = $(this).data('id');
+                // Lógica para eliminar
+            });
+
+            // Botón para agregar nuevo cliente
+            $('#btnAddClient').on('click', function() {
+                // Lógica para agregar nuevo cliente
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+</script>
