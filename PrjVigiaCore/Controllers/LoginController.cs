@@ -193,7 +193,6 @@ namespace PrjMonitoreoCPLX.Controllers
 
             using (SqlConnection cnn = new SqlConnection(cad_cn))
             {
-
                 await cnn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SP_PERFIL", cnn))
                 {
@@ -205,12 +204,23 @@ namespace PrjMonitoreoCPLX.Controllers
                         if (await reader.ReadAsync())
                         {
                             ViewBag.IdEmpleado = reader["ID_EMPLEADO"].ToString();
+                            ViewBag.DNI = reader["DNI"].ToString();
+                            ViewBag.Usuario = reader["USUARIO"].ToString();
+                            ViewBag.Email = reader["EMAIL"].ToString();
                             ViewBag.Nombres = reader["NOMBRES"].ToString();
                             ViewBag.ApePat = reader["APE_PAT"].ToString();
                             ViewBag.ApeMat = reader["APE_MAT"].ToString();
-                            ViewBag.Rol = reader["ROL"].ToString();
-                            ViewBag.TipoUsuario = Convert.ToInt32(reader["TIPO_USU"]);
-                            ViewBag.Estado = reader["ESTADO"].ToString();
+                            ViewBag.NombreCompleto = reader["NOMBRE_COMPLETO"].ToString();
+                            ViewBag.FechaNacimiento = reader["FECHA_NACIMIENTO"].ToString();
+                            ViewBag.Edad = reader["EDAD"].ToString();
+                            ViewBag.Genero = reader["GENERO"].ToString();
+                            ViewBag.GeneroDesc = reader["GENERO_DESC"].ToString();
+                            ViewBag.EstadoCivil = reader["ESTADO_CIVIL"].ToString();
+                            ViewBag.DireccionCompleta = reader["DIRECCION_COMPLETA"].ToString();
+                            ViewBag.ImagePath = reader["IMAGE_PATH"].ToString();
+                            ViewBag.GruposAsignados = reader["GRUPOS_ASIGNADOS"].ToString();
+                            ViewBag.FechaRegistro = reader["FECHA_REGISTRO"].ToString();
+                            ViewBag.FechaActualizacion = reader["FECHA_ACTUALIZACION"].ToString();
                         }
                         else
                         {
