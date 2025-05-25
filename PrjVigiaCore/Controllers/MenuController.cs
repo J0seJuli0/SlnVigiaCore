@@ -3,18 +3,19 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using PrjVigiaCore.DAO;
+using PrjVigiaCore.Services;
 
 [Route("Menu")]
 public class MenuController : Controller
 {
     private readonly IConfiguration _configuration;
-
+    private readonly ITokenService _tokenService;
     private readonly string cad_cn;
 
-    public MenuController(IConfiguration configuration)
+    public MenuController(IConfiguration configuration, ITokenService tokenService)
     {
         _configuration = configuration;
+        _tokenService = tokenService;
         cad_cn = configuration.GetConnectionString("cn1")!;
     }
 
@@ -29,7 +30,7 @@ public class MenuController : Controller
         }
 
         // Obtener el tipo de usuario
-        string tipoUsuario = "1"; // Por defecto cliente
+        string tipoUsuario = "1";
         using (SqlConnection conn = new SqlConnection(cad_cn))
         {
             conn.Open();
@@ -58,16 +59,16 @@ public class MenuController : Controller
                     while (reader.Read())
                     {
                         string? idCliente = reader["ID_CLIENTE"].ToString();
-                        string? idClientCrypt = null;
+                        string? token = null;
 
                         if (!string.IsNullOrEmpty(idCliente))
                         {
-                            idClientCrypt = CryptoHelper.Encrypt(idCliente);
+                            token = _tokenService.GenerarToken(idCliente);
                         }
                         menus.Add(new
                         {
                             idMenu = reader["ID_MENU"].ToString(),
-                            idCliente = idClientCrypt,
+                            token, // Enviamos token en lugar del ID
                             nombre = reader["NOMBRE"].ToString(),
                             url = reader["URL"] != DBNull.Value ? reader["URL"].ToString() : "#",
                             icono = reader["ICONO"] != DBNull.Value ? reader["ICONO"].ToString() : "",
@@ -81,5 +82,4 @@ public class MenuController : Controller
 
         return Json(new { tipoUsuario, menus });
     }
-
 }
