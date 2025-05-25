@@ -135,7 +135,13 @@
                 <i class="fas fa-users me-2"></i> @ViewData["Title"]
                 @if (!string.IsNullOrEmpty(ViewBag.IdClienteFiltro))
                 {
-                    <span class="badge bg-info ms-2">Filtrado por cliente @ViewBag.IdClienteFiltro</span>
+                    <span class="badge bg-white bg-opacity-25 text-white border border-white border-opacity-50 ms-2"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Código del Cliente"
+                          style="backdrop-filter: blur(2px); font-weight: 500; letter-spacing: 0.5px;">
+                        <i class="fas fa-id-card me-1"></i> @ViewBag.IdClienteFiltro
+                    </span>
                 }
             </h3>
             <div class="d-flex gap-2 align-items-center">
@@ -448,16 +454,9 @@
             });
 
             // Evento de refresh
-                $('#btnRefresh').on('click', function() {
-        var idCliente = '@ViewBag.IdClienteFiltro';
-        var url = '/Servidores/ListarServidores';
-
-        if (idCliente) {
-            url += '?idCliente=' + encodeURIComponent(idCliente);
-        }
-
-        window.location.href = url;
-    });
+            $('#btnRefresh').on('click', function() {
+                location.reload();
+            });
 
 
             $(document).on('click', '.btn-delete', function() {
