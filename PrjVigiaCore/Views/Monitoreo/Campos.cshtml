@@ -52,18 +52,59 @@
             return `${horas}:${minutos}`;
         }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener token de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+    
+            if (token) {
+                // 1. Opción directa (si el token ES el ID cliente)
+                // const clienteId = token;
+                // const endpoint = `/api/monitoreo/campos/${encodeURIComponent(clienteId)}`;
+        
+                // 2. Opción recomendada (si usas TokenService)
+                obtenerIdClienteDesdeToken(token)
+                    .then(clienteId => {
+                        if (clienteId) {
+                            cargarCampos(clienteId);
+                        } else {
+                            mostrarError("Token inválido o expirado");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        mostrarError("Error al validar el token");
+                    });
+            } else {
+                mostrarError("No se proporcionó token de cliente");
+            }
+        });
+
+        // Función para obtener el ID cliente desde el token
+        async function obtenerIdClienteDesdeToken(token) {
+            try {
+                const response = await fetch(`/api/monitoreo/validar-token?token=${encodeURIComponent(token)}`);
+                if (!response.ok) throw new Error("Error en la respuesta");
+        
+                const data = await response.json();
+                return data.idCliente;
+            } catch (error) {
+                console.error("Error validando token:", error);
+                return null;
+            }
+        }
+
         async function cargarCampos(clienteId) {
             if (!clienteId) {
                 alert("ID de cliente no proporcionado.");
                 return;
             }
 
-            const url = `/api/monitoreo/campos/${encodeURIComponent(clienteId)}`;
             const formContainer = document.getElementById('formularioCampos');
             formContainer.innerHTML = '';
 
             try {
-                const response = await fetch(url);
+                const response = await fetch(`/api/monitoreo/campos/${encodeURIComponent(clienteId)}`);
                 const campos = await response.json();
 
                 if (campos.length === 0) {
@@ -115,7 +156,8 @@
                             input.dataset.cliente = campo.cliente;
                             input.dataset.tipoCampo = campo.tipoCampo;
 
-                            const urlDestinatarios = `/api/monitoreo/destinatarios/${encodeURIComponent(clienteId)}`;
+
+                            const urlDestinatarios = `/api/monitoreo/destinatarios/${encodeURIComponent(campo.idGrupo)}`;
                             try {
                                 const res = await fetch(urlDestinatarios);
                                 const destinatarios = await res.json();
@@ -264,7 +306,7 @@
                 // Construimos la imagen 
                 const imagen = campos[0].imagen;
                 if (imagen) {
-                    const ruta = `/${imagen}`;
+                    const ruta = `${imagen}`;
                     document.getElementById("clientImage").src = ruta;
                 }
 
