@@ -10,6 +10,7 @@ using iTextSharp.text.pdf;
 using PrjVigiaCore.DAO;
 using System.Collections.Generic;
 using Xceed.Words.NET;
+using PrjVigiaCore.Services;
 
 namespace PrjVigiaCore.Controllers
 {
@@ -17,22 +18,52 @@ namespace PrjVigiaCore.Controllers
     [Route("api/[controller]")]
     public class MonitoreoController : Controller
     {
+        private readonly ITokenService _tokenService;
         private readonly string _connectionString;
 
-        public MonitoreoController(IConfiguration configuration)
+        public MonitoreoController(IConfiguration configuration, ITokenService tokenService)
         {
+            _tokenService = tokenService;
             _connectionString = configuration.GetConnectionString("cn1")!;
+        }
+
+
+        [HttpGet("validar-token")]
+        public IActionResult ValidarToken([FromQuery] string token)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(token))
+                {
+                    return BadRequest(new { success = false, message = "Token no proporcionado" });
+                }
+
+                var idCliente = _tokenService.ObtenerIdCliente(token);
+                if (idCliente == null)
+                {
+                    return Unauthorized(new { success = false, message = "Token inválido o expirado" });
+                }
+
+                return Ok(new { success = true, idCliente });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Error interno del servidor" });
+            }
         }
 
         [HttpGet("campos")]
         public IActionResult Campos() => View();
 
-        [HttpGet("campos/{idCliente}")]
-        public async Task<IActionResult> ObtenerCampos(string idCliente)
+        [HttpGet("campos/{clienteId}")]
+        public async Task<IActionResult> ObtenerCampos(string clienteId)
         {
             try
             {
-                string idClientDes = CryptoHelper.Decrypt(idCliente);
+                if (string.IsNullOrEmpty(clienteId))
+                {
+                    return BadRequest("Código de cliente no proporcionado");
+                }
                 var resultados = new List<dynamic>();
 
                 using var conn = new SqlConnection(_connectionString);
@@ -40,7 +71,7 @@ namespace PrjVigiaCore.Controllers
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@ID_CLIENTE", idClientDes);
+                cmd.Parameters.AddWithValue("@ID_CLIENTE", clienteId);
 
                 await conn.OpenAsync();
                 using var reader = await cmd.ExecuteReaderAsync();
@@ -57,6 +88,7 @@ namespace PrjVigiaCore.Controllers
                         Estado = Convert.ToInt32(reader["ESTADO"]),
                         Cliente = reader["CLIENTE"].ToString(),
                         IdCliente = reader["ID_CLIENTE"].ToString(),
+                        IdGrupo = reader["ID_GRUPO"].ToString(),
                         Imagen = reader["IMAGEN"]?.ToString(),
                         TipoImagen = reader["TIPO_IMAGE"]?.ToString()
                     });
@@ -84,7 +116,7 @@ namespace PrjVigiaCore.Controllers
                     var resultados = new List<dynamic>();
 
                     using var cnn = new SqlConnection(_connectionString);
-                    using var cmd = new SqlCommand("SP_LISTAR_COMPONENTES", cnn)
+                    using var cmd = new SqlCommand("SP_LISTAR_COMPONENTES_FORM", cnn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -118,12 +150,11 @@ namespace PrjVigiaCore.Controllers
 
 
 
-        [HttpGet("destinatarios/{idCliente}")]
-        public async Task<IActionResult> ObtenerDestinatarios(string idCliente)
+        [HttpGet("destinatarios/{idGrupo}")]
+        public async Task<IActionResult> ObtenerDestinatarios(string idGrupo)
         {
             try
             {
-                string idClientDes = CryptoHelper.Decrypt(idCliente);
                 var destinatarios = new List<dynamic>();
 
                 using var conn = new SqlConnection(_connectionString);
@@ -131,7 +162,7 @@ namespace PrjVigiaCore.Controllers
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@ID_CLIENTE", idClientDes);
+                cmd.Parameters.AddWithValue("@ID_GRUPO", idGrupo); 
 
                 await conn.OpenAsync();
                 using var reader = await cmd.ExecuteReaderAsync();
