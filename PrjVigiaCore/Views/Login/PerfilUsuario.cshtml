@@ -2,60 +2,174 @@
     ViewData["Title"] = "Mi Perfil";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="~/css/Login/Perfil.css" rel="stylesheet" />
+@{
+    var imagenPerfil = !string.IsNullOrEmpty(ViewBag.ImagePath)
+        ? $"/images/empleados/{ViewBag.ImagePath}"
+        : "/img/logo.png";
+}
 
-<div class="container mt-5">
-    <div class="card shadow-lg border-0 rounded-4 perfil-empleado @(ViewBag.TipoUsuario == 1 ? "cliente" : (ViewBag.TipoUsuario == 2 ? "admin" : ""))">
-        <div class="card-body">
-            <h3 class="card-title mb-4 text-center">
-                <i class="fas fa-user-circle me-2"></i>Mi Perfil
-            </h3>
+<div class="profile-app">
+    <div class="profile-card">
+        <!-- Top Navigation -->
+        <div class="profile-nav-top">
+            <button class="nav-btn active" data-section="info">
+                <i class="fas fa-user"></i> Información
+            </button>
+            <button class="nav-btn" data-section="settings">
+                <i class="fas fa-cog"></i> Configuración
+            </button>
+            <form method="post" action="/Login/Logout" class="logout-form">
+                <button type="submit" class="nav-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </form>
+        </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-4 fw-bold">ID Empleado</div>
-                <div class="col-sm-8">@ViewBag.IdEmpleado</div>
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar-wrapper">
+                    <div class="avatar-hover-layer">
+                        <button class="avatar-edit-btn">
+                            <i class="fas fa-camera"></i> Editar
+                        </button>
+                    </div>
+                    <img src="@imagenPerfil" class="profile-avatar"
+                         alt="Foto de perfil"
+                         onerror="this.onerror=null; this.src='/img/logo.png'">
+                </div>
+
+                <div class="profile-info">
+                    <h2 class="profile-name">@ViewBag.NombreCompleto</h2>
+                    <p class="profile-email">
+                        <i class="fas fa-envelope"></i> @ViewBag.Email
+                    </p>
+
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-user-tag"></i>
+                            <span>@ViewBag.GeneroDesc</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-heart"></i>
+                            <span>@ViewBag.EstadoCivil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="profile-progress">
+                    <div class="progress-header">
+                        <span>Perfil completado</span>
+                        <span>@ViewBag.PerfilCompleto%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: @ViewBag.PerfilCompleto%"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-4 fw-bold">Nombre Completo</div>
-                <div class="col-sm-8">@ViewBag.Nombres @ViewBag.ApePat @ViewBag.ApeMat</div>
-            </div>
+            <!-- Content Sections -->
+            <div class="profile-content">
+                <div class="content-section active" id="info-section">
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <i class="fas fa-id-card"></i> Datos Personales
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>ID Empleado</label>
+                                <p>@ViewBag.IdEmpleado</p>
+                            </div>
+                            <div class="info-item">
+                                <label>DNI</label>
+                                <p>@ViewBag.DNI</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Usuario</label>
+                                <p>@ViewBag.Usuario</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Fecha Nacimiento</label>
+                                <p>@ViewBag.FechaNacimiento (@ViewBag.Edad años)</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Dirección</label>
+                                <p>@ViewBag.DireccionCompleta</p>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-4 fw-bold">Rol</div>
-                <div class="col-sm-8">@ViewBag.Rol</div>
-            </div>
+                    <div class="section-card">
+                        <h3 class="section-title">
+                            <i class="fas fa-briefcase"></i> Información Laboral
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Grupos Asignados</label>
+                                <p>@ViewBag.GruposAsignados</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Fecha Registro</label>
+                                <p>@ViewBag.FechaRegistro</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Última Actualización</label>
+                                <p>@ViewBag.FechaActualizacion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="row mb-4">
-                <div class="col-sm-4 fw-bold">Estado</div>
-                <div class="col-sm-8">@ViewBag.Estado</div>
-            </div>
-
-            <div class="text-center">
-                <form method="post" action="/Empleado/Logout">
-                    <button type="submit" class="btn btn-outline-danger px-4">
-                        <i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión
-                    </button>
-                </form>
+                <div class="content-section" id="settings-section">
+                    <div class="empty-state">
+                        <i class="fas fa-cog"></i>
+                        <h3>Configuración de cuenta</h3>
+                        <p>Próximamente estarán disponibles estas opciones</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Estilos modernos -->
-<style>
-    .perfil-empleado {
-        max-width: 600px;
-        margin: auto;
-        padding: 30px;
-    }
 
-        .perfil-empleado.cliente {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            border-left: 6px solid #2196f3;
-        }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Navigation between sections
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.content-section');
 
-        .perfil-empleado.admin {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
-            border-left: 6px solid #e53935;
-        }
-</style>
+        navButtons.forEach(button => {
+            if (!button.closest('.logout-form')) {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+
+                    // Remove active class from all buttons and sections
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+
+                    // Add active class to clicked button and corresponding section
+                    this.classList.add('active');
+                    document.getElementById(`${sectionId}-section`).classList.add('active');
+                });
+            }
+        });
+
+        // Smooth hover effects
+        const cards = document.querySelectorAll('.section-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    });
+</script>
