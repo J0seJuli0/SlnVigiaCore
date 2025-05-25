@@ -202,7 +202,7 @@ namespace PrjVigiaCore.Controllers
                     var idServer = item.GetProperty("idServer").GetString();
                     var valor = item.GetProperty("valor").GetString();
                     var tipoCampo = item.GetProperty("tipoCampo").GetString();
-                    var idCliente = CryptoHelper.Decrypt(item.GetProperty("idCliente").GetString());
+                    var idCliente = item.GetProperty("idCliente").GetString();
 
                     using var cmd = new SqlCommand("SP_REGISTRO_MONITOREO", conn)
                     {
