@@ -22,7 +22,7 @@ namespace PrjVigiaCore.Controllers
             cad_cn = configuration.GetConnectionString("cn1")!;
         }
 
-        [HttpGet]
+        [HttpGet("ListarCampos")]
         public async Task<IActionResult> ListarCampos()
         {
             try
@@ -54,7 +54,7 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("ListarCamposClientes")]
         public async Task<IActionResult> ListarCamposClientes()
         {
             try
@@ -89,7 +89,7 @@ namespace PrjVigiaCore.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("ListarComponentes")]
         public async Task<IActionResult> ListarComponentes()
         {
             try
