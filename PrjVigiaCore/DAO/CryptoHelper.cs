@@ -1,52 +1,92 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace PrjVigiaCore.DAO
 {
     public static class CryptoHelper
     {
-        // Clave secreta de 32 caracteres (usa una difícil de adivinar en producción)
-        private static readonly string key = "ClaveMuySecretaYPersonalizada123456";
+        private const int KeySize = 256;
+        private const int IvSize = 16;
+        private static readonly byte[] Key;
+        private static readonly object _lock = new object();
+
+        static CryptoHelper()
+        {
+            using var sha = SHA256.Create();
+            Key = sha.ComputeHash(Encoding.UTF8.GetBytes("tpRUc8vsZ0Kerslb6RcbqyNiqRPrEcWdtVXozjNzj"));
+        }
 
         public static string Encrypt(string plainText)
         {
-            using Aes aes = Aes.Create();
-            aes.Key = Encoding.UTF8.GetBytes(key[..32]);
-            aes.GenerateIV(); // Genera IV aleatorio
+            if (string.IsNullOrEmpty(plainText))
+                return null;
 
-            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-            byte[] inputBytes = Encoding.UTF8.GetBytes(plainText);
-            byte[] encryptedBytes = encryptor.TransformFinalBlock(inputBytes, 0, inputBytes.Length);
+            try
+            {
+                using var aes = Aes.Create();
+                lock (_lock)
+                {
+                    aes.Key = Key;
+                    aes.GenerateIV();
+                }
 
-            // Concatenar IV + encryptedBytes
-            byte[] result = new byte[aes.IV.Length + encryptedBytes.Length];
-            Buffer.BlockCopy(aes.IV, 0, result, 0, aes.IV.Length);
-            Buffer.BlockCopy(encryptedBytes, 0, result, aes.IV.Length, encryptedBytes.Length);
+                using var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+                using var ms = new MemoryStream();
+                ms.Write(aes.IV, 0, aes.IV.Length);
 
-            return Convert.ToBase64String(result);
+                using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                using (var sw = new StreamWriter(cs))
+                {
+                    sw.Write(plainText);
+                }
+
+                return HttpUtility.UrlEncode(Convert.ToBase64String(ms.ToArray()));
+            }
+            catch
+            {
+                return null;
+            }
         }
-
 
         public static string Decrypt(string encryptedText)
         {
-            byte[] fullCipher = Convert.FromBase64String(encryptedText);
+            if (string.IsNullOrEmpty(encryptedText))
+                return null;
 
-            byte[] iv = new byte[16];
-            byte[] cipher = new byte[fullCipher.Length - iv.Length];
+            try
+            {
+                var decodedText = HttpUtility.UrlDecode(encryptedText);
+                var fullCipher = Convert.FromBase64String(decodedText);
 
-            Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
-            Buffer.BlockCopy(fullCipher, iv.Length, cipher, 0, cipher.Length);
+                if (fullCipher.Length < IvSize)
+                    return null;
 
-            using Aes aes = Aes.Create();
-            aes.Key = Encoding.UTF8.GetBytes(key[..32]);
-            aes.IV = iv;
+                var iv = new byte[IvSize];
+                var cipher = new byte[fullCipher.Length - IvSize];
 
-            using var decryptor = aes.CreateDecryptor();
-            using var ms = new MemoryStream(cipher);
-            using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
-            using var reader = new StreamReader(cs);
-            return reader.ReadToEnd();
+                Buffer.BlockCopy(fullCipher, 0, iv, 0, IvSize);
+                Buffer.BlockCopy(fullCipher, IvSize, cipher, 0, cipher.Length);
+
+                using var aes = Aes.Create();
+                lock (_lock)
+                {
+                    aes.Key = Key;
+                    aes.IV = iv;
+                }
+
+                using var ms = new MemoryStream(cipher);
+                using var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read);
+                using var sr = new StreamReader(cs);
+
+                return sr.ReadToEnd();
+            }
+            catch
+            {
+                return null;
+            }
         }
-
     }
 }
