@@ -19,7 +19,7 @@
     </div>
 
     <div class="text-center">
-        <img id="clientImage" class="client-image" src="" alt="Imagen del Cliente"/>
+        <img id="clientImage" class="client-image" src=""/>
     </div>
 
     <input type="hidden" id="clienteId" />
@@ -58,11 +58,6 @@
             const token = urlParams.get('token');
     
             if (token) {
-                // 1. Opción directa (si el token ES el ID cliente)
-                // const clienteId = token;
-                // const endpoint = `/api/monitoreo/campos/${encodeURIComponent(clienteId)}`;
-        
-                // 2. Opción recomendada (si usas TokenService)
                 obtenerIdClienteDesdeToken(token)
                     .then(clienteId => {
                         if (clienteId) {
@@ -83,7 +78,12 @@
         // Función para obtener el ID cliente desde el token
         async function obtenerIdClienteDesdeToken(token) {
             try {
-                const response = await fetch(`/api/monitoreo/validar-token?token=${encodeURIComponent(token)}`);
+                const response = await fetch(`/api/monitoreo/validar-token?token=${encodeURIComponent(token)}`,{
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'include'
+                });
                 if (!response.ok) throw new Error("Error en la respuesta");
         
                 const data = await response.json();
@@ -94,17 +94,44 @@
             }
         }
 
+
+        function mostrarLoader() {
+            const loader = Swal.fire({
+                title: 'Cargando...',
+                html: 'Por favor espere mientras se cargan los datos',
+                allowOutsideClick: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+            return loader;
+        }
+
         async function cargarCampos(clienteId) {
+
+            const loader = mostrarLoader();
+
             if (!clienteId) {
-                alert("ID de cliente no proporcionado.");
+                alert("El Código de cliente no proporcionado.");
                 return;
             }
+
 
             const formContainer = document.getElementById('formularioCampos');
             formContainer.innerHTML = '';
 
             try {
-                const response = await fetch(`/api/monitoreo/campos/${encodeURIComponent(clienteId)}`);
+                const response = await fetch(`/api/monitoreo/campos/${encodeURIComponent(clienteId)}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'include'
+                });
+
+                if (!response.ok) throw new Error("Error en la carga");
+
                 const campos = await response.json();
 
                 if (campos.length === 0) {
@@ -157,10 +184,15 @@
                             input.dataset.tipoCampo = campo.tipoCampo;
 
 
-                            const urlDestinatarios = `/api/monitoreo/destinatarios/${encodeURIComponent(campo.idGrupo)}`;
                             try {
-                                const res = await fetch(urlDestinatarios);
-                                const destinatarios = await res.json();
+                                const response = await fetch(`/api/monitoreo/destinatarios/${encodeURIComponent(campo.idGrupo)}`, {
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    },
+                                    credentials: 'include'
+                                });
+
+                                const destinatarios = await response.json();
                                 input.value = destinatarios.map(d => d.email).join(', ');
                             } catch {
                                 input.value = "Error al cargar destinatarios";
@@ -313,6 +345,8 @@
             } catch (error) {
                 console.error('Error al obtener los campos:', error);
                 formContainer.innerHTML = "<p class='text-danger'>Error al obtener los campos.</p>";
+            }finally{
+                loader.close();
             }
         }
 
@@ -499,7 +533,12 @@
             containerDiv.innerHTML = '<p>Cargando componentes...</p>';
 
             try {
-                fetch(url)
+                fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'include'
+                })
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);

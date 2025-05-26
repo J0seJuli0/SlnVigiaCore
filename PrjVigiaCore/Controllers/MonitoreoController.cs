@@ -11,6 +11,9 @@ using PrjVigiaCore.DAO;
 using System.Collections.Generic;
 using Xceed.Words.NET;
 using PrjVigiaCore.Services;
+using PrjVigiaCore.Models;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PrjVigiaCore.Controllers
 {
@@ -55,6 +58,8 @@ namespace PrjVigiaCore.Controllers
         [HttpGet("campos")]
         public IActionResult Campos() => View();
 
+
+        [AuthorizeMenu]
         [HttpGet("campos/{clienteId}")]
         public async Task<IActionResult> ObtenerCampos(string clienteId)
         {
@@ -89,8 +94,7 @@ namespace PrjVigiaCore.Controllers
                         Cliente = reader["CLIENTE"].ToString(),
                         IdCliente = reader["ID_CLIENTE"].ToString(),
                         IdGrupo = reader["ID_GRUPO"].ToString(),
-                        Imagen = reader["IMAGEN"]?.ToString(),
-                        TipoImagen = reader["TIPO_IMAGE"]?.ToString()
+                        Imagen = reader["IMAGEN"]?.ToString()
                     });
                 }
 
@@ -103,7 +107,7 @@ namespace PrjVigiaCore.Controllers
         }
 
 
-
+        [AuthorizeMenu]
         [HttpGet("componente/{idServer}")]
         public async Task<IActionResult> ObtenerComponentes(string idServer)
         {
@@ -132,8 +136,6 @@ namespace PrjVigiaCore.Controllers
                         {
                             IdServer = reader["ID_SERVER"].ToString(),
                             Componente = reader["COMPONENTE"].ToString(),
-                            Descripcion = reader["DESCRIPCION"]?.ToString(),
-                            Estado = Convert.ToInt32(reader["ESTADO"]),
                             FechaRegistro = Convert.ToDateTime(reader["FECHA_REGISTRO"])
                         });
                     }
@@ -149,7 +151,7 @@ namespace PrjVigiaCore.Controllers
         }
 
 
-
+        [AuthorizeMenu]
         [HttpGet("destinatarios/{idGrupo}")]
         public async Task<IActionResult> ObtenerDestinatarios(string idGrupo)
         {
@@ -170,10 +172,7 @@ namespace PrjVigiaCore.Controllers
                 {
                     destinatarios.Add(new
                     {
-                        IdDestinatario = reader["ID_DESTINATARIO"].ToString(),
-                        NombreCompleto = reader["NOMBRE_COMPLETO"].ToString(),
-                        Email = reader["EMAIL"].ToString(),
-                        Tipo = Convert.ToInt32(reader["TIPO"])
+                        Email = reader["EMAIL"].ToString()
                     });
                 }
 
