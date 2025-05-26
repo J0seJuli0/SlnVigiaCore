@@ -2,11 +2,31 @@
   "Files": [
     {
       "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PrjVigiaCore.bundle.scp.css",
-      "PackagePath": "staticwebassets\\PrjVigiaCore.qs5os1n0dd.bundle.scp.css"
+      "PackagePath": "staticwebassets\\PrjVigiaCore.zwiuzsi8uy.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
+      "PackagePath": "staticwebassets\\css\\Campos\\campos.css"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
+      "PackagePath": "staticwebassets\\css\\Error\\UnAuthorized.css"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
+      "PackagePath": "staticwebassets\\css\\Layout\\Layout.css"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ListarUsuarios.css",
+      "PackagePath": "staticwebassets\\css\\Login\\ListarUsuarios.css"
     },
     {
       "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Login.css",
       "PackagePath": "staticwebassets\\css\\Login\\Login.css"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
+      "PackagePath": "staticwebassets\\css\\Login\\Perfil.css"
     },
     {
       "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Menu\\menuStyle.css",
@@ -27,6 +47,14 @@
     {
       "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\img\\campos\\404.png",
       "PackagePath": "staticwebassets\\img\\campos\\404.png"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\img\\clientes\\TamboLogo.png",
+      "PackagePath": "staticwebassets\\img\\clientes\\TamboLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
     },
     {
       "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\js\\site.js",
@@ -261,8 +289,8 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\temp\\COMPLEXLESS - MONITOREO TAMBO #2025-04-15.pdf",
-      "PackagePath": "staticwebassets\\temp\\COMPLEXLESS - MONITOREO TAMBO #2025-04-15.pdf"
+      "Id": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\temp\\MONITOREO_Empresa Alpha_#2025-05-17.pdf",
+      "PackagePath": "staticwebassets\\temp\\MONITOREO_Empresa Alpha_#2025-05-17.pdf"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PrjVigiaCore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

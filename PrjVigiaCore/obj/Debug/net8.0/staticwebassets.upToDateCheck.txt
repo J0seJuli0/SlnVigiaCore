@@ -1,9 +1,16 @@
+wwwroot\css\Campos\campos.css
+wwwroot\css\Error\UnAuthorized.css
+wwwroot\css\Layout\Layout.css
+wwwroot\css\Login\ListarUsuarios.css
 wwwroot\css\Login\Login.css
+wwwroot\css\Login\Perfil.css
 wwwroot\css\Menu\menuStyle.css
 wwwroot\css\site.css
 wwwroot\css\UnAuthorized.css
 wwwroot\favicon.ico
 wwwroot\img\campos\404.png
+wwwroot\img\clientes\TamboLogo.png
+wwwroot\img\logo.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
@@ -62,4 +69,4 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-wwwroot\temp\COMPLEXLESS - MONITOREO TAMBO #2025-04-15.pdf
+wwwroot\temp\MONITOREO_Empresa Alpha_#2025-05-17.pdf

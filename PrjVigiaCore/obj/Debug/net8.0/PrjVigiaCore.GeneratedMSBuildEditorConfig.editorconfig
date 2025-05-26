@@ -28,6 +28,30 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Campos/ListarCampos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcG9zXExpc3RhckNhbXBvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Campos/ListarCamposClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcG9zXExpc3RhckNhbXBvc0NsaWVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Campos/ListarComponentes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcG9zXExpc3RhckNvbXBvbmVudGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Campos/ListarServidores.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcG9zXExpc3RhclNlcnZpZG9yZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Clientes/ListarClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcTGlzdGFyQ2xpZW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Error/UnAuthorized.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcVW5BdXRob3JpemVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -64,6 +88,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFtYm9cRm9ybVRhbWJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Usuarios/ListarUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcTGlzdGFyVXN1YXJpb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Usuarios/RegistrarUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcUmVnaXN0cmFyVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -75,3 +107,7 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5bkbkn33w3
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Shared/_LayoutTemporal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZW1wb3JhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-n7shav4vfq
