@@ -1,0 +1,59 @@
+﻿body {
+	background-color: #1a1a2e;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	text-align: center;
+}
+
+.error-container {
+	background: rgba(255, 0, 0, 0.1);
+	padding: 30px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
+	animation: shake 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+	from {
+		transform: translateX(-3px);
+	}
+
+	to {
+		transform: translateX(3px);
+	}
+}
+
+.error-icon {
+	font-size: 80px;
+	color: #ff4d4d;
+	animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(1.1);
+	}
+}
+
+.btn-custom {
+	background-color: #ff4d4d;
+	color: white;
+	border: none;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	padding: 10px 20px;
+	display: inline-block;
+	border-radius: 5px;
+}
+
+	.btn-custom:hover {
+		background-color: #e60000;
+		transform: scale(1.05);
+	}
