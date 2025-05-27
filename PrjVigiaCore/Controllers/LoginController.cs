@@ -24,7 +24,7 @@ namespace PrjMonitoreoCPLX.Controllers
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             return View();
