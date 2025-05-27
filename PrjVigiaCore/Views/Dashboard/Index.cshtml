@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Dashboard Interno";
+}
+
+<link href="~/css/Dashboard/Index.css" rel="stylesheet" />
+
+<div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="user-info">
+            <span class="welcome-msg">Bienvenido, @Context.Session.GetString("NombreUsu")</span>
+            <div class="user-role-badge">
+                <i class="fas fa-user-shield"></i> Administrador
+            </div>
+        </div>
+        <h1>Panel de Control Interno</h1>
+        <div class="header-controls">
+            <button id="refresh-btn" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-sync-alt"></i> Actualizar
+            </button>
+            <div class="system-time">
+                <i class="fas fa-clock"></i> <span id="live-clock">--:--:--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Secciones del Dashboard -->
+    <div class="dashboard-grid">
+        <!-- Tarjeta: Estado del Sistema -->
+        <div class="card system-status-card">
+            <div class="card-header">
+                <h5><i class="fas fa-server"></i> Estado del Sistema</h5>
+            </div>
+            <div class="card-body">
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-indicator active"></div>
+                        <span class="status-label">Servidor BD</span>
+                        <span class="status-value">En línea</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator warning"></div>
+                        <span class="status-label">API Externa</span>
+                        <span class="status-value">Latencia alta</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator active"></div>
+                        <span class="status-label">Servicio de Correo</span>
+                        <span class="status-value">Operativo</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-indicator inactive"></div>
+                        <span class="status-label">Backup Noche</span>
+                        <span class="status-value">Pendiente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta: Uso de Recursos -->
+        <div class="card resource-card">
+            <div class="card-header">
+                <h5><i class="fas fa-memory"></i> Uso de Recursos</h5>
+            </div>
+            <div class="card-body">
+                <div class="resource-meter">
+                    <div class="meter-item">
+                        <span class="meter-label">CPU</span>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 65%">65%</div>
+                        </div>
+                    </div>
+                    <div class="meter-item">
+                        <span class="meter-label">RAM</span>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" style="width: 78%">78%</div>
+                        </div>
+                    </div>
+                    <div class="meter-item">
+                        <span class="meter-label">Almacenamiento</span>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" style="width: 92%">92%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico: Procesos Recientes -->
+        <div class="card processes-card">
+            <div class="card-header">
+                <h5><i class="fas fa-tasks"></i> Procesos Recientes</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="processChart" height="200"></canvas>
+                <div class="process-legend">
+                    <span><i class="fas fa-circle text-success"></i> Exitosos</span>
+                    <span><i class="fas fa-circle text-danger"></i> Fallidos</span>
+                    <span><i class="fas fa-circle text-warning"></i> En espera</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla: Registros Recientes -->
+        <div class="card logs-card">
+            <div class="card-header">
+                <h5><i class="fas fa-clipboard-list"></i> Registros Recientes</h5>
+                <button class="btn btn-sm btn-outline-secondary">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha/Hora</th>
+                                <th>Tipo</th>
+                                <th>Módulo</th>
+                                <th>Descripción</th>
+                                <th>Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-11-15 08:23</td>
+                                <td><span class="badge bg-info">INFO</span></td>
+                                <td>Autenticación</td>
+                                <td>Usuario conectado: admin</td>
+                                <td>System</td>
+                            </tr>
+                            <tr>
+                                <td>2023-11-15 08:30</td>
+                                <td><span class="badge bg-warning">WARN</span></td>
+                                <td>Base de Datos</td>
+                                <td>Consulta lenta (>2s)</td>
+                                <td>AppServer</td>
+                            </tr>
+                            <tr>
+                                <td>2023-11-15 09:12</td>
+                                <td><span class="badge bg-success">SUCCESS</span></td>
+                                <td>Backup</td>
+                                <td>Copia completada: 1.2GB</td>
+                                <td>CronJob</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta: Alertas -->
+        <div class="card alerts-card">
+            <div class="card-header bg-alert">
+                <h5><i class="fas fa-bell"></i> Alertas Activas</h5>
+                <span class="badge bg-danger">3</span>
+            </div>
+            <div class="card-body">
+                <div class="alert-item critical">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div class="alert-content">
+                        <strong>Almacenamiento al 92%</strong>
+                        <small>Espacio en disco crítico</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-dark">Resolver</button>
+                </div>
+                <div class="alert-item warning">
+                    <i class="fas fa-clock"></i>
+                    <div class="alert-content">
+                        <strong>Backup pendiente</strong>
+                        <small>Última copia: hace 36h</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-dark">Posponer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Dashboard/Index.js" asp-append-version="true"></script>
