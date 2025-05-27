@@ -36,11 +36,17 @@
         <label for="password">Contraseña</label>
         <input type="password" placeholder="Ingrese su Contraseña" id="password" name="password">
 
-        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+        <button type="submit" class="btn btn-primary w-100" id="loginBtn">Iniciar Sesión</button>
 
         <p class="text-center text-light" style="margin-top: 10px; font-size: 0.7rem;">El acceso es exclusivo para empleados autorizados.</p>
 
     </form>
+
+    <div id="loader" class="loader-overlay d-none">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -64,6 +70,15 @@
                     }
                 });
             }
+
+            const form = document.querySelector("form");
+            const loader = document.getElementById("loader");
+            const loginBtn = document.getElementById("loginBtn");
+
+            form.addEventListener("submit", function () {
+                loader.classList.remove("d-none");
+                loginBtn.disabled = true;
+            });
         });
     </script>
 

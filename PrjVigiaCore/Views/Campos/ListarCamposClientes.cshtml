@@ -1,6 +1,6 @@
 ﻿@model List<dynamic>
 @{
-    ViewData["Title"] = "Listado de Campos por Cliente";
+    ViewData["Title"] = "Todos los Campos por Cliente";
 }
 
 <style>
@@ -264,6 +264,28 @@
 
             if (!$('#tablaCampos').length) return;
 
+            function mostrarLoader() {
+                return Swal.fire({
+                    title: 'Cargando...',
+                    html: 'Por favor espere mientras se cargan los datos',
+                    allowOutsideClick: false,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        this.minimumTimer = setTimeout(() => {
+                            this.minimumTimeElapsed = true;
+                            this.checkReadyToClose();
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearTimeout(this.minimumTimer);
+                    }
+                });
+            }
+
+            const loader = mostrarLoader();
+            let dataLoaded = false;
+
             window.dataTableInstance = $('#tablaCampos').DataTable({
                 responsive: true,
                 dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>' +
@@ -407,6 +429,14 @@
                     }
                 ],
                 initComplete: function() {
+                    dataLoaded = true;
+                    loader.checkReadyToClose = function() {
+                        if (this.minimumTimeElapsed && dataLoaded) {
+                            loader.close();
+                        }
+                    };
+                    loader.checkReadyToClose();
+
                     $('.dataTables_filter input')
                         .addClass('form-control form-control-sm')
                         .attr('placeholder', 'Buscar campo...')
@@ -426,6 +456,10 @@
                         .css('width', '80px');
                 }
             });
+            setTimeout(() => {
+                loader.minimumTimeElapsed = true;
+                loader.checkReadyToClose && loader.checkReadyToClose();
+            }, 1500);
 
             window.dataTableInstance.buttons().container()
                 .appendTo($('.col-md-6:eq(0)', window.dataTableInstance.table().container()))

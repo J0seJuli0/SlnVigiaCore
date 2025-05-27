@@ -1,6 +1,6 @@
 ﻿@model List<dynamic>
 @{
-    ViewData["Title"] = "Listado de Clientes";
+    ViewData["Title"] = "Todos los Clientes";
 }
 
 <style>
@@ -272,6 +272,28 @@
 
             if (!$('#tablaClientes').length) return;
 
+            function mostrarLoader() {
+                return Swal.fire({
+                    title: 'Cargando...',
+                    html: 'Por favor espere mientras se cargan los datos',
+                    allowOutsideClick: false,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        this.minimumTimer = setTimeout(() => {
+                            this.minimumTimeElapsed = true;
+                            this.checkReadyToClose();
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearTimeout(this.minimumTimer);
+                    }
+                });
+            }
+
+            const loader = mostrarLoader();
+            let dataLoaded = false;
+
             window.dataTableInstance = $('#tablaClientes').DataTable({
                 responsive: true,
                 dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>' +
@@ -336,10 +358,10 @@
                                                     text: 'Exportación completada con éxito',
                                                     icon: 'success',
                                                     confirmButtonText: 'Aceptar',
-                                                    position: 'center', // Esto centra el alert
+                                                    position: 'center',
                                                     timer: 3000,
                                                     timerProgressBar: true,
-                                                    showConfirmButton: true // Mostrar botón de confirmación
+                                                    showConfirmButton: true
                                                 });
                                             }, 2000);
                                         }
@@ -419,6 +441,14 @@
                     }
                 ],
                 initComplete: function() {
+                    dataLoaded = true;
+                    loader.checkReadyToClose = function() {
+                        if (this.minimumTimeElapsed && dataLoaded) {
+                            loader.close();
+                        }
+                    };
+                    loader.checkReadyToClose();
+
                     $('.dataTables_filter input')
                         .addClass('form-control form-control-sm')
                         .attr('placeholder', 'Buscar cliente...')
@@ -438,6 +468,11 @@
                         .css('width', '80px');
                 }
             });
+
+            setTimeout(() => {
+                loader.minimumTimeElapsed = true;
+                loader.checkReadyToClose && loader.checkReadyToClose();
+            }, 1500);
 
             window.dataTableInstance.buttons().container()
                 .appendTo($('.col-md-6:eq(0)', window.dataTableInstance.table().container()))
