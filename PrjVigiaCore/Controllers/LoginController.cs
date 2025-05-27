@@ -53,7 +53,7 @@ namespace PrjMonitoreoCPLX.Controllers
                 HttpContext.Session.SetString("ID_Usuario", idUsu);
                 HttpContext.Session.SetString("NombreUsu", nombreUsuario);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {
