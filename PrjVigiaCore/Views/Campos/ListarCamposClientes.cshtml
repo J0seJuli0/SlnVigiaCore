@@ -148,7 +148,7 @@
                 <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
                     <i class="fas fa-sync-alt"></i>
                 </button>
-                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo campo">
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente" data-bs-toggle="modal" data-bs-target="#registrarUsuarioModal">
                     <i class="fas fa-plus me-1"></i> Nuevo
                 </button>
             </div>
@@ -226,24 +226,85 @@
     </div>
 </div>
 
-<!-- Modal para acciones -->
-<div class="modal fade" id="clientModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- MODAL PARA REGISTRAR CAMPOS -->
+<div class="modal fade" id="registrarUsuarioModal" tabindex="-1" aria-labelledby="registrarUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4 overflow-hidden">
+            <!-- Encabezado estilizado -->
+            <div class="modal-header bg-primary bg-gradient text-white py-4 px-4">
+                <div class="w-100">
+                    <h5 class="modal-title fs-4 fw-bold mb-1" id="registrarUsuarioModalLabel">Asignar Nuevo Campo</h5>
+                    <p class="small mb-0 opacity-75">Complete todos los campos requeridos</p>
+                </div>
+                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modalBody">
-                Cargando...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="modalConfirm">Confirmar</button>
-            </div>
+
+            <form id="registrarUsuarioForm" enctype="multipart/form-data">
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <!-- Columna Izquierda -->
+                        <div class="col-lg-6 p-4 bg-white">
+                            <div class="card h-100 border-0 shadow-none">
+                                <div class="card-header bg-transparent border-0 px-0 pt-0">
+                                    <h6 class="mb-3 fw-bold text-primary">Información Básica</h6>
+                                </div>
+                                <div class="card-body px-0 pt-2">
+                                    <!-- Cliente -->
+                                    <div class="mb-4">
+                                        <label for="idCliente" class="form-label fw-semibold small text-muted mb-1">CLIENTE <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="fas fa-building text-primary"></i>
+                                            </span>
+                                            <select class="form-select form-select-lg border-start-0 ps-3" id="idCliente" name="idCliente" required style="height: 46px;">
+                                                <option value="" selected disabled>Seleccione un cliente...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Campo -->
+                                    <div class="mb-3">
+                                        <label for="idCampo" class="form-label fw-semibold small text-muted mb-1">CAMPO <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="fas fa-map-marked-alt text-primary"></i>
+                                            </span>
+                                            <select class="form-select form-select-lg border-start-0 ps-3" id="idCampo" name="idCampo" required disabled style="height: 46px;">
+                                                <option value="" selected disabled>Primero seleccione un cliente...</option>
+                                            </select>
+                                        </div>
+                                        <small class="text-muted mt-1 d-block">Seleccione el campo de monitoreo</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna Derecha con fondo y mensaje -->
+                        <div class="col-lg-6 bg-light d-flex align-items-center justify-content-center p-4">
+                            <div class="text-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3193/3193015.png" alt="Ilustración neutra" class="img-fluid mb-3" style="max-height: 140px;">
+                                <p class="small text-muted">Asegúrate de completar todos los campos correctamente antes de registrar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer bg-light border-top px-4 py-3">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">
+                        <span id="registrarClienteSpinner" class="spinner-border spinner-border-sm d-none me-2" role="status"></span>
+                        <i class="fas fa-save me-2"></i> Registrar Cliente
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
 
 
 <script>
@@ -270,11 +331,10 @@
                     html: 'Por favor espere mientras se cargan los datos',
                     allowOutsideClick: false,
                     timerProgressBar: true,
-                    didOpen: () => {
+                    didOpen: function () {
                         Swal.showLoading();
                         this.minimumTimer = setTimeout(() => {
-                            this.minimumTimeElapsed = true;
-                            this.checkReadyToClose();
+                            minimumTimeElapsed = true;
                         }, 1000);
                     },
                     willClose: () => {
@@ -483,16 +543,107 @@
             });
 
 
-            $(document).on('click', '.btn-delete', function() {
-                var id = $(this).data('id');
-                // Lógica para eliminar
+            $('#registrarUsuarioModal').on('show.bs.modal', function() {
+                cargarCliente();
+                $('#idCampo').empty().append('<option value="">Primero seleccione un cliente...</option>');
+                $('#idCampo').prop('disabled', true);
             });
 
-            // Botón para agregar nuevo cliente
-            $('#btnAddClient').on('click', function() {
-                // Lógica para agregar nuevo cliente
+            $('#registrarUsuarioForm').submit(function(e) {
+                e.preventDefault();
+                registrarUsuario();
             });
     });
+
+        function cargarCliente() {
+        $.ajax({
+            url: '@Url.Action("ObtenerClientes", "Campos")',
+            type: 'GET',
+            success: function(response) {
+                $('#idCliente').empty().append('<option value="">Seleccione un cliente...</option>');
+                $.each(response, function(i, cliente) {
+                    $('#idCliente').append($('<option>', {
+                        value: cliente.idClie,
+                        text: cliente.nombre
+                    }));
+                });
+
+                // Evento cuando cambia la selección de cliente
+                $('#idCliente').off('change').on('change', function() {
+                    var idCliente = $(this).val();
+                    if (idCliente) {
+                        cargarCamposPorCliente(idCliente);
+                        $('#idCampo').prop('disabled', false);
+                    } else {
+                        $('#idCampo').empty().append('<option value="">Primero seleccione un cliente...</option>');
+                        $('#idCampo').prop('disabled', true);
+                    }
+                });
+            },
+            error: function() {
+                toastr.error('Error al cargar los Clientes');
+            }
+        });
+    }
+
+    function cargarCamposPorCliente(idCliente) {
+        $.ajax({
+            url: '@Url.Action("ObtenerCamposPorCliente", "Campos")',
+            type: 'GET',
+            data: { idCliente: idCliente },
+            beforeSend: function() {
+                $('#idCampo').empty().append('<option value="">Cargando campos...</option>');
+            },
+            success: function(response) {
+                $('#idCampo').empty();
+                if (response && response.length > 0) {
+                    $('#idCampo').append('<option value="">Seleccione un campo...</option>');
+                    $.each(response, function(i, campo) {
+                        $('#idCampo').append($('<option>', {
+                            value: campo.idCampo,
+                            text: campo.nombre
+                        }));
+                    });
+                } else {
+                    $('#idCampo').append('<option value="">No hay campos disponibles para este cliente</option>');
+                }
+            },
+            error: function() {
+                toastr.error('Error al cargar los Campos');
+                $('#idCampo').empty().append('<option value="">Error al cargar campos</option>');
+            }
+        });
+    }
+
+    function registrarUsuario() {
+        var formData = {
+            idCliente: $('#idCliente').val(),
+            idCampo: $('#idCampo').val()
+        };
+
+        $('#registrarClienteSpinner').removeClass('d-none');
+
+        $.ajax({
+            url: '@Url.Action("RegistrarCampoCliente", "Campos")',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                $('#registrarClienteSpinner').addClass('d-none');
+                if (response.success) {
+                    Swal.fire('Éxito', response.message, 'success').then(() => {
+                        $('#registrarUsuarioModal').modal('hide');
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire('Error', response.message, 'error');
+                }
+            },
+            complete: function() {
+                $('#registrarSpinner').addClass('d-none');
+            }
+        });
+    }
+
 
     document.addEventListener('DOMContentLoaded', function() {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));

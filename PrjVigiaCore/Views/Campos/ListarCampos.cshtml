@@ -4,6 +4,34 @@
 }
 
 <style>
+    #registrarUsuarioModal .modal-header {
+        border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+
+    #registrarUsuarioModal .form-control-lg,
+    #registrarUsuarioModal .form-select-lg {
+        padding: 0.5rem 1rem;
+        border-width: 2px;
+    }
+
+    #registrarUsuarioModal .card {
+        transition: all 0.2s ease;
+    }
+
+        #registrarUsuarioModal .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+    #registrarUsuarioModal .form-check-input {
+        width: 1.1em;
+        height: 1.1em;
+        margin-top: 0.15em;
+    }
+
+    #registrarUsuarioModal .btn-lg {
+        padding: 0.5rem 1.5rem;
+    }
     .avatar-container {
         width: 40px;
         height: 40px;
@@ -148,7 +176,7 @@
                 <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
                     <i class="fas fa-sync-alt"></i>
                 </button>
-                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo campo">
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente" data-bs-toggle="modal" data-bs-target="#registrarUsuarioModal">
                     <i class="fas fa-plus me-1"></i> Nuevo
                 </button>
             </div>
@@ -275,6 +303,95 @@
     </div>
 </div>
 
+
+<!-- MODAL PARA REGISTRAR CAMPO DE MONITOREO-->
+<div class="modal fade" id="registrarUsuarioModal" tabindex="-1" aria-labelledby="registrarUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-gradient-primary text-white py-3">
+                <h5 class="modal-title fs-4 fw-bold" id="registrarUsuarioModalLabel">
+                    <i class="fas fa-plus-circle me-2"></i>REGISTRAR NUEVO CAMPO
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="registrarUsuarioForm">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <!-- Columna Izquierda - Información Básica -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light py-2">
+                                    <h6 class="mb-0 fw-bold text-primary">
+                                        <i class="fas fa-info-circle me-2"></i>Información Principal
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="campo" class="form-label fw-semibold">Nombre del Campo <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-lg border-primary" id="campo" name="campo" required
+                                               placeholder="Ej: Temperatura, Uso de CPU">
+                                        <small class="text-muted">Nombre descriptivo para identificar el campo</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna Derecha - Configuración -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light py-2">
+                                    <h6 class="mb-0 fw-bold text-primary">
+                                        <i class="fas fa-cogs me-2"></i>Configuración
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="tipoDato" class="form-label fw-semibold">Tipo de Dato <span class="text-danger">*</span></label>
+                                        <select class="form-select form-select-lg border-primary" id="tipoDato" name="tipoDato" required>
+                                            <option value="" disabled selected>Seleccione...</option>
+                                            <option value="string">Texto (string)</option>
+                                            <option value="decimal">Decimal (decimal)</option>
+                                            <option value="date">Fecha (date)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Tipo de Campo <span class="text-danger">*</span></label>
+                                        <div class="border border-primary rounded p-3 bg-light">
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="tipoCampo" id="tipoCampo" value="1" required>
+                                                <label class="form-check-label fw-medium" for="tipoCampo">
+                                                    <span class="d-block">General</span>
+                                                    <small class="text-muted">(Encabezado de monitoreo para el formulario)</small>
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="tipoCampo" id="tipoCampo" value="2">
+                                                <label class="form-check-label fw-medium" for="tipoCampo">
+                                                    <span class="d-block">Por Servidor</span>
+                                                    <small class="text-muted">(Variable individual para cada servidor)</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light py-3">
+                    <button type="button" class="btn btn-lg btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-lg btn-primary rounded-pill px-4">
+                        <span id="registrarCampoSpinner" class="spinner-border spinner-border-sm d-none me-1" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-1"></i> Registrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -513,15 +630,93 @@
             });
 
 
-            $(document).on('click', '.btn-delete', function() {
-                var id = $(this).data('id');
-                // Lógica para eliminar
+            $('#registrarUsuarioForm').submit(function(e) {
+                e.preventDefault();
+                registrarUsuario();
             });
+    });
 
-            // Botón para agregar nuevo cliente
-            $('#btnAddClient').on('click', function() {
-                // Lógica para agregar nuevo cliente
-            });
+    function generarId() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+     }
+
+    function registrarUsuario() {
+        var formData = new FormData($('#registrarUsuarioForm')[0]);
+
+        // Generar ID
+        formData.append('idCampo', generarId());
+
+        // Mostrar spinner
+        $('#registrarSpinner').removeClass('d-none');
+
+        $.ajax({
+            url: '@Url.Action("RegistrarCampo", "Campos")',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: '¡Registro Exitoso!',
+                        text: response.message,
+                        icon: 'success',
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        willClose: () => {
+                            $('#registrarUsuarioModal').modal('hide');
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function(xhr) {
+                toastr.error('Error al registrar el campo.');
+            },
+            complete: function() {
+                $('#registrarSpinner').addClass('d-none');
+            }
+        });
+    }
+         $(document).ready(function() {
+        // Validación del formulario
+        $('#registrarUsuarioForm').validate({
+            rules: {
+                idCampo: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 8
+                },
+                campo: {
+                    required: true,
+                    minlength: 3
+                },
+                tipoDato: {
+                    required: true
+                },
+                tipoCampo: {
+                    required: true
+                }
+            },
+            messages: {
+                idCampo: {
+                    required: "El ID del campo es obligatorio",
+                    minlength: "Mínimo 3 caracteres",
+                    maxlength: "Máximo 8 caracteres"
+                }
+            },
+            submitHandler: function(form) {
+                registrarCampo();
+            }
+        });
     });
 
     document.addEventListener('DOMContentLoaded', function() {
