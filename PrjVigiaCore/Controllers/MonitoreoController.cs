@@ -30,6 +30,55 @@ namespace PrjVigiaCore.Controllers
             _connectionString = configuration.GetConnectionString("cn1")!;
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar(string? token = null)
+        {
+            try
+            {
+                string idCliente = null;
+
+                if (!string.IsNullOrEmpty(token))
+                {
+                    idCliente = _tokenService.ObtenerIdCliente(token);
+                    if (idCliente == null)
+                    {
+                        return BadRequest("Token inválido o expirado");
+                    }
+                }
+                DataTable datos = ObtenerMonitoreosPivoteado(idCliente);
+                return View("ListarMonitoreos", datos);
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "¡Ups! Algo salió mal. Intentalo de nuevo mas tarde.";
+                return View("ListarMonitoreos", new DataTable());
+            }
+        }
+
+        [HttpGet("ObtenerMonitoreosPivoteado")]
+        public DataTable ObtenerMonitoreosPivoteado(string? idCliente = null)
+        {
+            DataTable resultado = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_LISTAR_MONITOREOS_PIVOTEADO", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Parámetro de entrada (nullable)
+                    cmd.Parameters.AddWithValue("@idCliente", (object?)idCliente ?? DBNull.Value);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(resultado);
+                    }
+                }
+            }
+
+            return resultado;
+        }
+
 
         [HttpGet("validar-token")]
         public IActionResult ValidarToken([FromQuery] string token)

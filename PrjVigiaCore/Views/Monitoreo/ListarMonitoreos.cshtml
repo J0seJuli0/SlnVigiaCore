@@ -1,0 +1,97 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "Todos los Monitoreos";
+}
+
+<link href="~/css/Monitoreo/ListarMonitoreos.css" rel="stylesheet" />
+
+<h2 class="text-center title-custom">📊 Todos los Monitoreos</h2>
+
+@if (Model != null && Model.Rows.Count > 0)
+{
+    <div class="container-fluid px-2">
+        <div class="table-responsive shadow p-3 mb-5 bg-white rounded w-100">
+            <table id="tablaMonitoreos" class="table table-bordered table-hover nowrap">
+                <thead>
+                    <tr>
+                        @foreach (System.Data.DataColumn col in Model.Columns)
+                        {
+                            <th>@col.ColumnName</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (System.Data.DataRow row in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (var item in row.ItemArray)
+                            {
+                                <td>@(item?.ToString() ?? "-")</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info text-center">No se encontraron datos.</div>
+}
+
+@section Scripts {
+    <script>
+        function mostrarLoader() {
+            return Swal.fire({
+                title: 'Cargando...',
+                html: 'Por favor espere mientras se cargan los datos',
+                allowOutsideClick: false,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    this.minimumTimer = setTimeout(() => {
+                        this.minimumTimeElapsed = true;
+                        this.checkReadyToClose();
+                    }, 1000);
+                },
+                willClose: () => {
+                    clearTimeout(this.minimumTimer);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            const loading = mostrarLoader();
+
+            setTimeout(() => {
+                $('#tablaMonitoreos').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="fa fa-copy"></i> Copiar',
+                            className: 'btn btn-secondary btn-sm'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fa fa-file-excel"></i> Excel',
+                            className: 'btn btn-success btn-sm'
+                        },
+                    ],
+                    language: {
+                        url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+                    },
+                    scrollX: true,
+                    pageLength: 10,
+                    lengthChange: false,
+                    searching: true,
+                    ordering: true
+                });
+
+                Swal.close();
+            }, 800);
+        });
+    </script>
+}
