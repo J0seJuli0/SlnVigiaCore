@@ -53,10 +53,87 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
-        // GET: ClientesController/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        public async Task<IActionResult> RegistrarCliente(
+            [FromForm] string idCliente,
+            [FromForm] string idGrupo,
+            [FromForm] string nombre,
+            [FromForm] IFormFile imagen)
         {
-            return View();
+            try
+            {
+                // Validaciones básicas
+                if (string.IsNullOrEmpty(idGrupo) || string.IsNullOrEmpty(nombre))
+                {
+                    return Json(new { success = false, message = "El grupo y el nombre son campos obligatorios" });
+                }
+
+                // Procesar imagen
+                string imagePath = null;
+                if (imagen != null && imagen.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "clientes");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var extension = Path.GetExtension(imagen.FileName).ToLowerInvariant();
+
+                    // Validar extensiones permitidas
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    if (!allowedExtensions.Contains(extension))
+                    {
+                        return Json(new { success = false, message = "Formato de imagen no válido. Use JPG, JPEG, PNG o GIF." });
+                    }
+
+                    // Crear nombre de archivo usando el ID del cliente
+                    var fileName = $"{idCliente}{extension}";
+                    var filePath = Path.Combine(uploadsFolder, fileName);
+
+                    // Eliminar imagen anterior si existe
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(fileStream);
+                    }
+
+                    imagePath = $"/images/clientes/{fileName}";
+                }
+
+                // Ejecutar SP
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    await cnn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("SP_REGISTRAR_CLIENTE", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros para CLIENTE
+                        cmd.Parameters.AddWithValue("@ID_CLIENTE", idCliente);
+                        cmd.Parameters.AddWithValue("@ID_GRUPO", idGrupo);
+                        cmd.Parameters.AddWithValue("@NOMBRE", nombre);
+                        cmd.Parameters.AddWithValue("@IMAGEN", string.IsNullOrEmpty(imagePath) ? DBNull.Value : (object)imagePath);
+
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return Json(new
+                        {
+                            success = true,
+                            message = "Cliente registrado exitosamente",
+                            idCliente = idCliente
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error al registrar el cliente: " + ex.Message });
+            }
         }
 
         // GET: ClientesController/Create

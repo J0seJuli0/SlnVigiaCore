@@ -4,6 +4,19 @@
 }
 
 <style>
+    .image-preview-container:hover {
+        border-color: #86b7fe !important;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        transition: all 0.3s ease;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .no-image-overlay {
+        background-color: rgba(248, 249, 250, 0.8) !important;
+    }
     .avatar-container {
         width: 40px;
         height: 40px;
@@ -138,7 +151,7 @@
                 <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
                     <i class="fas fa-sync-alt"></i>
                 </button>
-                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente">
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente" data-bs-toggle="modal" data-bs-target="#registrarUsuarioModal">
                     <i class="fas fa-plus me-1"></i> Nuevo
                 </button>
             </div>
@@ -234,25 +247,91 @@
     </div>
 </div>
 
-<!-- Modal para acciones -->
-<div class="modal fade" id="clientModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+<!-- MODAL PARA REGISTRAR CLIENTE -->
+<div class="modal fade" id="registrarUsuarioModal" tabindex="-1" aria-labelledby="registrarUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fs-4 fw-bold" id="registrarUsuarioModalLabel">
+                    <i class="fas fa-user-tie me-2"></i>Registrar Nuevo Cliente
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modalBody">
-                Cargando...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="modalConfirm">Confirmar</button>
-            </div>
+
+            <form id="registrarUsuarioForm" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <!-- Columna Izquierda - Información Básica -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0 fw-bold text-primary">
+                                        <i class="fas fa-info-circle me-2"></i>Información Básica
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label fw-semibold">Nombre/Razón Social <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" required placeholder="Nombre completo o razón social">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="idGrupo" class="form-label fw-semibold">Grupo <span class="text-danger">*</span></label>
+                                        <select class="form-select form-select-sm" id="idGrupo" name="idGrupo" required>
+                                            <option value="">Seleccione grupo...</option>
+                                            <!-- Opciones de grupos se cargarán dinámicamente -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna Derecha - Imagen y Detalles -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0 fw-bold text-primary">
+                                        <i class="fas fa-image me-2"></i>Imagen del Cliente
+                                    </h6>
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <div class="text-center mb-3 flex-grow-1 d-flex flex-column justify-content-center">
+                                        <div class="image-preview-container position-relative mx-auto"
+                                             style="width: 180px; height: 180px; border: 2px dashed #ced4da; border-radius: 10px; overflow: hidden;">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <label for="imagen" class="btn btn-sm btn-outline-primary rounded-pill px-3 cursor-pointer">
+                                            <i class="fas fa-camera me-2"></i> Subir Imagen
+                                            <input type="file" class="d-none" id="imagen" name="imagen" accept="image/jpeg, image/png">
+                                        </label>
+                                        <button type="button" id="removeImageBtn" class="btn btn-sm btn-outline-danger rounded-pill px-3 ms-2" style="display: none;">
+                                            <i class="fas fa-trash-alt me-2"></i> Eliminar
+                                        </button>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Formatos: JPG, PNG (Max. 2MB)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                        <span id="registrarClienteSpinner" class="spinner-border spinner-border-sm d-none me-1" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-1"></i> Registrar Cliente
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -266,7 +345,7 @@
 
             const dependencyErrors = checkDependencies();
             if (dependencyErrors.length > 0) {
-                console.error('Errores de dependencia:', dependencyErrors.join(', '));
+                console.error('Errores de dependencia.');
                 return;
             }
 
@@ -278,11 +357,10 @@
                     html: 'Por favor espere mientras se cargan los datos',
                     allowOutsideClick: false,
                     timerProgressBar: true,
-                    didOpen: () => {
+                    didOpen: function () {
                         Swal.showLoading();
                         this.minimumTimer = setTimeout(() => {
-                            this.minimumTimeElapsed = true;
-                            this.checkReadyToClose();
+                            minimumTimeElapsed = true;
                         }, 1000);
                     },
                     willClose: () => {
@@ -496,15 +574,120 @@
             });
 
 
-            $(document).on('click', '.btn-delete', function() {
-                var id = $(this).data('id');
-                // Lógica para eliminar
+            $('#registrarUsuarioModal').on('show.bs.modal', function() {
+                cargarGrupo();
             });
 
-            // Botón para agregar nuevo cliente
-            $('#btnAddClient').on('click', function() {
-                // Lógica para agregar nuevo cliente
+            $('#registrarUsuarioForm').submit(function(e) {
+                e.preventDefault();
+                registrarUsuario();
             });
+    });
+
+    function generarId() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+     }
+
+     function cargarGrupo() {
+            $.ajax({
+                url: '@Url.Action("ObtenerGrupos", "Usuarios")',
+                type: 'GET',
+                success: function(response) {
+                    $('#idGrupo').empty().append('<option value="">Seleccione un grupo...</option>');
+                    $.each(response, function(i, grupo) {
+                        $('#idGrupo').append($('<option>', {
+                            value: grupo.idGrupo,
+                            text: grupo.nombre
+                        }));
+                    });
+                },
+                error: function() {
+                    toastr.error('Error al cargar los Grupos');
+                }
+            });
+     }
+
+     function registrarUsuario() {
+        var formData = new FormData($('#registrarUsuarioForm')[0]);
+
+        // Generar ID
+        formData.append('idCliente', generarId());
+
+        // Mostrar spinner
+        $('#registrarSpinner').removeClass('d-none');
+
+        $.ajax({
+            url: '@Url.Action("RegistrarCliente", "Clientes")',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: '¡Registro Exitoso!',
+                        text: response.message,
+                        icon: 'success',
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        willClose: () => {
+                            $('#registrarUsuarioModal').modal('hide');
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function(xhr) {
+                toastr.error('Error al registrar el cliente.');
+            },
+            complete: function() {
+                $('#registrarSpinner').addClass('d-none');
+            }
+        });
+    }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const imagenInput = document.getElementById('imagen');
+        const imagenPreview = document.getElementById('imagenPreview');
+        const removeImageBtn = document.getElementById('removeImageBtn');
+        const noImageOverlay = document.querySelector('.no-image-overlay');
+
+        // Manejar cambio de imagen
+        imagenInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('La imagen no debe exceder los 2MB');
+                    this.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagenPreview.src = event.target.result;
+                    imagenPreview.style.display = 'block';
+                    noImageOverlay.style.display = 'none';
+                    removeImageBtn.style.display = 'inline-block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Manejar eliminación de imagen
+        removeImageBtn.addEventListener('click', function() {
+            imagenInput.value = '';
+            imagenPreview.src = '/img/default-avatar.jpg';
+            noImageOverlay.style.display = 'flex';
+            removeImageBtn.style.display = 'none';
+        });
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -523,4 +706,17 @@
             closeButton: true
         });
     });
+
+        const observer = new MutationObserver(() => {
+            const sidebar = document.querySelector('.sidebar-wrapper');
+            if (sidebar && sidebar.getAttribute('aria-hidden') === 'true') {
+                sidebar.removeAttribute('aria-hidden');
+            }
+        });
+
+        observer.observe(document.body, {
+            attributes: true,
+            subtree: true,
+            attributeFilter: ['aria-hidden']
+        });
 </script>
