@@ -134,23 +134,231 @@ namespace PrjVigiaCore.Controllers
                     emp.NOMBRE_COMPLETO = reader["NOMBRE_COMPLETO"] != DBNull.Value ? reader["NOMBRE_COMPLETO"] : null;
                     emp.EDAD = reader["EDAD"] != DBNull.Value ? reader["EDAD"] : null;
                     emp.GENERO = reader["GENERO"] != DBNull.Value ? reader["GENERO"] : null;
-                    emp.DIRECCION_COMPLETA = reader["DIRECCION_COMPLETA"] != DBNull.Value ? reader["DIRECCION_COMPLETA"] : null;
                     emp.IMAGE_PATH = reader["IMAGE_PATH"] != DBNull.Value ? reader["IMAGE_PATH"].ToString() : string.Empty;
                     emp.GRUPOS_ASIGNADOS = reader["GRUPOS_ASIGNADOS"] != DBNull.Value ? reader["GRUPOS_ASIGNADOS"] : null;
                     emp.EMAIL = reader["EMAIL"] != DBNull.Value ? reader["EMAIL"] : null;
 
                     empleados.Add(emp);
                 }
+                ViewBag.TotalRegistros = empleados.Count();
 
                 return View(empleados);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ViewBag.Error = "¡Ups! Algo salió mal. Intentalo de nuevo mas tarde.";
                 return View(new List<dynamic>());
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RegistrarEmpleado(
+        [FromForm] string idEmpleado,
+        [FromForm] string dni,
+        [FromForm] string nombres,
+        [FromForm] string apePat,
+        [FromForm] string apeMat,
+        [FromForm] string fechaNacimiento,
+        [FromForm] string genero,
+        [FromForm] string telefono,
+        [FromForm] string direccion,
+        [FromForm] string departamento,
+        [FromForm] string provincia,
+        [FromForm] string distrito,
+        [FromForm] string estadoCivil,
+        [FromForm] string usuario,
+        [FromForm] string email,
+        [FromForm] string contrasenia,
+        [FromForm] string idRol,
+        [FromForm] string idGrupo,
+        [FromForm] int tipo,
+        [FromForm] IFormFile imagen)
+        {
+            try
+            {
+                // Validaciones básicas
+                if (string.IsNullOrEmpty(dni) || string.IsNullOrEmpty(nombres) ||
+                    string.IsNullOrEmpty(apePat) || string.IsNullOrEmpty(telefono) ||
+                    string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(email) ||
+                    string.IsNullOrEmpty(contrasenia) || string.IsNullOrEmpty(idRol) ||
+                    string.IsNullOrEmpty(idGrupo))
+                {
+                    return Json(new { success = false, message = "Todos los campos obligatorios deben ser completados" });
+                }
+
+                string contraseniaHash = BCrypt.Net.BCrypt.HashPassword(contrasenia);
+
+                // Procesar imagen
+                string imagePath = null;
+                if (imagen != null && imagen.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "empleados");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var extension = Path.GetExtension(imagen.FileName).ToLowerInvariant();
+
+                    // Validar extensiones permitidas
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    if (!allowedExtensions.Contains(extension))
+                    {
+                        return Json(new { success = false, message = "Formato de imagen no válido. Use JPG, JPEG, PNG o GIF." });
+                    }
+
+                    // Crear nombre de archivo usando el ID del empleado
+                    var fileName = $"{idEmpleado}{extension}";
+                    var filePath = Path.Combine(uploadsFolder, fileName);
+
+                    // Eliminar imagen anterior si existe
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(fileStream);
+                    }
+
+                    imagePath = $"/images/empleados/{fileName}";
+                }
+
+                // Obtener usuario de sesión
+                var usuarioRegistro = HttpContext.Session.GetString("ID_Usuario");
+                if (string.IsNullOrEmpty(usuarioRegistro))
+                {
+                    return Json(new { success = false, message = "Sesión expirada. Por favor inicie sesión nuevamente." });
+                }
+
+                // Ejecutar SP
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    await cnn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("SP_REGISTRO_EMPLEADO", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros para EMPLEADO
+                        cmd.Parameters.AddWithValue("@ID_EMPLEADO", idEmpleado);
+                        cmd.Parameters.AddWithValue("@DNI", dni);
+                        cmd.Parameters.AddWithValue("@NOMBRES", nombres);
+                        cmd.Parameters.AddWithValue("@APE_PAT", apePat);
+                        cmd.Parameters.AddWithValue("@APE_MAT", apeMat);
+                        cmd.Parameters.AddWithValue("@FECHA_NACIMIENTO", string.IsNullOrEmpty(fechaNacimiento) ? DBNull.Value : (object)DateTime.Parse(fechaNacimiento));
+                        cmd.Parameters.AddWithValue("@GENERO", string.IsNullOrEmpty(genero) ? DBNull.Value : (object)genero);
+                        cmd.Parameters.AddWithValue("@TELEFONO", telefono);
+                        cmd.Parameters.AddWithValue("@DIRECCION", string.IsNullOrEmpty(direccion) ? DBNull.Value : (object)direccion);
+                        cmd.Parameters.AddWithValue("@DEPARTAMENTO", string.IsNullOrEmpty(departamento) ? DBNull.Value : (object)departamento);
+                        cmd.Parameters.AddWithValue("@PROVINCIA", string.IsNullOrEmpty(provincia) ? DBNull.Value : (object)provincia);
+                        cmd.Parameters.AddWithValue("@DISTRITO", string.IsNullOrEmpty(distrito) ? DBNull.Value : (object)distrito);
+                        cmd.Parameters.AddWithValue("@ESTADO_CIVIL", string.IsNullOrEmpty(estadoCivil) ? DBNull.Value : (object)estadoCivil);
+                        cmd.Parameters.AddWithValue("@IMAGE_PATH", string.IsNullOrEmpty(imagePath) ? DBNull.Value : (object)imagePath);
+
+                        // Parámetros para USUARIOS_SISTEMA
+                        cmd.Parameters.AddWithValue("@USUARIO", usuario);
+                        cmd.Parameters.AddWithValue("@EMAIL", email);
+                        cmd.Parameters.AddWithValue("@CONTRASENIA", contraseniaHash);
+                        cmd.Parameters.AddWithValue("@ID_ROL", idRol);
+
+                        // Parámetros para DESTINATARIOS
+                        cmd.Parameters.AddWithValue("@ID_GRUPO", idGrupo);
+                        cmd.Parameters.AddWithValue("@TIPO", tipo);
+
+                        // Parámetros de salida
+                        SqlParameter resultadoParam = new SqlParameter("@RESULTADO", SqlDbType.Bit);
+                        resultadoParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(resultadoParam);
+
+                        SqlParameter mensajeParam = new SqlParameter("@MENSAJE", SqlDbType.VarChar, 200);
+                        mensajeParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(mensajeParam);
+
+                        await cmd.ExecuteNonQueryAsync();
+
+                        bool resultado = (bool)resultadoParam.Value;
+                        string mensaje = mensajeParam.Value.ToString();
+
+                        return Json(new
+                        {
+                            success = resultado,
+                            message = mensaje,
+                            idEmpleado = idEmpleado
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error al registrar el usuario: " + ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult ObtenerRoles()
+        {
+            try
+            {
+                var roles = new List<dynamic>();
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID_ROL, ROL FROM ROLES", cnn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                roles.Add(new
+                                {
+                                    idRol = reader["ID_ROL"].ToString(),
+                                    nombre = reader["ROL"].ToString()
+                                });
+                            }
+                        }
+                    }
+                }
+                return Json(roles);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ObtenerGrupos()
+        {
+            try
+            {
+                var grupos = new List<dynamic>();
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT ID_GRUPO, NOM_GRUPO FROM GRUPO_DESTINA WHERE ESTADO = 1", cnn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                grupos.Add(new
+                                {
+                                    idGrupo = reader["ID_GRUPO"].ToString(),
+                                    nombre = reader["NOM_GRUPO"].ToString()
+                                });
+                            }
+                        }
+                    }
+                }
+                return Json(grupos);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> DetallesUsuario(string id)
