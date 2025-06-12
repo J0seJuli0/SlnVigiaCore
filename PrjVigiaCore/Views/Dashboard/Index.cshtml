@@ -1,180 +1,317 @@
 ﻿@{
-    ViewData["Title"] = "Dashboard Interno";
+    ViewData["Title"] = "Dashboard Administrativo";
 }
 
 <link href="~/css/Dashboard/Index.css" rel="stylesheet" />
 
-<div class="dashboard-container">
-    <!-- Header -->
+<div class="admin-dashboard">
+    <!-- Header Personalizado -->
     <header class="dashboard-header">
-        <div class="user-info">
-            <span class="welcome-msg">Bienvenido, @Context.Session.GetString("NombreUsu")</span>
-            <div class="user-role-badge">
-                <i class="fas fa-user-shield"></i> Administrador
+        <div class="user-profile">
+            <div class="avatar">
+                <img src="@Url.Content("~/uploads/avatars/" + Context.Session.GetString("Avatar") ?? "default.png")" alt="Avatar">
+            </div>
+            <div class="user-meta">
+                <h2>@Context.Session.GetString("NombreUsu")</h2>
+                <div class="user-badge">
+                    <span class="badge bg-primary">@Context.Session.GetString("RolUsu")</span>
+                    <span class="last-login">Último acceso: <span id="last-login-time">@Context.Session.GetString("UltimoAcceso")</span></span>
+                </div>
             </div>
         </div>
-        <h1>Panel de Control Interno</h1>
-        <div class="header-controls">
-            <button id="refresh-btn" class="btn btn-sm btn-outline-primary">
-                <i class="fas fa-sync-alt"></i> Actualizar
-            </button>
-            <div class="system-time">
-                <i class="fas fa-clock"></i> <span id="live-clock">--:--:--</span>
+
+        <div class="header-actions">
+            <div class="quick-actions">
+                <button class="btn btn-action" id="quick-settings" title="Configuración rápida">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn btn-action" id="notifications-btn" title="Notificaciones">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-counter">3</span>
+                </button>
+            </div>
+            <div class="system-status">
+                <span class="status-indicator online"></span>
+                <span>Sistema Operativo</span>
             </div>
         </div>
     </header>
 
-    <!-- Secciones del Dashboard -->
-    <div class="dashboard-grid">
-        <!-- Tarjeta: Estado del Sistema -->
-        <div class="card system-status-card">
-            <div class="card-header">
-                <h5><i class="fas fa-server"></i> Estado del Sistema</h5>
+    <!-- Métricas Principales -->
+    <div class="metrics-grid">
+        <!-- Tarjeta de Usuarios -->
+        <div class="metric-card users-card">
+            <div class="metric-header">
+                <h3><i class="fas fa-users"></i> Usuarios Activos</h3>
+                <select class="form-select time-filter" id="users-time-filter">
+                    <option value="today">Hoy</option>
+                    <option value="week">Esta semana</option>
+                    <option value="month">Este mes</option>
+                </select>
             </div>
-            <div class="card-body">
-                <div class="status-grid">
-                    <div class="status-item">
-                        <div class="status-indicator active"></div>
-                        <span class="status-label">Servidor BD</span>
-                        <span class="status-value">En línea</span>
+            <div class="metric-body">
+                <div class="metric-value" id="active-users-count">--</div>
+                <div class="metric-change" id="users-change">
+                    <i class="fas fa-arrow-up"></i> <span>--%</span> vs período anterior
+                </div>
+            </div>
+            <div class="metric-footer">
+                <a href="@Url.Action("Index", "Usuarios")">Ver todos los usuarios</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Transacciones -->
+        <div class="metric-card transactions-card">
+            <div class="metric-header">
+                <h3><i class="fas fa-exchange-alt"></i> Transacciones</h3>
+                <select class="form-select time-filter" id="transactions-time-filter">
+                    <option value="today">Hoy</option>
+                    <option value="week">Esta semana</option>
+                    <option value="month">Este mes</option>
+                </select>
+            </div>
+            <div class="metric-body">
+                <div class="metric-value" id="transactions-count">--</div>
+                <div class="metric-comparison">
+                    <div class="metric-comparison-item">
+                        <span>Completadas</span>
+                        <span id="completed-transactions">--</span>
                     </div>
-                    <div class="status-item">
-                        <div class="status-indicator warning"></div>
-                        <span class="status-label">API Externa</span>
-                        <span class="status-value">Latencia alta</span>
+                    <div class="metric-comparison-item">
+                        <span>Fallidas</span>
+                        <span id="failed-transactions">--</span>
                     </div>
-                    <div class="status-item">
-                        <div class="status-indicator active"></div>
-                        <span class="status-label">Servicio de Correo</span>
-                        <span class="status-value">Operativo</span>
-                    </div>
-                    <div class="status-item">
-                        <div class="status-indicator inactive"></div>
-                        <span class="status-label">Backup Noche</span>
-                        <span class="status-value">Pendiente</span>
-                    </div>
+                </div>
+            </div>
+            <div class="metric-footer">
+                <div class="progress">
+                    <div class="progress-bar bg-success" id="transactions-success-rate" style="width: 0%"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Tarjeta: Uso de Recursos -->
-        <div class="card resource-card">
-            <div class="card-header">
-                <h5><i class="fas fa-memory"></i> Uso de Recursos</h5>
+        <!-- Tarjeta de Rendimiento -->
+        <div class="metric-card performance-card">
+            <div class="metric-header">
+                <h3><i class="fas fa-tachometer-alt"></i> Rendimiento</h3>
+                <div class="real-time-toggle">
+                    <span>Tiempo real</span>
+                    <label class="switch">
+                        <input type="checkbox" id="realtime-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="resource-meter">
-                    <div class="meter-item">
-                        <span class="meter-label">CPU</span>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style="width: 65%">65%</div>
-                        </div>
+            <div class="metric-body">
+                <div class="performance-metrics">
+                    <div class="performance-metric">
+                        <span class="metric-label">CPU</span>
+                        <div class="gauge" id="cpu-gauge"></div>
                     </div>
-                    <div class="meter-item">
-                        <span class="meter-label">RAM</span>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" style="width: 78%">78%</div>
-                        </div>
-                    </div>
-                    <div class="meter-item">
-                        <span class="meter-label">Almacenamiento</span>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" style="width: 92%">92%</div>
-                        </div>
+                    <div class="performance-metric">
+                        <span class="metric-label">Memoria</span>
+                        <div class="gauge" id="memory-gauge"></div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Gráfico: Procesos Recientes -->
-        <div class="card processes-card">
-            <div class="card-header">
-                <h5><i class="fas fa-tasks"></i> Procesos Recientes</h5>
-            </div>
-            <div class="card-body">
-                <canvas id="processChart" height="200"></canvas>
-                <div class="process-legend">
-                    <span><i class="fas fa-circle text-success"></i> Exitosos</span>
-                    <span><i class="fas fa-circle text-danger"></i> Fallidos</span>
-                    <span><i class="fas fa-circle text-warning"></i> En espera</span>
-                </div>
+            <div class="metric-footer">
+                <span id="server-status">Estado del servidor: Verificando...</span>
             </div>
         </div>
 
-        <!-- Tabla: Registros Recientes -->
-        <div class="card logs-card">
-            <div class="card-header">
-                <h5><i class="fas fa-clipboard-list"></i> Registros Recientes</h5>
-                <button class="btn btn-sm btn-outline-secondary">
-                    <i class="fas fa-download"></i> Exportar
+        <!-- Tarjeta de Alertas -->
+        <div class="metric-card alerts-card">
+            <div class="metric-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Alertas Recientes</h3>
+                <button class="btn btn-sm btn-refresh" id="refresh-alerts">
+                    <i class="fas fa-sync-alt"></i>
                 </button>
             </div>
-            <div class="card-body">
+            <div class="metric-body">
+                <ul class="alerts-list" id="alerts-list">
+                    <li class="alert-item loading">
+                        <i class="fas fa-spinner fa-spin"></i> Cargando alertas...
+                    </li>
+                </ul>
+            </div>
+            <div class="metric-footer">
+                <a href="@Url.Action("Alertas", "Sistema")">Ver historial completo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráficos y Datos -->
+    <div class="data-visualization">
+        <!-- Gráfico de Actividad -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-line"></i> Actividad del Sistema</h3>
+                <div class="chart-controls">
+                    <button class="btn btn-chart-type active" data-type="line">Líneas</button>
+                    <button class="btn btn-chart-type" data-type="bar">Barras</button>
+                    <select class="form-select chart-range" id="activity-range">
+                        <option value="24">Últimas 24h</option>
+                        <option value="168" selected>Últimos 7 días</option>
+                        <option value="720">Últimos 30 días</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-body">
+                <canvas id="activity-chart" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- Tabla de Registros Recientes -->
+        <div class="table-card">
+            <div class="table-header">
+                <h3><i class="fas fa-history"></i> Registros Recientes</h3>
+                <div class="table-actions">
+                    <div class="search-box">
+                        <input type="text" id="logs-search" placeholder="Buscar registros...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="btn btn-export" id="export-logs">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                </div>
+            </div>
+            <div class="table-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-hover">
+                    <table class="table" id="recent-logs-table">
                         <thead>
                             <tr>
                                 <th>Fecha/Hora</th>
                                 <th>Tipo</th>
-                                <th>Módulo</th>
-                                <th>Descripción</th>
                                 <th>Usuario</th>
+                                <th>Acción</th>
+                                <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>2023-11-15 08:23</td>
-                                <td><span class="badge bg-info">INFO</span></td>
-                                <td>Autenticación</td>
-                                <td>Usuario conectado: admin</td>
-                                <td>System</td>
-                            </tr>
-                            <tr>
-                                <td>2023-11-15 08:30</td>
-                                <td><span class="badge bg-warning">WARN</span></td>
-                                <td>Base de Datos</td>
-                                <td>Consulta lenta (>2s)</td>
-                                <td>AppServer</td>
-                            </tr>
-                            <tr>
-                                <td>2023-11-15 09:12</td>
-                                <td><span class="badge bg-success">SUCCESS</span></td>
-                                <td>Backup</td>
-                                <td>Copia completada: 1.2GB</td>
-                                <td>CronJob</td>
-                            </tr>
+                            <!-- Datos se cargarán via AJAX -->
                         </tbody>
                     </table>
+                </div>
+                <div class="table-footer">
+                    <div class="pagination-controls">
+                        <button class="btn btn-pagination" id="prev-page" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="page-info">Página 1 de 1</span>
+                        <button class="btn btn-pagination" id="next-page" disabled>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widgets Adicionales -->
+    <div class="widgets-grid">
+        <!-- Widget de Tareas Pendientes -->
+        <div class="widget-card">
+            <div class="widget-header">
+                <h3><i class="fas fa-tasks"></i> Tareas Pendientes</h3>
+                <button class="btn btn-add-task" id="add-task-btn">
+                    <i class="fas fa-plus"></i> Nueva
+                </button>
+            </div>
+            <div class="widget-body">
+                <ul class="task-list" id="task-list">
+                    <!-- Tareas se cargarán via AJAX -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Widget de Usuarios Conectados -->
+        <div class="widget-card">
+            <div class="widget-header">
+                <h3><i class="fas fa-user-clock"></i> Usuarios Conectados</h3>
+                <span class="badge bg-primary" id="online-users-count">0</span>
+            </div>
+            <div class="widget-body">
+                <div class="online-users" id="online-users-container">
+                    <!-- Usuarios se cargarán via SignalR -->
                 </div>
             </div>
         </div>
 
-        <!-- Tarjeta: Alertas -->
-        <div class="card alerts-card">
-            <div class="card-header bg-alert">
-                <h5><i class="fas fa-bell"></i> Alertas Activas</h5>
-                <span class="badge bg-danger">3</span>
+        <!-- Widget de Eventos Próximos -->
+        <div class="widget-card">
+            <div class="widget-header">
+                <h3><i class="fas fa-calendar-alt"></i> Eventos Próximos</h3>
+                <button class="btn btn-view-calendar" onclick="location.href='@Url.Action("Calendario", "Sistema")'">
+                    <i class="fas fa-calendar"></i> Ver todo
+                </button>
             </div>
-            <div class="card-body">
-                <div class="alert-item critical">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <div class="alert-content">
-                        <strong>Almacenamiento al 92%</strong>
-                        <small>Espacio en disco crítico</small>
-                    </div>
-                    <button class="btn btn-sm btn-outline-dark">Resolver</button>
-                </div>
-                <div class="alert-item warning">
-                    <i class="fas fa-clock"></i>
-                    <div class="alert-content">
-                        <strong>Backup pendiente</strong>
-                        <small>Última copia: hace 36h</small>
-                    </div>
-                    <button class="btn btn-sm btn-outline-dark">Posponer</button>
+            <div class="widget-body">
+                <div class="upcoming-events" id="upcoming-events">
+                    <!-- Eventos se cargarán via AJAX -->
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/js/Dashboard/Index.js" asp-append-version="true"></script>
+<!-- Modal para Nueva Tarea -->
+<div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva Tarea</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="mb-3">
+                        <label for="task-title" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="task-title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="task-description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="task-description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="task-priority" class="form-label">Prioridad</label>
+                        <select class="form-select" id="task-priority">
+                            <option value="low">Baja</option>
+                            <option value="medium" selected>Media</option>
+                            <option value="high">Alta</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="task-deadline" class="form-label">Fecha límite</label>
+                        <input type="date" class="form-control" id="task-deadline">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="save-task">Guardar Tarea</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/chart.js/chart.min.js"></script>
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/AdminDashboard.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializar el dashboard
+            initAdminDashboard({
+                loadMetricsUrl: '@Url.Action("GetDashboardMetrics", "Dashboard")',
+                loadActivityDataUrl: '@Url.Action("GetActivityData", "Dashboard")',
+                loadRecentLogsUrl: '@Url.Action("GetRecentLogs", "Dashboard")',
+                loadTasksUrl: '@Url.Action("GetPendingTasks", "Dashboard")',
+                loadOnlineUsersUrl: '@Url.Action("GetOnlineUsers", "Dashboard")',
+                loadUpcomingEventsUrl: '@Url.Action("GetUpcomingEvents", "Dashboard")',
+                saveTaskUrl: '@Url.Action("SaveTask", "Dashboard")',
+                hubUrl: '@Url.Content("~/dashboardHub")'
+            });
+        });
+    </script>
+}
