@@ -5,9 +5,11 @@ using System.Data.SqlClient;
 using BCrypt.Net;
 using System.Text;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PrjVigiaCore.Controllers
 {
+    [Authorize]
     public class UsuariosController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -108,6 +110,7 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
+        [AuthorizeMenu]
         [HttpGet]
         public async Task<IActionResult> ListarUsuarios()
         {

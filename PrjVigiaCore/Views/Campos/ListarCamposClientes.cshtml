@@ -171,6 +171,7 @@
                         <th>Cliente</th>
                         <th>Código Campo</th>
                         <th>Campo</th>
+                        <th>Orden</th>
                         <th>Estado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -188,6 +189,7 @@
                             <td>
                                 <div class="fw-bold">@campo.CAMPO</div>
                             </td>
+                            <td>@(campo.ORDEN ?? "—")</td>
                             <td>
                                 @if (campo.ESTADO == 1)
                                 {
@@ -275,6 +277,18 @@
                                         </div>
                                         <small class="text-muted mt-1 d-block">Seleccione el campo de monitoreo</small>
                                     </div>
+
+                                    <!-- Orden -->
+                                    <div class="mb-3">
+                                        <label for="orden" class="form-label fw-semibold small text-muted mb-1">ORDEN (Opcional)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light border-end-0">
+                                                <i class="fas fa-sort-numeric-up text-primary"></i>
+                                            </span>
+                                            <input type="number" min="1" class="form-control form-control-lg border-start-0 ps-3" id="orden" name="orden" placeholder="Ejemplo: 1, 2, 3..." style="height: 46px;">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -286,6 +300,13 @@
                                 <p class="small text-muted">Asegúrate de completar todos los campos correctamente antes de registrar.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="px-4 pt-2 pb-0">
+                    <div class="alert alert-info small">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Los campos generales no requieren un orden específico. Si deseas definir un orden personalizado, puedes indicarlo.
                     </div>
                 </div>
 
@@ -386,7 +407,7 @@
                                 className: 'btn btn-success btn-sm',
                                 title: 'Listado de Campos por Cliente',
                                 exportOptions: {
-                                    columns: [0, 1, 2, 3, 4]
+                                    columns: [0, 1, 2, 3, 4, 5]
                                 },
                                 action: function(e, dt, button, config) {
                                     Swal.fire({
@@ -423,7 +444,7 @@
                         className: 'btn btn-info btn-sm',
                         title: 'Listado de Campos por Cliente',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         },
                         action: function(e, dt, button, config) {
                             Swal.fire({
@@ -477,10 +498,10 @@
                         }
                     }
                 ],
-                order: [[0, 'asc']],
+                order: [[0]],
                 columnDefs: [
                     {
-                        targets: [5],
+                        targets: [6],
                         orderable: false
                     },
                     {
@@ -555,7 +576,7 @@
             });
     });
 
-        function cargarCliente() {
+    function cargarCliente() {
         $.ajax({
             url: '@Url.Action("ObtenerClientes", "Campos")',
             type: 'GET',
@@ -618,7 +639,8 @@
     function registrarUsuario() {
         var formData = {
             idCliente: $('#idCliente').val(),
-            idCampo: $('#idCampo').val()
+            idCampo: $('#idCampo').val(),
+            orden: $('#orden').val() || null
         };
 
         $('#registrarClienteSpinner').removeClass('d-none');
@@ -638,11 +660,13 @@
                     Swal.fire('Error', response.message, 'error');
                 }
             },
-            complete: function() {
-                $('#registrarSpinner').addClass('d-none');
+            error: function() {
+                $('#registrarClienteSpinner').addClass('d-none');
+                Swal.fire('Error', 'Ocurrió un error al intentar registrar el campo.', 'error');
             }
         });
     }
+
 
 
     document.addEventListener('DOMContentLoaded', function() {

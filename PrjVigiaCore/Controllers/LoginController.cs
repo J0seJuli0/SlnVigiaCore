@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
+﻿using BCrypt.Net;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Data;
-using BCrypt.Net;
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,12 +17,13 @@ namespace PrjMonitoreoCPLX.Controllers
     {
 
         private readonly IConfiguration _configuration;
-
+        private readonly IMemoryCache _memoryCache;
         private readonly string cad_cn;
 
-        public LoginController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration, IMemoryCache memoryCache)
         {
             _configuration = configuration;
+            _memoryCache = memoryCache;
             cad_cn = configuration.GetConnectionString("cn1")!;
         }
 
@@ -31,7 +38,7 @@ namespace PrjMonitoreoCPLX.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        public async Task<IActionResult>Login(string email, string password)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -52,6 +59,26 @@ namespace PrjMonitoreoCPLX.Controllers
                 HttpContext.Session.SetString("ID_Rol", idRol);
                 HttpContext.Session.SetString("ID_Usuario", idUsu);
                 HttpContext.Session.SetString("NombreUsu", nombreUsuario);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, nombreUsuario),
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim("ID_Rol", idRol),
+                    new Claim("ID_Usuario", idUsu)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true
+                };
+
+                await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity),
+            authProperties);
 
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -240,5 +267,378 @@ namespace PrjMonitoreoCPLX.Controllers
             }
             return View();
         }
+
+        ////////////////////////////////////////////////////RESET PASSWORD//////////////////////////////////////////////////////////////////////////////
+
+        [HttpGet]
+        public IActionResult RequestResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RequestResetPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                ViewBag.Error = "Por favor ingrese su correo electrónico";
+                return View();
+            }
+
+            // Verificar si el email existe en la base de datos
+            bool emailExists = await CheckEmailExistsAsync(email);
+
+            if (!emailExists)
+            {
+                // Por seguridad, no revelamos si el email existe o no
+                return RedirectToAction("ResetPasswordSent");
+            }
+
+            // Generar código de verificación (6 dígitos)
+            var verificationCode = new Random().Next(100000, 999999).ToString();
+
+            // Guardar código en cache con expiración (15 minutos)
+            _memoryCache.Set($"ResetPwd_{email}", verificationCode, TimeSpan.FromMinutes(15));
+
+            // Enviar email con el código
+            await SendVerificationEmail(email, verificationCode);
+
+            return RedirectToAction("ResetPasswordSent", new { email = email });
+        }
+
+        [HttpGet]
+        public IActionResult ResetPasswordSent(string email)
+        {
+            ViewBag.Email = email;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(string email)
+        {
+            ViewBag.Email = email;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string email, string verificationCode, string newPassword, string confirmPassword)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(verificationCode) ||
+                string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
+            {
+                ViewBag.Error = "Todos los campos son requeridos";
+                ViewBag.Email = email;
+                return View();
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden";
+                ViewBag.Email = email;
+                return View();
+            }
+
+            // Verificar el código de verificación
+            var cacheKey = $"ResetPwd_{email}";
+            if (!_memoryCache.TryGetValue(cacheKey, out string storedCode) ||
+                storedCode != verificationCode)
+            {
+                ViewBag.Error = "Código de verificación inválido o expirado";
+                ViewBag.Email = email;
+                return View();
+            }
+
+            // Cambiar la contraseña en la base de datos
+            bool result = await UpdatePasswordInDatabase(email, newPassword);
+
+            if (result)
+            {
+                // Limpiar el código de cache
+                _memoryCache.Remove(cacheKey);
+
+                // Enviar notificación de cambio de contraseña
+                await SendPasswordChangedNotification(email);
+
+                return RedirectToAction("ResetPasswordSuccess");
+            }
+
+            ViewBag.Error = "Ocurrió un error al restablecer la contraseña";
+            ViewBag.Email = email;
+            return View();
+        }
+
+
+        private async Task SendPasswordChangedNotification(string email)
+        {
+            var smtpSettings = _configuration.GetSection("SmtpSettings");
+            var logoUrl = "https://www.complexless.com/wp-content/uploads/2021/05/logoweb.png";
+
+            using (var client = new SmtpClient(smtpSettings["Host"]))
+            {
+                client.Port = int.Parse(smtpSettings["Port"]);
+                client.Credentials = new NetworkCredential(
+                    smtpSettings["Username"],
+                    smtpSettings["Password"]);
+                client.EnableSsl = bool.Parse(smtpSettings["EnableSsl"]);
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(smtpSettings["FromAddress"], smtpSettings["FromName"]),
+                    Subject = "Tu contraseña ha sido cambiada - Complexless",
+                    Body = BuildPasswordChangedEmailBody(logoUrl),
+                    IsBodyHtml = true,
+                    Priority = MailPriority.High
+                };
+
+                mailMessage.To.Add(email);
+
+                await client.SendMailAsync(mailMessage);
+            }
+        }
+
+        private string BuildPasswordChangedEmailBody(string logoUrl)
+        {
+            return $@"
+            <!DOCTYPE html>
+            <html lang='es'>
+            <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>Contraseña Actualizada</title>
+                <style>
+                    body {{
+                        font-family: 'Arial', sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }}
+                    .email-container {{
+                        border: 1px solid #e0e0e0;
+                        border-radius: 8px;
+                        overflow: hidden;
+                    }}
+                    .header {{
+                        background-color: #1d3335;
+                        padding: 20px;
+                        text-align: center;
+                    }}
+                    .logo {{
+                        max-width: 200px;
+                        height: auto;
+                    }}
+                    .content {{
+                        padding: 30px;
+                        background-color: #ffffff;
+                    }}
+                    .success-message {{
+                        background-color: #f0f8ff;
+                        border-left: 4px solid #1845ad;
+                        padding: 15px;
+                        margin: 20px 0;
+                    }}
+                    .footer {{
+                        background-color: #f9f9f9;
+                        padding: 15px;
+                        text-align: center;
+                        font-size: 12px;
+                        color: #777;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='email-container'>
+                    <div class='header'>
+                        <img src='{logoUrl}' alt='Logo Complexless' class='logo'>
+                    </div>
+    
+                    <div class='content'>
+                        <h2>Notificación de seguridad</h2>
+                
+                        <div class='success-message'>
+                            <p>Tu contraseña ha sido cambiada exitosamente.</p>
+                        </div>
+                
+                        <p>Si no realizaste este cambio, por favor contacta inmediatamente al equipo de soporte.</p>
+                
+                        <p>Fecha y hora del cambio: <strong>{DateTime.Now.ToString("dd/MM/yyyy HH:mm")}</strong></p>
+                    </div>
+    
+                    <div class='footer'>
+                        <p>© {DateTime.Now.Year} Complexless. Todos los derechos reservados.</p>
+                        <p>Este es un mensaje automático, por favor no respondas a este correo.</p>
+                    </div>
+                </div>
+            </body>
+            </html>";
+        }
+
+
+        [HttpGet]
+        public IActionResult ResetPasswordSuccess()
+        {
+            return View();
+        }
+
+        private async Task<bool> CheckEmailExistsAsync(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(cad_cn))
+            {
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(1) FROM USUARIOS_SISTEMA WHERE EMAIL = @Email", conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    int count = (int)await cmd.ExecuteScalarAsync();
+                    return count > 0;
+                }
+            }
+        }
+
+        private async Task<bool> UpdatePasswordInDatabase(string email, string newPassword)
+        {
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            using (SqlConnection conn = new SqlConnection(cad_cn))
+            {
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand(@"
+                    UPDATE USUARIOS_SISTEMA 
+                    SET CONTRASENIA = @Password, FECHA_MODIFICACION = GETDATE() 
+                    WHERE EMAIL = @Email;
+            
+                    UPDATE EMPLEADO 
+                    SET FECHA_ACT = GETDATE() 
+                    WHERE ID_EMPLEADO = (SELECT ID_USUARIO FROM USUARIOS_SISTEMA WHERE EMAIL = @Email);", conn))
+                {
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+
+
+        private async Task SendVerificationEmail(string email, string verificationCode)
+        {
+            var smtpSettings = _configuration.GetSection("SmtpSettings");
+
+            using (var client = new SmtpClient(smtpSettings["Host"]))
+            {
+                client.Port = int.Parse(smtpSettings["Port"]);
+                client.Credentials = new NetworkCredential(
+                    smtpSettings["Username"],
+                    smtpSettings["Password"]);
+                client.EnableSsl = bool.Parse(smtpSettings["EnableSsl"]);
+
+                // URL de la imagen (puede ser una URL absoluta o base64)
+                var logoUrl = "https://www.complexless.com/wp-content/uploads/2021/05/logoweb.png";
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(smtpSettings["FromAddress"], smtpSettings["FromName"]),
+                    Subject = "Código de verificación para restablecer contraseña - Complexless",
+                    Body = BuildEmailBody(verificationCode, logoUrl),
+                    IsBodyHtml = true,
+                    Priority = MailPriority.High
+                };
+
+                mailMessage.To.Add(email);
+
+                await client.SendMailAsync(mailMessage);
+            }
+        }
+
+        private string BuildEmailBody(string verificationCode, string logoUrl)
+        {
+            return $@"
+            <!DOCTYPE html>
+            <html lang='es'>
+            <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>Código de Verificación</title>
+                <style>
+                    body {{
+                        font-family: 'Arial', sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                        max-width: 200px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }}
+                    .email-container {{
+                        border: 1px solid #e0e0e0;
+                        border-radius: 8px;
+                        overflow: hidden;
+                    }}
+                    .header {{
+                        background-color: #1d3335;
+                        padding: 20px;
+                        text-align: center;
+                    }}
+                    .logo {{
+                        max-width: 300px;
+                        height: auto;
+                    }}
+                    .content {{
+                        padding: 30px;
+                        background-color: #ffffff;
+                    }}
+                    .code-container {{
+                        background-color: #f5f5f5;
+                        border-radius: 4px;
+                        padding: 15px;
+                        text-align: center;
+                        margin: 20px 0;
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #1845ad;
+                    }}
+                    .footer {{
+                        background-color: #f9f9f9;
+                        padding: 15px;
+                        text-align: center;
+                        font-size: 12px;
+                        color: #777;
+                    }}
+                    .button {{
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #23a2f6;
+                        color: white !important;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        margin: 15px 0;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='email-container'>
+                    <div class='header'>
+                        <img src='{logoUrl}' alt='Logo de la empresa' class='logo'>
+                    </div>
+            
+                    <div class='content'>
+                        <h2>Restablecimiento de contraseña</h2>
+                        <p>Hemos recibido una solicitud para restablecer tu contraseña. Utiliza el siguiente código de verificación:</p>
+                
+                        <div class='code-container'>
+                            {verificationCode}
+                        </div>
+                
+                        <p>Este código es válido por <strong>15 minutos</strong>. Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
+
+                    </div>
+            
+                    <div class='footer'>
+                        <p>© {DateTime.Now.Year} Complexless. Todos los derechos reservados.</p>
+                        <p>Este es un mensaje automático, por favor no respondas a este correo.</p>
+                    </div>
+                </div>
+            </body>
+            </html>";
+        }
+
     }
 }

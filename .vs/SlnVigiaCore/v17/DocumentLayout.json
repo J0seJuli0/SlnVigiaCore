@@ -3,56 +3,220 @@
   "WorkspaceRootPath": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\monitoreo\\campos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\monitoreo\\campos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\layout\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\layout\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\destinatarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\destinatarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\monitoreocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\monitoreocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\models\\authorizemenuattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\models\\authorizemenuattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcampos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcampos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\dao\\cryptohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\dao\\cryptohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\shared\\_layouttemporal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\shared\\_layouttemporal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\usuarios\\listarusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\usuarios\\listarusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\models\\authorizemenuattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\models\\authorizemenuattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\monitoreocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\monitoreocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcamposclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcamposclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\monitoreo\\formularioses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\monitoreo\\formularioses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\camposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\camposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\monitoreo\\campos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\monitoreo\\campos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\requestresetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\requestresetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\resetpasswordsuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\resetpasswordsuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\resetpasswordsuccess.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\resetpasswordsuccess.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\requestresetpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\requestresetpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\resetpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\resetpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\resetpasswordsuccess.css||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\resetpasswordsuccess.css||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\resetpasswordsent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\resetpasswordsent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\resetpasswordsent.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\resetpasswordsent.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\requestresetpassword.css||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\requestresetpassword.css||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\perfilusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\perfilusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\roles\\listarpermisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\roles\\listarpermisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\permisos\\listarpermisos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\permisos\\listarpermisos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\clientes\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\clientes\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\menu\\listarmenus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\menu\\listarmenus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\roles\\listarroles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\roles\\listarroles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\destinatarios\\grupodestinatarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\destinatarios\\grupodestinatarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\destinatarios\\listardestinatarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\destinatarios\\listardestinatarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\dashboard\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\dashboard\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcampos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcampos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\monitoreo\\listarmonitoreos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\monitoreo\\listarmonitoreos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\monitoreo\\listarmonitoreos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\monitoreo\\listarmonitoreos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarservidores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarservidores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcomponentes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcomponentes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\tambocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\tambocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\layout\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\layout\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\js\\dashboard\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\js\\dashboard\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\dao\\cryptohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\dao\\cryptohelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\error\\unauthorized.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -63,80 +227,20 @@
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\error\\unauthorized.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\tambocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\tambocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\camposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\camposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\dashboard\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\dashboard\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\campos\\campos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\campos\\campos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarservidores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarservidores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\clientes\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\clientes\\listarclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\prjvigiacore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\prjvigiacore.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcamposclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcamposclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\campos\\listarcomponentes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\campos\\listarcomponentes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\usuarios\\listarusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\usuarios\\listarusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\listarusuarios.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\listarusuarios.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\perfilusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\login\\perfilusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\login\\registrarusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -145,10 +249,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\wwwroot\\css\\login\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|solutionrelative:prjvigiacore\\wwwroot\\css\\login\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C2F7215B-6E9D-4372-BF4C-BD74115AD5EF}|PrjVigiaCore\\PrjVigiaCore.csproj|c:\\users\\josej\\documents\\complexless\\monitoreo-email\\slnvigiacore\\prjvigiacore\\views\\tambo\\formtambo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -174,17 +274,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 202,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "PrjVigiaCore\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIcAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-15T20:47:49.414Z",
               "IsPinned": true,
@@ -195,142 +295,8 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Program.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Program.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Program.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBcAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T20:46:57.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\Login.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\Login.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\Login.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-15T21:49:03.024Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\appsettings.json",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\appsettings.json",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\appsettings.json",
-              "RelativeToolTip": "PrjVigiaCore\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-15T20:47:19.705Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "MonitoreoController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MonitoreoController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\MonitoreoController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MonitoreoController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\MonitoreoController.cs",
-              "ViewState": "AgIAAA4BAAAAAAAAAAAwwCEBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T20:41:50.963Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Campos.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAAAIcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-16T20:53:06.322Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Layout.css",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
-              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAmwJUAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-26T01:22:56.007Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ListarCampos.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
-              "ViewState": "AgIAAKoBAAAAAAAAAAAAALcBAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-24T05:00:38.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AuthorizeMenuAttribute.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAiwBMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T21:41:17.831Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MenuController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MenuController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\MenuController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MenuController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\MenuController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAD0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T20:48:42.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CryptoHelper.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\DAO\\CryptoHelper.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\DAO\\CryptoHelper.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\DAO\\CryptoHelper.cs",
-              "RelativeToolTip": "PrjVigiaCore\\DAO\\CryptoHelper.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAA9wBAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T20:53:17.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "_LayoutTemporal.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_LayoutTemporal.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Shared\\_LayoutTemporal.cshtml",
@@ -343,33 +309,592 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Program.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Program.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Program.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:46:57.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\appsettings.json",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\appsettings.json",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\appsettings.json",
+              "RelativeToolTip": "PrjVigiaCore\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-15T20:47:19.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DestinatariosController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\DestinatariosController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\DestinatariosController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\DestinatariosController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\DestinatariosController.cs",
+              "ViewState": "AgIAABYBAAAAAAAAAAAiwCsBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T15:54:12.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T02:18:14.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ListarUsuarios.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
+              "ViewState": "AgIAALICAAAAAAAAAAAAANACAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-22T00:31:22.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthorizeMenuAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Models\\AuthorizeMenuAttribute.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwEEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T21:41:17.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ListarCamposClientes.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
+              "ViewState": "AgIAACwBAAAAAAAAAIBJwEMBAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-24T16:44:32.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FormularioSES.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\FormularioSES.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Monitoreo\\FormularioSES.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\FormularioSES.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Monitoreo\\FormularioSES.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAqwFsAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T21:15:54.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MonitoreoController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MonitoreoController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\MonitoreoController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MonitoreoController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\MonitoreoController.cs",
+              "ViewState": "AgIAACADAAAAAAAAAAAiwDADAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T20:41:50.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CamposController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\CamposController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\CamposController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\CamposController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\CamposController.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAqwP0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T03:48:32.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "Campos.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Monitoreo\\Campos.cshtml",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAMwA8BAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-16T20:53:06.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPassword.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\ResetPassword.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAIBJwFkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T20:09:42.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\Login.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\Login.cshtml",
+              "ViewState": "AgIAAKgAAAAAAAAAAIBJwLgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T21:49:03.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RequestResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\RequestResetPassword.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\RequestResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\RequestResetPassword.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\RequestResetPassword.cshtml",
+              "ViewState": "AgIAADIAAAAAAAAAAAAUwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T20:08:40.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAHECAAAAAAAAAIBJwIQCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:36:50.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "RequestResetPassword.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "ViewState": "AgIAADQBAAAAAAAAAAAkwEMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T21:42:19.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ResetPasswordSuccess.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPasswordSuccess.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\ResetPasswordSuccess.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPasswordSuccess.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\ResetPasswordSuccess.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAIBJwDoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T20:10:41.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ResetPasswordSuccess.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "ViewState": "AgIAACMAAAAAAAAAAAAMwDoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T22:17:56.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ResetPassword.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPassword.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPassword.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPassword.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPassword.css",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAwwMYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T20:42:43.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Perfil.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
+              "ViewState": "AgIAAF8BAAAAAAAAAADwv3UBAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-21T03:03:10.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ResetPasswordSuccess.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSuccess.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwOIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T22:16:10.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ResetPasswordSent.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPasswordSent.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\ResetPasswordSent.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\ResetPasswordSent.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\ResetPasswordSent.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T20:09:11.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ResetPasswordSent.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSent.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSent.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSent.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\ResetPasswordSent.css",
+              "ViewState": "AgIAALIBAAAAAAAAAAAkwNMBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T20:33:57.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "RequestResetPassword.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\RequestResetPassword.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAkwFgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-24T21:39:56.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PerfilUsuario.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAUwJoAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-19T01:48:34.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
               "Title": "_Layout.cshtml.css",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_Layout.cshtml.css",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Shared\\_Layout.cshtml.css",
               "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_Layout.cshtml.css",
               "RelativeToolTip": "PrjVigiaCore\\Views\\Shared\\_Layout.cshtml.css",
-              "ViewState": "AgIAABcAAAAAAAAAAAAmwDAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBJwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-05-25T22:24:30.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Privacy.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Home\\Privacy.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Home\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Home\\Privacy.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Home\\Privacy.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-25T21:36:10.372Z",
+              "DocumentIndex": 28,
+              "Title": "Login.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Login.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\Login.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Login.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\Login.css",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwBYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-27T16:12:57.327Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 29,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T20:49:02.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAqwIsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T03:18:31.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "MenuController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MenuController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\MenuController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\MenuController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\MenuController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T20:48:42.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "RolesController.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\RolesController.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\RolesController.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\RolesController.cs",
+              "RelativeToolTip": "PrjVigiaCore\\Controllers\\RolesController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAlwHgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T22:45:26.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ListarPermisos.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Roles\\ListarPermisos.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Roles\\ListarPermisos.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Roles\\ListarPermisos.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Roles\\ListarPermisos.cshtml",
+              "ViewState": "AgIAAB0CAAAAAAAAAADwvykCAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T22:03:14.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ListarPermisos.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Permisos\\ListarPermisos.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Permisos\\ListarPermisos.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Permisos\\ListarPermisos.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Permisos\\ListarPermisos.css",
+              "ViewState": "AgIAAOAAAAAAAAAAAAAowPYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-16T22:41:43.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ListarClientes.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
+              "ViewState": "AgIAAD0CAAAAAAAAAADwv0cCAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-23T03:25:46.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "GrupoDestinatarios.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Destinatarios\\GrupoDestinatarios.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Destinatarios\\GrupoDestinatarios.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Destinatarios\\GrupoDestinatarios.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Destinatarios\\GrupoDestinatarios.cshtml",
+              "ViewState": "AgIAAOsBAAAAAAAAAIBZwPsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T16:14:27.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ListarRoles.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Roles\\ListarRoles.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Roles\\ListarRoles.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Roles\\ListarRoles.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Roles\\ListarRoles.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T22:47:46.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ListarMenus.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Menu\\ListarMenus.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Menu\\ListarMenus.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Menu\\ListarMenus.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Menu\\ListarMenus.cshtml",
+              "ViewState": "AgIAAO4BAAAAAAAAAIBZwPcBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T20:22:19.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ListarDestinatarios.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Destinatarios\\ListarDestinatarios.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Destinatarios\\ListarDestinatarios.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Destinatarios\\ListarDestinatarios.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Destinatarios\\ListarDestinatarios.cshtml",
+              "ViewState": "AgIAAFQCAAAAAAAAAAAcwAgCAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T20:01:33.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ListarCampos.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarCampos.cshtml",
+              "ViewState": "AgIAAMECAAAAAAAAAIBZwNkCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-24T05:00:38.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T21:24:02.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Index.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Dashboard\\Index.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Dashboard\\Index.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Dashboard\\Index.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Dashboard\\Index.css",
+              "ViewState": "AgIAAC8DAAAAAAAAAAAcwEIDAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-27T17:18:45.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ListarMonitoreos.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\ListarMonitoreos.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Monitoreo\\ListarMonitoreos.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Monitoreo\\ListarMonitoreos.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Monitoreo\\ListarMonitoreos.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-11T20:38:30.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ListarMonitoreos.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Monitoreo\\ListarMonitoreos.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Monitoreo\\ListarMonitoreos.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Monitoreo\\ListarMonitoreos.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Monitoreo\\ListarMonitoreos.css",
+              "ViewState": "AgIAAAMAAAAAAAAAAADwvyUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-11T21:24:45.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ListarServidores.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
+              "ViewState": "AgIAAEYCAAAAAAAAAAAwwG0BAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-25T02:03:11.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ListarComponentes.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
+              "ViewState": "AgIAAFICAAAAAAAAAAAwwGYCAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-24T17:34:30.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
               "Title": "ErrorController.cs",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\ErrorController.cs",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\ErrorController.cs",
@@ -382,46 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UnAuthorized.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-25T21:45:32.848Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UnAuthorized.css",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
-              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
-              "ViewState": "AgIAACAAAAAAAAAAAAAswDsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-25T21:46:05.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-16T21:24:02.492Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 48,
               "Title": "TamboController.cs",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\TamboController.cs",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\TamboController.cs",
@@ -434,98 +920,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T20:49:02.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T02:18:14.78Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ClientesController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\ClientesController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\ClientesController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\ClientesController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\ClientesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T03:18:31.541Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CamposController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\CamposController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\CamposController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\CamposController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\CamposController.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAAAFsAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T03:48:32.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "PrjVigiaCore\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T20:36:50.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "campos.css",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
-              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAALUAAAABAAAAAAAAAA==",
+              "DocumentIndex": 49,
+              "Title": "Layout.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Layout\\Layout.css",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAkwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-17T22:31:41.6Z",
+              "WhenOpened": "2025-05-26T01:22:56.007Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ListarServidores.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarServidores.cshtml",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAAAIYAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-25T02:03:11.28Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 51,
               "Title": "ITokenService.cs",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Services\\ITokenService.cs",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Services\\ITokenService.cs",
@@ -533,23 +941,103 @@
               "RelativeToolTip": "PrjVigiaCore\\Services\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T03:25:03.531Z"
+              "WhenOpened": "2025-05-25T03:25:03.531Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ListarClientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Clientes\\ListarClientes.cshtml",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAIIAAAA5AAAAAAAAAA==",
+              "DocumentIndex": 50,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-29T16:22:14.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "Index.js",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\js\\Dashboard\\Index.js",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\js\\Dashboard\\Index.js",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\js\\Dashboard\\Index.js",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\js\\Dashboard\\Index.js",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwB4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-27T17:19:22.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "CryptoHelper.cs",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\DAO\\CryptoHelper.cs",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\DAO\\CryptoHelper.cs",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\DAO\\CryptoHelper.cs",
+              "RelativeToolTip": "PrjVigiaCore\\DAO\\CryptoHelper.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:53:17.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Dashboard\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Dashboard\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Dashboard\\Privacy.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Dashboard\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-23T03:25:46.783Z"
+              "WhenOpened": "2025-05-25T21:36:10.372Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 54,
+              "Title": "UnAuthorized.cshtml",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
+              "RelativeToolTip": "PrjVigiaCore\\Views\\Error\\UnAuthorized.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-25T21:45:32.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "UnAuthorized.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Error\\UnAuthorized.css",
+              "ViewState": "AgIAACAAAAAAAAAAAAAswDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-25T21:46:05.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "campos.css",
+              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
+              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
+              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
+              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Campos\\campos.css",
+              "ViewState": "AgIAAAEAAAAAAAAAACBjwLUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-17T22:31:41.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
               "Title": "PrjVigiaCore.csproj",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\PrjVigiaCore.csproj",
               "RelativeDocumentMoniker": "PrjVigiaCore\\PrjVigiaCore.csproj",
@@ -557,47 +1045,12 @@
               "RelativeToolTip": "PrjVigiaCore\\PrjVigiaCore.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-25T03:24:13.481Z"
+              "WhenOpened": "2025-05-25T03:24:13.481Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ListarCamposClientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarCamposClientes.cshtml",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAAAJABAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-24T16:44:32.938Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ListarComponentes.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Campos\\ListarComponentes.cshtml",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAUwJMBAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-24T17:34:30.61Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "ListarUsuarios.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Usuarios\\ListarUsuarios.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-22T00:31:22.494Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 59,
               "Title": "ListarUsuarios.css",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\ListarUsuarios.css",
               "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\ListarUsuarios.css",
@@ -605,23 +1058,12 @@
               "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\ListarUsuarios.css",
               "ViewState": "AgIAANEAAAAAAAAAAAAAwOMAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-22T04:04:11.19Z"
+              "WhenOpened": "2025-05-22T04:04:11.19Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "PerfilUsuario.cshtml",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
-              "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\PerfilUsuario.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-19T01:48:34.574Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 61,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\_ViewStart.cshtml",
@@ -629,11 +1071,12 @@
               "RelativeToolTip": "PrjVigiaCore\\Views\\_ViewStart.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-22T00:20:38.542Z"
+              "WhenOpened": "2025-05-22T00:20:38.542Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 60,
               "Title": "RegistrarUsuario.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Login\\RegistrarUsuario.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Login\\RegistrarUsuario.cshtml",
@@ -641,35 +1084,25 @@
               "RelativeToolTip": "PrjVigiaCore\\Views\\Login\\RegistrarUsuario.cshtml",
               "ViewState": "AgIAABQBAAAAAAAAAAAkwCEBAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-15T21:49:06.254Z"
+              "WhenOpened": "2025-04-15T21:49:06.254Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "Perfil.css",
-              "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
-              "RelativeDocumentMoniker": "PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
-              "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
-              "RelativeToolTip": "PrjVigiaCore\\wwwroot\\css\\Login\\Perfil.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-21T03:03:10.242Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 62,
               "Title": "FormTambo.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Tambo\\FormTambo.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Tambo\\FormTambo.cshtml",
               "ToolTip": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Tambo\\FormTambo.cshtml",
               "RelativeToolTip": "PrjVigiaCore\\Views\\Tambo\\FormTambo.cshtml",
-              "ViewState": "AgIAAK8BAAAAAAAAAIBJwL0BAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAKYBAAAAAAAAAIBpwL0BAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-15T21:47:33.197Z"
+              "WhenOpened": "2025-04-15T21:47:33.197Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 63,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -677,11 +1110,12 @@
               "RelativeToolTip": "PrjVigiaCore\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-19T22:48:16.014Z"
+              "WhenOpened": "2025-04-19T22:48:16.014Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 65,
               "Title": "TamboMonitoreo.cs",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\TamboMonitoreo.cs",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Models\\TamboMonitoreo.cs",
@@ -689,11 +1123,12 @@
               "RelativeToolTip": "PrjVigiaCore\\Models\\TamboMonitoreo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T21:45:37.517Z"
+              "WhenOpened": "2025-04-15T21:45:37.517Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 64,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\josej\\Documents\\COMPLEXLESS\\MONITOREO-EMAIL\\SlnVigiaCore\\PrjVigiaCore\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "PrjVigiaCore\\Models\\ErrorViewModel.cs",
@@ -701,7 +1136,8 @@
               "RelativeToolTip": "PrjVigiaCore\\Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T21:13:22.482Z"
+              "WhenOpened": "2025-04-17T21:13:22.482Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -712,10 +1148,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
               "$type": "Bookmark",

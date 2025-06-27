@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrjVigiaCore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfd8dd74738b229288211248befb77043fb0137a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf6967c082535cd4f44214789fb474d7b9f92034")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrjVigiaCore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrjVigiaCore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

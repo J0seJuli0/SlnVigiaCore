@@ -1,9 +1,11 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PrjVigiaCore.Models;
 
 namespace PrjVigiaCore.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly ILogger<DashboardController> _logger;

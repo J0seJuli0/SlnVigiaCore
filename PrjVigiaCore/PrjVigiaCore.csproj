@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\Monitoreo\" />
+    <Folder Include="wwwroot\images\clientes\" />
+    <Folder Include="wwwroot\images\empleados\" />
     <Folder Include="wwwroot\temp\" />
   </ItemGroup>
 

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace PrjVigiaCore.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
 
@@ -18,6 +20,7 @@ namespace PrjVigiaCore.Controllers
         }
 
 
+        [AuthorizeMenu]
         [HttpGet]
         public async Task<IActionResult> ListarClientes()
         {
@@ -133,69 +136,6 @@ namespace PrjVigiaCore.Controllers
             catch (Exception ex)
             {
                 return Json(new { success = false, message = "Error al registrar el cliente: " + ex.Message });
-            }
-        }
-
-        // GET: ClientesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ClientesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ClientesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ClientesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ClientesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ClientesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }

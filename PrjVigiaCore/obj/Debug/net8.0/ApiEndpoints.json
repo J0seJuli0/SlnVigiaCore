@@ -59,6 +59,115 @@
   },
   {
     "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "FormularioSES",
+    "RelativePath": "api/Monitoreo/FormularioSES",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "Listar",
+    "RelativePath": "api/Monitoreo/Listar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "ObtenerDestinatariosPorCliente",
+    "RelativePath": "api/Monitoreo/ObtenerDestinatariosPorCliente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idCliente",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "ObtenerMonitoreosPivoteado",
+    "RelativePath": "api/Monitoreo/ObtenerMonitoreosPivoteado",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idCliente",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Data.DataTable",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
+    "Method": "ProcesarFormularioSES",
+    "RelativePath": "api/Monitoreo/ProcesarFormularioSES",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClienteSeleccionado",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fecha",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Hora",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Destinatarios",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Responsable",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PorcentajeRebote",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrjVigiaCore.Controllers.MonitoreoController",
     "Method": "Registrar",
     "RelativePath": "api/Monitoreo/registrar",
     "HttpMethod": "POST",

@@ -1,25 +1,33 @@
 wwwroot\css\Campos\campos.css
+wwwroot\css\Dashboard\Index.css
 wwwroot\css\Error\UnAuthorized.css
 wwwroot\css\Layout\Layout.css
 wwwroot\css\Login\ListarUsuarios.css
 wwwroot\css\Login\Login.css
 wwwroot\css\Login\Perfil.css
+wwwroot\css\Login\RequestResetPassword.css
+wwwroot\css\Login\ResetPassword.css
+wwwroot\css\Login\ResetPasswordSent.css
+wwwroot\css\Login\ResetPasswordSuccess.css
 wwwroot\css\Menu\menuStyle.css
+wwwroot\css\Monitoreo\ListarMonitoreos.css
+wwwroot\css\Permisos\ListarPermisos.css
 wwwroot\css\site.css
 wwwroot\css\UnAuthorized.css
 wwwroot\favicon.ico
+wwwroot\images\clientes\9ODCUNOT.jpeg
+wwwroot\images\clientes\B19DF096.png
+wwwroot\images\clientes\YJIP66BA.png
+wwwroot\images\empleados\2NTQLNQI.jpeg
+wwwroot\images\empleados\DQEFAHF0.jpg
 wwwroot\img\campos\404.png
 wwwroot\img\clientes\TamboLogo.png
+wwwroot\img\favicon.png
+wwwroot\img\Login\home-11.jpg
 wwwroot\img\logo.png
+wwwroot\img\logoweb.png
+wwwroot\js\Dashboard\Index.js
 wwwroot\js\site.js
-wwwroot\lib\bootstrap\dist\css\bootstrap.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -44,6 +52,14 @@ wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
@@ -57,16 +73,67 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\lib\bootstrap\LICENSE
-wwwroot\lib\jquery\dist\jquery.js
-wwwroot\lib\jquery\dist\jquery.min.js
-wwwroot\lib\jquery\dist\jquery.min.map
-wwwroot\lib\jquery\LICENSE.txt
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 wwwroot\lib\jquery-validation\dist\additional-methods.js
 wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 wwwroot\lib\jquery-validation\LICENSE.md
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
-wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\LICENSE.txt
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250625180528_#20250625.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250625180555_#20250625.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626111813_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626111855_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626112238_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626112544_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626112626_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626114652_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626160338_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626161345_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626170508_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626172319_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626172500_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES250626172534_#20250626.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS-SES_#2025-06-25.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-17.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-18.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-19.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-20.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-23.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-24.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-25.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-26.pdf
+wwwroot\temp\MONITOREO_COMPLEXLESS_#2025-06-26_0949.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626112328_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626112349_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626112529_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626113226_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626114510_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626114749_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626161031_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA-SES250626172254_#20250626.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-16.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-17.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-18.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-19.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-20.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-23.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-24.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-25.pdf
+wwwroot\temp\MONITOREO_CORPORACIÓN VEGA_#2025-06-26_1002.pdf
 wwwroot\temp\MONITOREO_Empresa Alpha_#2025-05-17.pdf
+wwwroot\temp\MONITOREO_TAMBO-SES250626113757_#20250626.pdf
+wwwroot\temp\MONITOREO_TAMBO-SES250626161216_#20250626.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-16.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-17.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-18.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-19.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-20.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-23.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-24.pdf
+wwwroot\temp\MONITOREO_TAMBO_#2025-06-25.pdf

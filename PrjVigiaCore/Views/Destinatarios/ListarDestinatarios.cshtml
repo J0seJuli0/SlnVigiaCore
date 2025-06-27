@@ -1,0 +1,755 @@
+﻿@model List<dynamic>
+@{
+    ViewData["Title"] = "Todos los destinatarios";
+}
+
+<style>
+    /* Estilos para el buscador de empleados */
+    #empleadoNoEncontrado {
+        transition: all 0.3s ease;
+    }
+
+    .input-group .btn {
+        border-radius: 0 5px 5px 0;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .input-group .btn:not(:last-child) {
+        border-radius: 0;
+        margin-right: 1px;
+    }
+
+    .input-group .btn:first-child {
+        border-radius: 5px 0 0 5px;
+    }
+
+    /* Estilos para el modal de búsqueda */
+    #empleadosTable tbody tr {
+        cursor: pointer;
+    }
+
+    #empleadosTable tbody tr:hover {
+        background-color: rgba(13, 110, 253, 0.05);
+    }
+
+    .empleado-seleccionado {
+        background-color: rgba(25, 135, 84, 0.1) !important;
+    }
+
+    .image-preview-container:hover {
+        border-color: #86b7fe !important;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        transition: all 0.3s ease;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .no-image-overlay {
+        background-color: rgba(248, 249, 250, 0.8) !important;
+    }
+
+    .avatar-container {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #e9ecef;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(13, 110, 253, 0.05);
+        transition: background-color 0.2s ease;
+    }
+
+    /* Estilos mejorados para DataTables */
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #dee2e6;
+        border-radius: 20px;
+        padding: 5px 15px;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+        transition: all 0.3s;
+    }
+
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            outline: 0;
+        }
+
+    .dataTables_wrapper .dataTables_length select {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 3px 10px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 0 2px;
+        transition: all 0.3s;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #e9ecef;
+            border-color: #dee2e6;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd;
+            color: white !important;
+            border-color: #0d6efd;
+        }
+
+    .dataTables_wrapper .dataTables_info {
+        padding-top: 8px;
+        color: #6c757d;
+    }
+
+    .dt-buttons .btn {
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 5px;
+        font-size: 0.8rem;
+    }
+
+    #btnRefresh {
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-action {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .avatar-container {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+        .avatar-container:hover {
+            transform: scale(1.05);
+        }
+
+    .avatar-img {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+        border: 2px solid #ddd;
+        transition: all 0.3s ease;
+    }
+
+        .avatar-img:hover {
+            border-color: #0d6efd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+</style>
+
+<div class="card shadow border-0 rounded-3">
+    <div class="card-header bg-primary bg-gradient text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">
+                <i class="fas fa-paper-plane me-2 text-white"></i> @ViewData["Title"]
+            </h3>
+            <div class="d-flex gap-2 align-items-center">
+                <span class="badge bg-white text-primary shadow-sm d-flex align-items-center py-2"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Total de registos Cargados."
+                      style="min-width: fit-content;">
+                    <i class="fas fa-database me-1 d-none d-sm-inline"></i>
+                    <span class="d-none d-sm-inline">Total:</span>
+                    <span class="ms-sm-1">@ViewBag.TotalRegistros</span>
+                    <span class="d-none d-md-inline ms-sm-1">Registros</span>
+                </span>
+                <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente" data-bs-toggle="modal" data-bs-target="#registrarUsuarioModal">
+                    <i class="fas fa-plus me-1"></i> Nuevo
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i> @ViewBag.Error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="table-responsive">
+            <table id="tablaClientes" class="table table-hover table-striped w-100">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre Completo</th>
+                        <th>Email</th>
+                        <th>Grupos</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var destinatario in Model)
+                    {
+
+                        <tr>
+                            <td>@destinatario.ID_EMPLEADO</td>
+                            <td>
+                                <div class="fw-bold">@destinatario.NOMBRE_COMPLETO</div>
+                            </td>
+                            <td>@destinatario.EMAIL</td>
+                            <td class="text-center">
+                                @if (!string.IsNullOrEmpty((string)destinatario.NOM_GRUPOS))
+                                {
+                                    foreach (var grupo in ((string)destinatario.NOM_GRUPOS).Split(','))
+                                    {
+                                        <span class="badge bg-primary me-1 mb-1">@grupo.Trim()</span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">SIN GRUPO</span>
+                                }
+                            </td>
+                            <td>
+                                @if (destinatario.ESTADO == 1)
+                                {
+                                    <span class="badge bg-success bg-opacity-10 text-success fw-bold rounded-pill px-3 py-2 border border-success border-opacity-25 shadow-sm">
+                                        <i class="fas fa-check-circle me-1"></i> Activo
+                                    </span>
+                                }
+                                else if (destinatario.ESTADO == 2)
+                                {
+                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-bold rounded-pill px-3 py-2 border border-danger border-opacity-25 shadow-sm">
+                                        <i class="fas fa-times-circle me-1"></i> Inactivo
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary fw-bold rounded-pill px-3 py-2 border border-secondary border-opacity-25 shadow-sm">
+                                        <i class="fas fa-question-circle me-1"></i> Desconocido
+                                    </span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button class="btn btn-outline-success btn-action btn-edit" data-id="@destinatario.ID_EMPLEADO" title="Editar">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-action btn-delete" data-id="@destinatario.ID_EMPLEADO" title="Eliminar">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL PARA REGISTRAR DESTINATARIO -->
+<div class="modal fade" id="registrarUsuarioModal" tabindex="-1" aria-labelledby="registrarUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fs-4 fw-bold" id="registrarUsuarioModalLabel">
+                    <i class="fas fa-user-plus me-2"></i>Registrar Nuevo Destinatario
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form id="registrarUsuarioForm">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="idDestinatario" class="form-label fw-semibold">Código del Empleado <span class="text-danger">*</span></label>
+                        <div class="input-group mb-1">
+                            <input type="text" class="form-control form-control-sm" id="idDestinatario" name="idDestinatario" required placeholder="Ingrese el Código">
+                            <button type="button" class="btn btn-outline-secondary" id="btnBuscarEmpleado">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button type="button" class="btn btn-outline-primary" id="btnGenerarId">
+                                <i class="fas fa-random"></i> Generar ID
+                            </button>
+                        </div>
+                        <small class="text-muted fst-italic"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="right"
+                               data-bs-html="true"
+                               title="Para asignar un grupo a un destinatario, puede:<br>1. Buscar un empleado existente ingresando su <strong>CÓDIGO</strong> para autocompletar sus datos.<br>2. Registrar un nuevo destinatario generando un nuevo <strong>CÓDIGO</strong> y completando los datos manualmente.">
+                            <i class="fas fa-info-circle me-1 text-primary"></i> Puede buscar un empleado o registrar un nuevo destinatario
+                        </small>
+
+
+
+                        <div id="empleadoNoEncontrado" class="text-danger small mt-1 d-none">
+                            <i class="fas fa-exclamation-circle"></i> Empleado no encontrado
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label fw-semibold">Nombres <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="nombres" name="nombres" required placeholder="Ingrese el Nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apePat" class="form-label fw-semibold">Apellido Paterno <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="apePat" name="apePat" required placeholder="Ingrese Apellido Paterno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apeMat" class="form-label fw-semibold">Apellido Materno <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="apeMat" name="apeMat" required placeholder="Ingrese Apellido Materno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Correo Electrónico <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="email" required placeholder="Ingrese su Correo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="idGrupo" class="form-label fw-semibold">Grupo <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-sm" id="idGrupo" name="idGrupo" required>
+                            <option value="">Seleccione grupo...</option>
+                            <!-- Opciones de grupos se cargarán dinámicamente -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                        <span id="registrarSpinner" class="spinner-border spinner-border-sm d-none me-1" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-1"></i> Registrar Destinatario
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+            function checkDependencies() {
+                const errors = [];
+                if (typeof jQuery === 'undefined') errors.push('jQuery no está cargado');
+                if (!$.fn.dataTable) errors.push('DataTables core no está cargado');
+                if (!$.fn.dataTable.Buttons) errors.push('DataTables Buttons no está cargado');
+                return errors;
+            }
+
+            const dependencyErrors = checkDependencies();
+            if (dependencyErrors.length > 0) {
+                console.error('Errores de dependencia.');
+                return;
+            }
+
+            if (!$('#tablaClientes').length) return;
+
+            function mostrarLoader() {
+                return Swal.fire({
+                    title: 'Cargando...',
+                    html: 'Por favor espere mientras se cargan los datos',
+                    allowOutsideClick: false,
+                    timerProgressBar: true,
+                    didOpen: function () {
+                        Swal.showLoading();
+                        this.minimumTimer = setTimeout(() => {
+                            minimumTimeElapsed = true;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearTimeout(this.minimumTimer);
+                    }
+                });
+            }
+
+            const loader = mostrarLoader();
+            let dataLoaded = false;
+
+            window.dataTableInstance = $('#tablaClientes').DataTable({
+                responsive: true,
+                dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>' +
+                     '<"row"<"col-md-12"tr>>' +
+                     '<"row mt-3"<"col-md-6"l><"col-md-6"p>>',
+                    language: {
+                        buttons: {
+                            excel: 'Exportar a Excel',
+                            print: 'Imprimir'
+                        },
+                        "decimal": "",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ registros",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "No se encontraron registros coincidentes.",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Último",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        },
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna ascendente",
+                            "sortDescending": ": activar para ordenar la columna descendente"
+                        }
+                    },
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                                text: '<i class="fas fa-file-excel me-2"></i> Excel',
+                                className: 'btn btn-success btn-sm',
+                                title: 'Listado de Destinatarios',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4]
+                                },
+                                action: function(e, dt, button, config) {
+                                    // Mostrar alerta de confirmación primero
+                                    Swal.fire({
+                                        title: 'Exportar a Excel',
+                                        text: '¿Desea generar el reporte en Excel?',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Exportar',
+                                        cancelButtonText: 'Cancelar',
+                                        position: 'center'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Ejecutar exportación
+                                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+
+                                            // Alert de éxito
+                                            setTimeout(() => {
+                                                Swal.fire({
+                                                    title: '¡Listo!',
+                                                    text: 'Exportación completada con éxito',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar',
+                                                    position: 'center',
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    showConfirmButton: true
+                                                });
+                                            }, 2000);
+                                        }
+                                    });
+                                }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print me-2"></i> Imprimir',
+                        className: 'btn btn-info btn-sm',
+                        title: 'Listado de Destinatarios',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        },
+                        action: function(e, dt, button, config) {
+                            Swal.fire({
+                                title: 'Preparando impresión',
+                                text: '¿Desea generar la vista para imprimir?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Imprimir',
+                                cancelButtonText: 'Cancelar',
+                                position: 'center',
+                                backdrop: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: 'Preparando documento',
+                                        html: 'Por favor espere...',
+                                        timerProgressBar: true,
+                                        didOpen: () => {
+                                            Swal.showLoading();
+                                        },
+                                        allowOutsideClick: false,
+                                        position: 'center'
+                                    });
+
+                                    setTimeout(() => {
+                                        $.fn.dataTable.ext.buttons.print.action.call(this, e, dt, button, config);
+
+                                        setTimeout(() => {
+                                            Swal.fire({
+                                                title: 'Impresión lista',
+                                                text: 'El documento se ha preparado para imprimir',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar',
+                                                position: 'center',
+                                                timer: 3000,
+                                                timerProgressBar: true
+                                            });
+                                        }, 500);
+                                    }, 1000);
+                                }
+                            });
+                        },
+                        customize: function(win) {
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', '10pt');
+
+                            $(win.document.body).find('h1')
+                                .css('text-align', 'center')
+                                .css('font-size', '16pt');
+                        }
+                    }
+                ],
+                order: [],
+                ordering: true,
+                columnDefs: [
+                    {
+                        targets: [5],
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        targets: "_all",
+                        className: "align-middle"
+                    }
+                ],
+                initComplete: function() {
+                    dataLoaded = true;
+                    loader.checkReadyToClose = function() {
+                        if (this.minimumTimeElapsed && dataLoaded) {
+                            loader.close();
+                        }
+                    };
+                    loader.checkReadyToClose();
+
+                    $('.dataTables_filter input')
+                        .addClass('form-control form-control-sm')
+                        .attr('placeholder', 'Buscar destinatario...')
+                        .wrap('<div class="position-relative" style="width: 300px;"></div>')
+                        .before('<i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>')
+                        .css({
+                            'width': '100%',
+                            'padding-right': '35px'
+                        });
+
+                    $('.dataTables_filter label').contents().filter(function() {
+                        return this.nodeType === 3;
+                    }).remove();
+
+                    $('.dataTables_length select')
+                        .addClass('form-select form-select-sm')
+                        .css('width', '80px');
+                }
+            });
+
+            setTimeout(() => {
+                loader.minimumTimeElapsed = true;
+                loader.checkReadyToClose && loader.checkReadyToClose();
+            }, 1500);
+
+            window.dataTableInstance.buttons().container()
+                .appendTo($('.col-md-6:eq(0)', window.dataTableInstance.table().container()))
+                .addClass('btn-group');
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            // Evento de refresh
+            $('#btnRefresh').on('click', function() {
+                location.reload();
+            });
+
+            $('#registrarUsuarioModal').on('show.bs.modal', function() {
+                const idEmpleado = $('#idDestinatario').val().trim();
+                cargarGrupo(idEmpleado);
+            });
+
+            $('#registrarUsuarioForm').submit(function(e) {
+                e.preventDefault();
+                registrarUsuario();
+            });
+
+            $(document).on('click', '#btnBuscarEmpleado', buscarEmpleado);
+            $(document).on('click', '#btnGenerarId', generarIdAleatorio);
+
+            $('#idDestinatario').on('keypress', function(e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    buscarEmpleado();
+                }
+            });
+    });
+
+
+     function cargarGrupo(idEmpleado) {
+        if (!idEmpleado) {
+            $('#idGrupo').empty().append('<option value="">Seleccione un grupo...</option>');
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("ObtenerGrupos", "Destinatarios")',
+            type: 'GET',
+            data: { idEmpleado: idEmpleado },
+            success: function(response) {
+                $('#idGrupo').empty().append('<option value="">Seleccione un grupo...</option>');
+                $.each(response, function(i, grupo) {
+                    $('#idGrupo').append($('<option>', {
+                        value: grupo.idGrupo,
+                        text: grupo.nombre
+                    }));
+                });
+            },
+            error: function() {
+                toastr.error('Error al cargar los Grupos');
+            }
+        });
+    }
+
+
+     function registrarUsuario() {
+        var formData = new FormData($('#registrarUsuarioForm')[0]);
+
+        // Mostrar spinner
+        $('#registrarSpinner').removeClass('d-none');
+
+        $.ajax({
+            url: '@Url.Action("RegistrarDestinatario", "Destinatarios")',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: '¡Registro Exitoso!',
+                        text: response.message,
+                        icon: 'success',
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        willClose: () => {
+                            $('#registrarUsuarioModal').modal('hide');
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function(xhr) {
+                toastr.error('Error al registrar el Grupo.');
+            },
+            complete: function() {
+                $('#registrarSpinner').addClass('d-none');
+            }
+        });
+    }
+
+     // Función para buscar empleado
+     function buscarEmpleado() {
+        const idEmpleado = $('#idDestinatario').val().trim();
+
+        if (!idEmpleado) {
+            toastr.warning('Por favor ingrese un código de empleado');
+            return;
+        }
+
+        const loader = Swal.fire({
+            title: 'Buscando empleado...',
+            html: 'Por favor espere mientras buscamos la información',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        $.ajax({
+            url: '@Url.Action("BuscarEmpleado", "Destinatarios")',
+            type: 'GET',
+            data: { idEmpleado: idEmpleado },
+            success: function(response) {
+                loader.close();
+
+                if (response.success) {
+                    $('#nombres').val(response.data.nombres);
+                    $('#apePat').val(response.data.apellidoPaterno);
+                    $('#apeMat').val(response.data.apellidoMaterno);
+                    $('#email').val(response.data.email);
+                    $('#empleadoNoEncontrado').addClass('d-none');
+
+                    // Cargar los grupos disponibles para este empleado
+                    cargarGrupo(idEmpleado);
+
+                    toastr.success('Empleado encontrado');
+                } else {
+                    $('#empleadoNoEncontrado').removeClass('d-none');
+                    toastr.error(response.message || 'Empleado no encontrado');
+                }
+            },
+            error: function() {
+                loader.close();
+                toastr.error('Error al buscar el empleado');
+            }
+        });
+    }
+
+    // Función para generar ID aleatorio
+    function generarIdAleatorio() {
+        // Prefijo 'E' seguido de 7 números aleatorios
+        const randomId = 'E' + Math.floor(1000000 + Math.random() * 9000000);
+        $('#idDestinatario').val(randomId);
+
+        $('#nombres').val('');
+        $('#apePat').val('');
+        $('#apeMat').val('');
+        $('#email').val('');
+        $('#empleadoNoEncontrado').addClass('d-none');
+
+        toastr.info('Código generado: ' + randomId);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+
+
+</script>
+
+

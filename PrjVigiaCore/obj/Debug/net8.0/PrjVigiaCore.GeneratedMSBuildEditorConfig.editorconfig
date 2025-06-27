@@ -48,16 +48,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcTGlzdGFyQ2xpZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Dashboard/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Destinatarios/GrupoDestinatarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRhcmlvc1xHcnVwb0Rlc3RpbmF0YXJpb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Destinatarios/ListarDestinatarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRhcmlvc1xMaXN0YXJEZXN0aW5hdGFyaW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Error/UnAuthorized.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcVW5BdXRob3JpemVkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Login/Login.cshtml]
@@ -72,8 +80,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0cmFyVXN1YXJpby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Login/RequestResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVxdWVzdFJlc2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Login/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVzZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Login/ResetPasswordSent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVzZXRQYXNzd29yZFNlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Login/ResetPasswordSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVzZXRQYXNzd29yZFN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Menu/ListarMenus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxMaXN0YXJNZW51cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Monitoreo/Campos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcmVvXENhbXBvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Monitoreo/FormularioSES.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcmVvXEZvcm11bGFyaW9TRVMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Monitoreo/ListarMonitoreos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcmVvXExpc3Rhck1vbml0b3Jlb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Roles/ListarPermisos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcTGlzdGFyUGVybWlzb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Roles/ListarRoles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcTGlzdGFyUm9sZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/josej/Documents/COMPLEXLESS/MONITOREO-EMAIL/SlnVigiaCore/PrjVigiaCore/Views/Shared/Error.cshtml]

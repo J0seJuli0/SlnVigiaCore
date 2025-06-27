@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PrjVigiaCore.DAO;
 using PrjVigiaCore.Services;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 
 namespace PrjVigiaCore.Controllers
 {
+    [Authorize]
     [Route("Campos")]
     public class CamposController : Controller
     {
@@ -22,6 +25,7 @@ namespace PrjVigiaCore.Controllers
             cad_cn = configuration.GetConnectionString("cn1")!;
         }
 
+        [AuthorizeMenu]
         [HttpGet("ListarCampos")]
         public async Task<IActionResult> ListarCampos()
         {
@@ -54,6 +58,7 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
+        [AuthorizeMenu]
         [HttpGet("ListarCamposClientes")]
         public async Task<IActionResult> ListarCamposClientes()
         {
@@ -74,6 +79,7 @@ namespace PrjVigiaCore.Controllers
                     campo.NOMBRE = reader["NOMBRE"] != DBNull.Value ? reader["NOMBRE"] : null;
                     campo.ID_CAMPO = reader["ID_CAMPO"] != DBNull.Value ? reader["ID_CAMPO"] : null;
                     campo.CAMPO = reader["CAMPO"] != DBNull.Value ? reader["CAMPO"] : null;
+                    campo.ORDEN = reader["orden"] != DBNull.Value ? reader["orden"] : null;
                     campo.ESTADO = reader["ESTADO"] != DBNull.Value ? reader["ESTADO"] : null;
                     campos.Add(campo);
                 }
@@ -88,7 +94,7 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
-
+        [AuthorizeMenu]
         [HttpGet("ListarComponentes")]
         public async Task<IActionResult> ListarComponentes()
         {
@@ -125,7 +131,7 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
-
+        [AuthorizeMenu]
         [HttpGet("ListarServidores/{token?}")]
         public async Task<IActionResult> ListarServidores([FromQuery] string token = null)
         {
@@ -243,7 +249,8 @@ namespace PrjVigiaCore.Controllers
         [HttpPost("RegistrarCampoCliente")]
         public async Task<IActionResult> RegistrarCampoCliente(
             [FromForm] string idCliente,
-            [FromForm] string idCampo)
+            [FromForm] string idCampo,
+            [FromForm] int? orden)
         {
             try
             {
@@ -260,6 +267,11 @@ namespace PrjVigiaCore.Controllers
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ID_CLIENTE", idCliente);
                         cmd.Parameters.AddWithValue("@ID_CAMPO", idCampo);
+
+                        if (orden.HasValue)
+                            cmd.Parameters.AddWithValue("@ORDEN", orden.Value);
+                        else
+                            cmd.Parameters.AddWithValue("@ORDEN", DBNull.Value);
 
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {
@@ -278,9 +290,10 @@ namespace PrjVigiaCore.Controllers
             }
             catch (Exception)
             {
-                return Json(new { success = false, message = "Error al asignar los campos. "});
+                return Json(new { success = false, message = "Error al asignar los campos." });
             }
         }
+
 
 
         [HttpGet("ObtenerClientes")]

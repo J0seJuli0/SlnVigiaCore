@@ -165,12 +165,6 @@ C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\o
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets\msbuild.PrjVigiaCore.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets\msbuild.PrjVigiaCore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets\msbuild.build.PrjVigiaCore.props
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PrjVigiaCore.props
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PrjVigiaCore.props
-C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\PrjVigia.188841A7.Up2Date
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\PrjVigiaCore.dll
@@ -198,3 +192,8 @@ C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\b
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\bin\Debug\net8.0\System.IO.Packaging.dll
 C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\scopedcss\Views\Shared\_LayoutTemporal.cshtml.rz.scp.css
+C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\josej\Documents\COMPLEXLESS\MONITOREO-EMAIL\SlnVigiaCore\PrjVigiaCore\obj\Debug\net8.0\staticwebassets.build.json.cache

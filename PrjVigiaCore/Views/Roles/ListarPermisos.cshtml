@@ -1,0 +1,563 @@
+﻿@model List<dynamic>
+@{
+    ViewData["Title"] = "Todos los Permisos";
+}
+<link href="~/css/permisos/listarpermisos.css" rel="stylesheet" />
+
+<div class="card shadow border-0 rounded-3">
+    <div class="card-header bg-primary bg-gradient text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">
+                <i class="fas fa-lock me-2 text-white"></i> @ViewData["Title"]
+
+
+            </h3>
+            <div class="d-flex gap-2 align-items-center">
+                <span class="badge bg-white text-primary shadow-sm d-flex align-items-center py-2"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Total de registos Cargados."
+                      style="min-width: fit-content;">
+                    <i class="fas fa-database me-1 d-none d-sm-inline"></i>
+                    <span class="d-none d-sm-inline">Total:</span>
+                    <span class="ms-sm-1">@ViewBag.TotalRegistros</span>
+                    <span class="d-none d-md-inline ms-sm-1">Registros</span>
+                </span>
+                <button id="btnRefresh" class="btn btn-light btn-sm" title="Actualizar lista">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button id="btnAddClient" class="btn btn-success btn-sm" title="Agregar nuevo cliente" data-bs-toggle="modal" data-bs-target="#registrarUsuarioModal">
+                    <i class="fas fa-plus me-1"></i> Nuevo
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i> @ViewBag.Error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="table-responsive">
+            <table id="tablaClientes" class="table table-hover table-striped w-100">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Código Rol</th>
+                        <th>Rol</th>
+                        <th>Código Menú</th>
+                        <th>Menú</th>
+                        <th>Fecha de Registro</th>
+                        <th>Última Modificacion</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var permiso in Model)
+                    {
+
+                        <tr>
+                            <td>@permiso.ID_ROL</td>
+                            <td>
+                                <div class="fw-bold">@permiso.ROL</div>
+                            </td>
+                            <td>@permiso.ID_MENU</td>
+                            <td>@permiso.NOMBRE_MENU</td>
+                            <td>@permiso.FECHA_CREACION</td>
+                            <td>@permiso.FECHA_MODIFICACION</td>
+
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button class="btn btn-outline-success btn-action btn-edit" data-id="@permiso.ID_ROL" title="Editar">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-action btn-delete" data-id="@permiso.ID_ROL" title="Eliminar">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL PARA REGISTRAR PERMISO-->
+<div class="modal fade" id="registrarUsuarioModal" tabindex="-1" aria-labelledby="registrarUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
+            <!-- Encabezado con tooltip -->
+            <div class="modal-header bg-primary text-white py-3">
+                <div class="d-flex align-items-center w-100">
+                    <div class="icon-container bg-white bg-opacity-10 p-2 rounded-circle me-3">
+                        <i class="fas fa-user-shield fs-5"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="modal-title mb-0 fw-bold" id="registrarUsuarioModalLabel">Asignar nuevo permiso</h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white m-0" data-bs-dismiss="modal" aria-label="Close"
+                            data-bs-toggle="tooltip" data-bs-placement="left" title="Cerrar ventana"></button>
+                </div>
+            </div>
+
+            <form id="registrarUsuarioForm" enctype="multipart/form-data">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <!-- Sección de Rol con tooltips -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light d-flex align-items-center">
+                                    <i class="fas fa-info-circle me-2 text-primary"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Información básica del permiso"></i>
+                                    <h6 class="mb-0 fw-bold text-primary">Información Básica</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4 position-relative">
+                                        <label for="idRol" class="form-label fw-semibold d-flex align-items-center">
+                                            <i class="fas fa-user-tag me-2 text-primary"></i>
+                                            Rol
+                                            <span class="text-danger ms-1">*</span>
+                                            <i class="fas fa-info-circle ms-2 text-muted small"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-placement="right"
+                                               title="Seleccione el rol al que asignará el permiso"></i>
+                                        </label>
+                                        <select class="form-select form-select-lg shadow-sm" id="idRol" name="idRol" required style="height: 50px; border-radius: 8px;">
+                                            <option value="">Seleccione rol...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección de Menú con tooltips -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-header bg-light d-flex align-items-center">
+                                    <i class="fas fa-list-ul me-2 text-primary"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Opciones de menú disponibles"></i>
+                                    <h6 class="mb-0 fw-bold text-primary">Opciones de Menú</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <label for="idMenu" class="form-label fw-semibold d-flex align-items-center">
+                                            <i class="fas fa-folder-open me-2 text-primary"></i>
+                                            Menú
+                                            <span class="text-danger ms-1">*</span>
+                                            <i class="fas fa-info-circle ms-2 text-muted small"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-placement="right"
+                                               title="Seleccione el menú que desea habilitar para este rol"></i>
+                                        </label>
+                                        <div class="input-group input-group-lg shadow-sm">
+                                            <span class="input-group-text bg-light border-end-0"
+                                                  data-bs-toggle="tooltip"
+                                                  data-bs-placement="right"
+                                                  title="Menús del sistema">
+                                                <i class="fas fa-list-alt text-primary"></i>
+                                            </span>
+                                            <select class="form-select form-select-lg border-start-0 ps-3" id="idMenu" name="idMenu" required disabled style="height: 50px; border-radius: 0 8px 8px 0;">
+                                                <option value="" selected disabled>Primero seleccione un Rol...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie del modal con tooltips -->
+                <div class="modal-footer bg-light px-4 py-3 border-top">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm" data-bs-dismiss="modal"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Cancelar y cerrar esta ventana">
+                        <i class="fas fa-times me-2"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Guardar los cambios y asignar permiso">
+                        <span id="registrarClienteSpinner" class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-2"></i> Asignar Permiso
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+            function checkDependencies() {
+                const errors = [];
+                if (typeof jQuery === 'undefined') errors.push('jQuery no está cargado');
+                if (!$.fn.dataTable) errors.push('DataTables core no está cargado');
+                if (!$.fn.dataTable.Buttons) errors.push('DataTables Buttons no está cargado');
+                return errors;
+            }
+
+            const dependencyErrors = checkDependencies();
+            if (dependencyErrors.length > 0) {
+                console.error('Errores de dependencia.');
+                return;
+            }
+
+            if (!$('#tablaClientes').length) return;
+
+            function mostrarLoader() {
+                return Swal.fire({
+                    title: 'Cargando...',
+                    html: 'Por favor espere mientras se cargan los datos',
+                    allowOutsideClick: false,
+                    timerProgressBar: true,
+                    didOpen: function () {
+                        Swal.showLoading();
+                        this.minimumTimer = setTimeout(() => {
+                            minimumTimeElapsed = true;
+                        }, 1000);
+                    },
+                    willClose: () => {
+                        clearTimeout(this.minimumTimer);
+                    }
+                });
+            }
+
+            const loader = mostrarLoader();
+            let dataLoaded = false;
+
+            window.dataTableInstance = $('#tablaClientes').DataTable({
+                responsive: true,
+                dom: '<"row mb-3"<"col-md-6"B><"col-md-6"f>>' +
+                     '<"row"<"col-md-12"tr>>' +
+                     '<"row mt-3"<"col-md-6"l><"col-md-6"p>>',
+                    language: {
+                        buttons: {
+                            excel: 'Exportar a Excel',
+                            print: 'Imprimir'
+                        },
+                        "decimal": "",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Ver _MENU_ registros",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "No se encontraron registros coincidentes.",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Último",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        },
+                        "aria": {
+                            "sortAscending": ": activar para ordenar la columna ascendente",
+                            "sortDescending": ": activar para ordenar la columna descendente"
+                        }
+                    },
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                                text: '<i class="fas fa-file-excel me-2"></i> Excel',
+                                className: 'btn btn-success btn-sm',
+                                title: 'Listado de Roles',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4, 5]
+                                },
+                                action: function(e, dt, button, config) {
+                                    // Mostrar alerta de confirmación primero
+                                    Swal.fire({
+                                        title: 'Exportar a Excel',
+                                        text: '¿Desea generar el reporte en Excel?',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Exportar',
+                                        cancelButtonText: 'Cancelar',
+                                        position: 'center'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Ejecutar exportación
+                                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+
+                                            // Alert de éxito
+                                            setTimeout(() => {
+                                                Swal.fire({
+                                                    title: '¡Listo!',
+                                                    text: 'Exportación completada con éxito',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'Aceptar',
+                                                    position: 'center',
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    showConfirmButton: true
+                                                });
+                                            }, 2000);
+                                        }
+                                    });
+                                }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print me-2"></i> Imprimir',
+                        className: 'btn btn-info btn-sm',
+                        title: 'Listado de Roles',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        },
+                        action: function(e, dt, button, config) {
+                            Swal.fire({
+                                title: 'Preparando impresión',
+                                text: '¿Desea generar la vista para imprimir?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Imprimir',
+                                cancelButtonText: 'Cancelar',
+                                position: 'center',
+                                backdrop: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: 'Preparando documento',
+                                        html: 'Por favor espere...',
+                                        timerProgressBar: true,
+                                        didOpen: () => {
+                                            Swal.showLoading();
+                                        },
+                                        allowOutsideClick: false,
+                                        position: 'center'
+                                    });
+
+                                    setTimeout(() => {
+                                        $.fn.dataTable.ext.buttons.print.action.call(this, e, dt, button, config);
+
+                                        setTimeout(() => {
+                                            Swal.fire({
+                                                title: 'Impresión lista',
+                                                text: 'El documento se ha preparado para imprimir',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar',
+                                                position: 'center',
+                                                timer: 3000,
+                                                timerProgressBar: true
+                                            });
+                                        }, 500);
+                                    }, 1000);
+                                }
+                            });
+                        },
+                        customize: function(win) {
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', '10pt');
+
+                            $(win.document.body).find('h1')
+                                .css('text-align', 'center')
+                                .css('font-size', '16pt');
+                        }
+                    }
+                ],
+                order: [],
+                ordering: true,
+                columnDefs: [
+                    {
+                        targets: [6],
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        targets: "_all",
+                        className: "align-middle"
+                    }
+                ],
+                initComplete: function() {
+                    dataLoaded = true;
+                    loader.checkReadyToClose = function() {
+                        if (this.minimumTimeElapsed && dataLoaded) {
+                            loader.close();
+                        }
+                    };
+                    loader.checkReadyToClose();
+
+                    $('.dataTables_filter input')
+                        .addClass('form-control form-control-sm')
+                        .attr('placeholder', 'Buscar permiso...')
+                        .wrap('<div class="position-relative" style="width: 300px;"></div>')
+                        .before('<i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>')
+                        .css({
+                            'width': '100%',
+                            'padding-right': '35px'
+                        });
+
+                    $('.dataTables_filter label').contents().filter(function() {
+                        return this.nodeType === 3;
+                    }).remove();
+
+                    $('.dataTables_length select')
+                        .addClass('form-select form-select-sm')
+                        .css('width', '80px');
+                }
+            });
+
+            setTimeout(() => {
+                loader.minimumTimeElapsed = true;
+                loader.checkReadyToClose && loader.checkReadyToClose();
+            }, 1500);
+
+            window.dataTableInstance.buttons().container()
+                .appendTo($('.col-md-6:eq(0)', window.dataTableInstance.table().container()))
+                .addClass('btn-group');
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            // Evento de refresh
+            $('#btnRefresh').on('click', function() {
+                location.reload();
+            });
+
+            $('#registrarUsuarioModal').on('show.bs.modal', function() {
+                cargarRoles();
+                $('#idMenu').empty().append('<option value="">Primero seleccione un Rol...</option>');
+                $('#idMenu').prop('disabled', true);
+            });
+
+            $('#registrarUsuarioForm').submit(function(e) {
+                e.preventDefault();
+                registrarUsuario();
+            });
+    });
+
+
+    function cargarRoles() {
+        $.ajax({
+            url: '@Url.Action("ObtenerRoles", "Usuarios")',
+            type: 'GET',
+            success: function(response) {
+                $('#idRol').empty().append('<option value="">Seleccione un rol...</option>');
+                $.each(response, function(i, rol) {
+                    $('#idRol').append($('<option>', {
+                        value: rol.idRol,
+                        text: rol.nombre
+                    }));
+                });
+
+                // Evento cuando cambia la selección de cliente
+                $('#idRol').off('change').on('change', function() {
+                    var idRol = $(this).val();
+                    if (idRol) {
+                        cargarMenus(idRol);
+                        $('#idRol').prop('disabled', false);
+                    } else {
+                        $('#idRol').empty().append('<option value="">Primero seleccione un rol...</option>');
+                        $('#idRol').prop('disabled', true);
+                    }
+                });
+            },
+            error: function() {
+                toastr.error('Error al cargar los Roles');
+            }
+        });
+    }
+
+
+        function cargarMenus(idRol) {
+        $.ajax({
+            url: '@Url.Action("ObtenerMenusPorRol", "Roles")',
+            type: 'GET',
+            data: { idRol: idRol },
+            beforeSend: function() {
+                $('#idMenu').empty().append('<option value="">Cargando menús...</option>');
+            },
+            success: function(response) {
+                $('#idMenu').empty();
+                if (response && response.length > 0) {
+                    $('#idMenu').append('<option value="">Seleccione un menú...</option>');
+                    $.each(response, function(i, menu) {
+                        $('#idMenu').append($('<option>', {
+                            value: menu.idMenu,
+                            text: menu.nombre
+                        }));
+                    });
+                    $('#idMenu').prop('disabled', false);
+                } else {
+                    $('#idMenu').append('<option value="">No hay menús disponibles para este rol.</option>');
+                    $('#idMenu').prop('disabled', true);
+                }
+            },
+            error: function() {
+                toastr.error('Error al cargar los menús');
+                $('#idMenu').empty().append('<option value="">Error al cargar los menús</option>');
+                $('#idMenu').prop('disabled', true);
+            }
+        });
+    }
+
+    function registrarUsuario() {
+        var formData = new FormData($('#registrarUsuarioForm')[0]);
+
+        // Mostrar spinner
+        $('#registrarSpinner').removeClass('d-none');
+
+        $.ajax({
+            url: '@Url.Action("RegistrarPermiso", "Roles")',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: '¡Registro Exitoso!',
+                        text: response.message,
+                        icon: 'success',
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        willClose: () => {
+                            $('#registrarUsuarioModal').modal('hide');
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function(xhr) {
+                toastr.error('Error al asignar el permiso.');
+            },
+            complete: function() {
+                $('#registrarSpinner').addClass('d-none');
+            }
+        });
+    }
+
+    document.getElementById('registrarUsuarioModal').addEventListener('shown.bs.modal', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>

@@ -61,10 +61,12 @@ public class AuthorizeMenuAttribute : Attribute, IAsyncActionFilter
 
         // Usar EXISTS para mejor performance
         await using var cmd = new SqlCommand(
-            "SELECT CASE WHEN EXISTS (" +
-            "   SELECT 1 FROM PermisosMenu " +
-            "   WHERE ID_Rol = @ID_Rol AND URL = @Ruta" +
-            ") THEN 1 ELSE 0 END",
+            @"SELECT CASE WHEN EXISTS (
+                SELECT 1 
+                FROM PERMISOS_ROL pm
+                INNER JOIN MENU m ON pm.ID_Menu = m.ID_Menu
+                WHERE pm.ID_ROL = @ID_Rol AND m.URL = @Ruta
+            ) THEN 1 ELSE 0 END",
             conn);
 
         cmd.Parameters.AddWithValue("@ID_Rol", idRol);

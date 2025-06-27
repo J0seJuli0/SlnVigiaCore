@@ -1,0 +1,353 @@
+﻿@using System.Dynamic
+@model dynamic
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Monitoreo SES";
+}
+
+<div class="container" style="max-width: 900px; margin-top: 30px;">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="card-header bg-gradient-primary text-white py-3">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <h4 class="mb-0 fw-bold"><i class="fas fa-chart-line me-2"></i>Reporte de Monitoreo SES</h4>
+                    <p class="mb-0 opacity-75">Complete los datos del monitoreo de correos electrónicos</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-2 rounded-3">
+                    <i class="fas fa-envelope-open-text fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center my-4">
+            <img id="imgCliente" src="" alt="Imagen del Cliente"
+                 style="height: 100px; width: auto; display: none; object-fit: contain; margin: 0 auto 20px;"
+                 class="rounded-3 shadow-lg img-thumbnail border-2 border-primary">
+        </div>
+
+        <div class="card-body p-4">
+            <form action="/api/Monitoreo/ProcesarFormularioSES" method="post" id="monitoreoForm" class="needs-validation" novalidate>
+                <!-- Sección Cliente -->
+                <div class="mb-4">
+                    <label for="ClienteSeleccionado" class="form-label fw-bold text-primary">
+                        <i class="fas fa-user-tag me-2"></i>Cliente
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-building text-primary"></i></span>
+                        <select class="form-select form-select-lg" id="ClienteSeleccionado" name="ClienteSeleccionado" required onchange="cargarDestinatarios(this.value); mostrarImagenCliente();">
+                            <option value="" selected disabled>-- Seleccione un cliente --</option>
+                            @foreach (var cliente in Model.Clientes)
+                            {
+                                <option value="@cliente.Value" data-imagen="@cliente.Imagen">@cliente.Text</option>
+                            }
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor seleccione un cliente
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección Información Básica -->
+                <div class="border rounded-3 p-4 mb-4 bg-light bg-opacity-10 border-primary border-opacity-25">
+                    <h5 class="mb-3 text-primary d-flex align-items-center">
+                        <i class="fas fa-info-circle me-2"></i>Información Básica
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="Fecha" class="form-label fw-bold">
+                                <i class="fas fa-calendar-day me-2"></i>Fecha
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-calendar text-primary"></i></span>
+                                <input type="date" class="form-control" id="Fecha" name="Fecha" value="@Model.Fecha.ToString("yyyy-MM-dd")" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Hora" class="form-label fw-bold">
+                                <i class="fas fa-clock me-2"></i>Hora
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-clock text-primary"></i></span>
+                                <input type="time" class="form-control" id="Hora" name="Hora" value="@Model.Hora.ToString(@"hh\:mm")" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Responsable" class="form-label fw-bold">
+                                <i class="fas fa-user-tie me-2"></i>Responsable
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-user text-primary"></i></span>
+                                <input type="text" class="form-control" id="Responsable" name="Responsable"
+                                       value="@HttpContextAccessor.HttpContext.Session.GetString("NombreUsu")" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="PorcentajeRebote" class="form-label fw-bold">
+                                <i class="fas fa-percentage me-2"></i>Porcentaje de Rebote
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-chart-pie text-primary"></i></span>
+                                <input type="number" class="form-control" id="PorcentajeRebote" name="PorcentajeRebote"
+                                       value="@Model.PorcentajeRebote" min="0" max="100" step="0.01" required>
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección Destinatarios -->
+                <div class="mb-4">
+                    <label for="Destinatarios" class="form-label fw-bold text-primary">
+                        <i class="fas fa-envelope me-2"></i>Destinatarios
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-at text-primary"></i></span>
+                        <textarea class="form-control" id="Destinatarios" name="Destinatarios" rows="3" readonly
+                                  placeholder="Los correos se cargarán automáticamente al seleccionar un cliente"></textarea>
+                    </div>
+                    <small class="form-text text-muted">Puede agregar correos adicionales separados por comas</small>
+                </div>
+
+                <!-- Botón de envío -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <button type="reset" class="btn btn-outline-secondary me-md-2 px-4 rounded-3">
+                        <i class="fas fa-undo me-2"></i>Limpiar
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg px-4 rounded-3 shadow-sm">
+                        <i class="fas fa-paper-plane me-2"></i>Enviar Reporte
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer de la tarjeta -->
+        <div class="card-footer bg-light py-3 text-center text-muted small">
+            <i class="fas fa-info-circle me-1"></i> Todos los campos son obligatorios
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Validación de formulario con Bootstrap
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        } else {
+                            event.preventDefault();
+                            enviarFormulario();
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        function cargarDestinatarios(idCliente) {
+            if (!idCliente) {
+                document.getElementById('Destinatarios').value = '';
+                return;
+            }
+
+            // Mostrar spinner de carga
+            const destinatariosTextarea = document.getElementById('Destinatarios');
+            destinatariosTextarea.value = "Cargando destinatarios...";
+
+            fetch(`/api/Monitoreo/ObtenerDestinatariosPorCliente?idCliente=${idCliente}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const emails = data.emails.join(', ').trim();
+                        destinatariosTextarea.value = emails;
+                    } else {
+                        console.error('Error del servidor:', data.message);
+                        destinatariosTextarea.value = 'No se pudieron cargar los destinatarios';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    destinatariosTextarea.value = 'Error al cargar destinatarios';
+                    showToast('Error al cargar destinatarios: ' + error.message, 'danger');
+                });
+        }
+
+        function enviarFormulario() {
+            const form = document.getElementById('monitoreoForm');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            // Deshabilitar botón para evitar múltiples envíos
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Enviando...';
+
+            // Crear FormData
+            const formData = new FormData(form);
+
+            fetch('/api/Monitoreo/ProcesarFormularioSES', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message, 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                } else {
+                    showToast('Error: ' + data.message, 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Error al enviar el formulario: ' + error.message, 'danger');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Reporte';
+            });
+        }
+
+        function mostrarImagenCliente() {
+            const select = document.getElementById('ClienteSeleccionado');
+            const selectedOption = select.options[select.selectedIndex];
+            const imagen = selectedOption.getAttribute('data-imagen');
+            const imgCliente = document.getElementById('imgCliente');
+
+            if (imagen) {
+                imgCliente.src = imagen;
+                imgCliente.style.display = 'block';
+                imgCliente.alt = `Logo de ${selectedOption.text}`;
+            } else {
+                imgCliente.src = '';
+                imgCliente.style.display = 'none';
+            }
+        }
+
+        function showToast(message, type) {
+            // Crear toast dinámico
+            const toastContainer = document.createElement('div');
+            toastContainer.innerHTML = `
+                <div class="toast align-items-center text-white bg-${type} border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} me-2"></i>
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+
+            // Posicionar el toast
+            toastContainer.style.position = 'fixed';
+            toastContainer.style.top = '20px';
+            toastContainer.style.right = '20px';
+            toastContainer.style.zIndex = '1100';
+
+            document.body.appendChild(toastContainer);
+
+            // Auto-eliminar después de 5 segundos
+            setTimeout(() => {
+                toastContainer.remove();
+            }, 5000);
+        }
+
+    </script>
+}
+
+<style>
+    :root {
+        --bs-primary: #4e73df;
+        --bs-gradient-primary: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    }
+
+    .bg-gradient-primary {
+        background: var(--bs-gradient-primary);
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.12);
+        }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .form-control, .form-select {
+        border: 1px solid #e3e6f0;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #bac8f3;
+            box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        }
+
+    .input-group-text {
+        background-color: #f8f9fc;
+        border-color: #e3e6f0;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #3a5ccc;
+            border-color: #3a5ccc;
+            transform: translateY(-2px);
+        }
+
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .invalid-feedback {
+        font-size: 0.85rem;
+    }
+
+    .was-validated .form-control:invalid,
+    .was-validated .form-select:invalid {
+        border-color: #e74a3b;
+    }
+
+    .was-validated .form-control:valid,
+    .was-validated .form-select:valid {
+        border-color: #1cc88a;
+    }
+
+  
+</style>
