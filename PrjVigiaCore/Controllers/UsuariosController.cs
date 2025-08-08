@@ -410,6 +410,133 @@ namespace PrjVigiaCore.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ActualizarEmpleado(
+            [FromForm] string idEmpleado,
+            [FromForm] string fechaNacimiento,
+            [FromForm] string genero,
+            [FromForm] string telefono,
+            [FromForm] string direccion,
+            [FromForm] string departamento,
+            [FromForm] string provincia,
+            [FromForm] string distrito,
+            [FromForm] string estadoCivil,
+            [FromForm] string usuario,
+            [FromForm] string email,
+            [FromForm] string idRol,
+            [FromForm] IFormFile imagen)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(idEmpleado) || string.IsNullOrEmpty(telefono) || string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(idRol))
+                {
+                    return Json(new { success = false, message = "Los campos obligatorios deben ser completados" });
+                }
+
+                // Guardamos la imagen en Base64
+                string imageBase64 = null;
+                if (imagen != null && imagen.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        await imagen.CopyToAsync(ms);
+                        var imageBytes = ms.ToArray();
+                        imageBase64 = Convert.ToBase64String(imageBytes);
+                    }
+                }
+
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    await cnn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("sp_ActualizarEmpleadoUsuario", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros para EMPLEADO
+                        cmd.Parameters.AddWithValue("@ID_EMPLEADO", idEmpleado);
+                        cmd.Parameters.AddWithValue("@FECHA_NACIMIENTO", string.IsNullOrEmpty(fechaNacimiento) ? DBNull.Value : (object)DateTime.Parse(fechaNacimiento));
+                        cmd.Parameters.AddWithValue("@GENERO", string.IsNullOrEmpty(genero) ? DBNull.Value : (object)genero);
+                        cmd.Parameters.AddWithValue("@TELEFONO", telefono);
+                        cmd.Parameters.AddWithValue("@DIRECCION", string.IsNullOrEmpty(direccion) ? DBNull.Value : (object)direccion);
+                        cmd.Parameters.AddWithValue("@DEPARTAMENTO", string.IsNullOrEmpty(departamento) ? DBNull.Value : (object)departamento);
+                        cmd.Parameters.AddWithValue("@PROVINCIA", string.IsNullOrEmpty(provincia) ? DBNull.Value : (object)provincia);
+                        cmd.Parameters.AddWithValue("@DISTRITO", string.IsNullOrEmpty(distrito) ? DBNull.Value : (object)distrito);
+                        cmd.Parameters.AddWithValue("@ESTADO_CIVIL", string.IsNullOrEmpty(estadoCivil) ? DBNull.Value : (object)estadoCivil);
+                        cmd.Parameters.AddWithValue("@IMAGE_PATH", string.IsNullOrEmpty(imageBase64) ? DBNull.Value : (object)imageBase64);
+
+                        // Parámetros para USUARIOS_SISTEMA
+                        cmd.Parameters.AddWithValue("@USUARIO", usuario);
+                        cmd.Parameters.AddWithValue("@EMAIL", email);
+                        cmd.Parameters.AddWithValue("@ID_ROL", idRol);
+
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return Json(new { success = true, message = "Empleado actualizado correctamente" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error al actualizar el empleado: " + ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerEmpleadoPorID(string idEmpleado)
+        {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(cad_cn))
+                {
+                    await cnn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("sp_ObtenerEmpleadoPorID", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ID_EMPLEADO", idEmpleado);
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            if (await reader.ReadAsync())
+                            {
+                                var empleado = new
+                                {
+                                    idEmpleado = reader["ID_EMPLEADO"].ToString(),
+                                    dni = reader["DNI"].ToString(),
+                                    nombres = reader["NOMBRES"].ToString(),
+                                    apePat = reader["APE_PAT"].ToString(),
+                                    apeMat = reader["APE_MAT"].ToString(),
+                                    fechaNacimiento = reader["FECHA_NACIMIENTO"] == DBNull.Value ? "" : Convert.ToDateTime(reader["FECHA_NACIMIENTO"]).ToString("yyyy-MM-dd"),
+                                    genero = reader["GENERO"].ToString(),
+                                    telefono = reader["TELEFONO"].ToString(),
+                                    direccion = reader["DIRECCION"].ToString(),
+                                    departamento = reader["DEPARTAMENTO"].ToString(),
+                                    provincia = reader["PROVINCIA"].ToString(),
+                                    distrito = reader["DISTRITO"].ToString(),
+                                    estadoCivil = reader["ESTADO_CIVIL"].ToString(),
+                                    imagePath = reader["IMAGE_PATH"].ToString(),
+                                    usuario = reader["USUARIO"].ToString(),
+                                    email = reader["EMAIL"].ToString(),
+                                    idRol = reader["ID_ROL"].ToString()
+                                };
+
+                                return Json(new { success = true, data = empleado });
+                            }
+                            else
+                            {
+                                return Json(new { success = false, message = "Empleado no encontrado" });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error al obtener datos: " + ex.Message });
+            }
+        }
+
+
         private string GenerateRandomDigits(int length)
         {
             var random = new Random();

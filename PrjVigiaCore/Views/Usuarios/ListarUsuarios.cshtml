@@ -242,12 +242,135 @@
                                     <button class="action-btn btn btn-sm btn-edit" data-id="@emp.ID_EMPLEADO" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </button>
+
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PARA EDITAR USUARIO-->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalEditarLabel">Editar Empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="formEditarEmpleado">
+
+                    <input type="hidden" id="txtIdEmpleado" name="idEmpleado">
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtDni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="txtDni" disabled>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtTelefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="txtTelefono">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="cboGenero" class="form-label">Género</label>
+                            <select class="form-select" id="cboGenero">
+                                <option value="">Seleccione</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtNombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="txtNombres" disabled>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtApePat" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="txtApePat" disabled>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtApeMat" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="txtApeMat" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                            <input type="date" class="form-control" id="txtFechaNacimiento">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtEstadoCivil" class="form-label">Estado Civil</label>
+                            <input type="text" class="form-control" id="txtEstadoCivil">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtUsuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="txtUsuario">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="txtEmail">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-6 mb-3">
+                                <label for="idRol" class="form-label fw-semibold">Rol <span class="text-danger">*</span></label>
+                                <select class="form-select form-select-sm" id="idRol" name="idRol" required>
+                                    <option value="">Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="imagenEditar" class="form-label">Foto</label>
+                            <input type="file" class="form-control" id="imagenEditar" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="txtDireccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="txtDireccion">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="txtDepartamento" class="form-label">Departamento</label>
+                            <input type="text" class="form-control" id="txtDepartamento">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtProvincia" class="form-label">Provincia</label>
+                            <input type="text" class="form-control" id="txtProvincia">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="txtDistrito" class="form-label">Distrito</label>
+                            <input type="text" class="form-control" id="txtDistrito">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        <label class="form-label">Previsualización de Foto</label>
+                        <div>
+                            <img id="previewImagen" src="" alt="Sin imagen" style="max-height: 150px; border-radius: 8px; display: none; border: 1px solid #ddd;">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarCambios">Guardar Cambios</button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -686,6 +809,10 @@
                 cargarGrupo();
             });
 
+            $('#modalEditar').on('show.bs.modal', function() {
+                cargarRoles();
+            });
+
             $('#registrarUsuarioForm').submit(function(e) {
                 e.preventDefault();
                 registrarUsuario();
@@ -716,6 +843,9 @@
                             text: rol.nombre
                         }));
                     });
+                    if (idRolSeleccionado) {
+                        $('#idRol').val(idRolSeleccionado);
+                    }
                 },
                 error: function() {
                     toastr.error('Error al cargar los roles');
@@ -810,5 +940,110 @@
             moreLength: 100,
             closeButton: true
         });
+
+
+        $(document).on('click', '.btn-edit', function () {
+            var idEmpleado = $(this).data('id');
+
+            $.ajax({
+                url: '/Usuarios/ObtenerEmpleadoPorID',
+                type: 'GET',
+                data: { idEmpleado: idEmpleado },
+                success: function (res) {
+                    if (res.success) {
+                        // Llenas los campos del modal
+                        $('#txtIdEmpleado').val(res.data.idEmpleado);
+                        $('#txtDni').val(res.data.dni);
+                        $('#txtNombres').val(res.data.nombres);
+                        $('#txtApePat').val(res.data.apePat);
+                        $('#txtApeMat').val(res.data.apeMat);
+                        $('#txtFechaNacimiento').val(res.data.fechaNacimiento);
+                        $('#cboGenero').val(res.data.genero);
+                        $('#txtTelefono').val(res.data.telefono);
+                        $('#txtDireccion').val(res.data.direccion);
+                        $('#txtDepartamento').val(res.data.departamento);
+                        $('#txtProvincia').val(res.data.provincia);
+                        $('#txtDistrito').val(res.data.distrito);
+                        $('#txtEstadoCivil').val(res.data.estadoCivil);
+                        $('#txtUsuario').val(res.data.usuario);
+                        $('#txtEmail').val(res.data.email);
+                       
+                        cargarRoles(res.data.idRol);
+
+                        // Preview de imagen si existe
+                        if (res.data.imagePath) {
+                            $('#previewImagen').attr('src', 'data:image/png;base64,' + res.data.imagePath).show();
+                        } else {
+                            $('#previewImagen').hide();
+                        }
+
+                        $('#modalEditar').modal('show');
+                    } else {
+                        Swal.fire('Error', res.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Error al obtener los datos', 'error');
+                }
+            });
+        });
+
+        $(document).on('click', '#btnGuardarCambios', function () {
+            var formData = new FormData();
+
+            formData.append('idEmpleado', $('#txtIdEmpleado').val());
+            formData.append('telefono', $('#txtTelefono').val());
+            formData.append('genero', $('#cboGenero').val());
+            formData.append('fechaNacimiento', $('#txtFechaNacimiento').val());
+            formData.append('estadoCivil', $('#txtEstadoCivil').val());
+            formData.append('usuario', $('#txtUsuario').val());
+            formData.append('direccion', $('#txtDireccion').val());
+            formData.append('email', $('#txtEmail').val());
+            formData.append('idRol', $('#idRol').val());
+            formData.append('departamento', $('#txtDepartamento').val());
+            formData.append('provincia', $('#txtProvincia').val());
+            formData.append('distrito', $('#txtDistrito').val());
+
+            // Adjuntar imagen si el usuario seleccionó una
+            if ($('#imagenEditar')[0].files.length > 0) {
+                formData.append('imagen', $('#imagenEditar')[0].files[0]);
+            }
+
+            Swal.fire({
+                title: '¿Guardar cambios?',
+                text: 'Se actualizarán los datos del empleado.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: '/Usuarios/ActualizarEmpleado',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (res) {
+                            if (res.success) {
+                                Swal.fire('¡Actualizado!', res.message, 'success').then(() => {
+                                    $('#modalEditar').modal('hide');
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire('Error', res.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error', 'Ocurrió un error al actualizar', 'error');
+                        }
+                    });
+
+                }
+            });
+        });
+
+
     });
 </script>
